@@ -1,7 +1,15 @@
 # Cratis
 
-Cratis is a developer friendly event sourcing platform.
-Its goal is to democratize event sourcing through great tooling and great APIs.
+Cratis is synonymous with developer friendly aimed at putting developers in the pit of success.
+
+Below are some of the projects you'll find.
+
+| Project | Description |
+| ------- | ----------- |
+| [Specifications](https://github.com/cratis/specifications) | Library to make it easy to leverage existing unit test frameworks to do BDD - Specification by Example. |
+| [Fundamentals](https://github.com/cratis/fundamentals) | Generic reusable utilities, polyfilling missing pieces from the .NET base class libraries. |
+| [Application Model](https://github.com/cratis/applicationmodel) | An oppinionated approach for developing applications with productivity at heart. |
+| [Chronicle](https://github.com/cratis/chronicle) | EventSourcing database with a lovable API and tooling. |
 
 ## Values
 
