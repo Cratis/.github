@@ -1,6 +1,6 @@
 # Cratis
 
-Cratis is synonymous with developer friendly aimed at putting developers in the pit of success.
+Cratis is synonymous with **developer friendly**, aimed at putting developers in the pit of success.
 
 Below are some of the projects you'll find.
 
