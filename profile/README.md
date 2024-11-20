@@ -2,7 +2,7 @@
 
 Cratis is synonymous with **developer friendly**, aimed at putting developers in the pit of success.
 This is done through different libraries supporting you as a developer. These libraries also feed
-the main product of Cratis; Chronicle - the easy to use and flexible event sourcing database.
+the main product of Cratis; ***Chronicle*** - the easy to use and flexible event sourcing database.
 
 ## Values
 
