@@ -9,7 +9,7 @@ at a glance.
 ## Abbreviations
 
 Unless it is a well understood abbreviation, such as **XML**, **JSON** or something
-that is well understood in the domain you're targeting, abbreviations should be used.
+that is well understood in the domain you're targeting, abbreviations should not be used.
 
 ## Pluralization
 

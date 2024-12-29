@@ -1,0 +1,20 @@
+- name: Values
+  href: values.md
+- name: Code of Conduct
+  href: CODE_OF_CONDUCT.md
+- name: Characteristics
+  href: characteristics.md
+- name: Contributing
+  href: contributing.md
+- name: Building
+  href: building.md
+- name: Naming
+  href: naming.md
+- name: Standardization
+  href: standardization.md
+- name: C#
+  href: csharp.md
+- name: Profiling
+  href: profiling.md
+- name: Consuming pre-releases
+  href: consuming-pre-releases.md

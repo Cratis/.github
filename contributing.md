@@ -16,21 +16,21 @@ The contribution will be reviewed before it can be accepted and the smaller it i
 
 ## Branches
 
-The **master/main** branch represents what is in production.
+The **main** branch represents what is in production.
 When contributing, do so by creating a branch adhering to the following naming conventions:
 
 * feature/[name of feature]
 * fix/[name of fix]
 * chore/[chore description]
 
-Branches are to be deleted once merged into **master/main** branch. There should be no long living branches other than **master/main**.
+Branches are to be deleted once merged into **main** branch. There should be no long living branches other than **main**.
 
 > Note:
-> For public repositories were you're not a member of the team, you'll have to do a [fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo) first.
+> If you're not a member of the team, you'll have to do a [fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo) first.
 > Public repositories have a different target audience and commitment to strong semantic versioning. This manifests itself in having branches that when there
 > are breaking changes/major version releases, what goes into the release has to be more coordinated. This then results in long lived branches representing the
 > specific target version. Branches are made from this and merged into the version branch. The version branch is then used
-> as a pull request to **master/main**.
+> as a pull request to **main**.
 
 ## Pull Requests
 
@@ -47,21 +47,7 @@ Pull requests will run automated checks for verification, these typically includ
 
 If all of the verifications steps pass, the code will be reviewed.
 
-### Private repositories
-
-Pull requests that are merged to **main/master** will be entered into the release pipeline.
-All pull requests should also be [squash-merged](https://docs.microsoft.com/en-us/azure/devops/repos/git/merging-with-squash?view=azure-devops) and will be enforced when possible.
-
-Private repositories are versioned automatically when built for release.
-The version number is created from the current date and an auto-incremented revision number for the day.
-
-**yyyy.MM.dd.revision**
-
-e.g.
-
-**2022.03.29.1**
-
-### Public repositories
+### Versioning
 
 A contribution can trigger a versioned release. The versioning is adhering to [semantic versioning version 2](https://semver.org)
 and leveraging our own [release action](https://github.com/cratis/release-action) for this.
