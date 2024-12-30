@@ -4,11 +4,11 @@ All Cratis projects follow the same structure and way of building.
 
 ## Prerequisites
 
-This repository requires the following:
+The repositories use one or more of the following technologies:
 
-- [Docker](https://www.docker.com/products/docker-desktop)
 - [.NET Core 9](https://dotnet.microsoft.com/download/dotnet/9.0)
 - [Node JS version 23](https://nodejs.org/)
+- [Docker](https://www.docker.com/products/docker-desktop)
 
 ## Build and Test
 
