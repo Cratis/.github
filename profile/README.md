@@ -29,13 +29,24 @@ to help in setting what our expectations are for contributions.
 
 ## Versions
 
+### Chronicle
+
 [![Nuget](https://img.shields.io/nuget/v/Cratis.Chronicle?label=Cratis.Chronicle&logo=nuget)](http://nuget.org/packages/cratis.chronicle)
 [![Docker](https://img.shields.io/docker/v/cratis/chronicle?label=Chronicle&logo=docker&sort=semver)](https://hub.docker.com/r/cratis/chronicle)
+
+### Application Model
 
 [![Nuget](https://img.shields.io/nuget/v/Cratis.Applications?label=Cratis.Applications&logo=nuget)](http://nuget.org/packages/cratis.applications)
 [![NPM](https://img.shields.io/npm/v/@cratis/applications?label=@cratis/applications&logo=npm)](https://www.npmjs.com/package/@cratis/applications)
 
+### Fundamentals
+
 [![Nuget](https://img.shields.io/nuget/v/Cratis.Fundamentals?label=Cratis.Fundamentals&logo=nuget)](http://nuget.org/packages/cratis.fundamentals)
 [![NPM](https://img.shields.io/npm/v/@cratis/fundamentals?label=@cratis/fundamentals&logo=npm)](https://www.npmjs.com/package/@cratis/fundamentals)
+
+### Specifications
+
+[![Nuget](https://img.shields.io/nuget/v/cratis.specifications.xunit?label=XUnit)](http://nuget.org/packages/cratis.specifications.xunit)
+[![Nuget](https://img.shields.io/nuget/v/cratis.specifications.nunit?label=NUnit)](http://nuget.org/packages/cratis.specifications.nunit)
 
 
