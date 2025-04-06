@@ -19,7 +19,7 @@ from for instance `cratis/chronicle:latest-development` to the specific one @ Gi
 
 ## NuGet
 
-All NuGet container images can be found [here](https://github.com/orgs/cratis/packages?ecosystem=nuget).
+All NuGet packages can be found [here](https://github.com/orgs/cratis/packages?ecosystem=nuget).
 
 To consume packages, you'll need to configure either your global or local to your NuGet project. To start with you'll need a GitHub personal access token,
 read the [GitHub documentation](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) on how this works.
