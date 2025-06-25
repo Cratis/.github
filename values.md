@@ -3,6 +3,7 @@
 We value:
 
 * Empathy
+* Simplicity
 * Maintainability
 * Readability
 * Testability
@@ -17,6 +18,12 @@ Understanding who we are building for is vital to get it right. This is best
 achieved through listening to input, being open to change and being inquisitive towards the persona.
 It applies at all levels, be it an API or tool being used by another developer all the way to the end-user
 using the software through a user interface.
+
+## Simplicity
+
+Always stribe towards the simplest possible solution. This is especially true for public facing
+API surfaces. Even if the internals need to be complex, the public facing surface should expose it
+in a simple manner. Front and center; Developer Experience.
 
 ## Maintainability
 
