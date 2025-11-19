@@ -6,7 +6,7 @@ All Cratis projects follow the same structure and way of building.
 
 The repositories use one or more of the following technologies:
 
-- [.NET Core 9](https://dotnet.microsoft.com/download/dotnet/9.0)
+- [.NET Core 10](https://dotnet.microsoft.com/download/dotnet/10.0)
 - [Node JS version 23](https://nodejs.org/)
 - [Docker](https://www.docker.com/products/docker-desktop)
 
