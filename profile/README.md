@@ -34,7 +34,7 @@ to help in setting what our expectations are for contributions.
 [![Nuget](https://img.shields.io/nuget/v/Cratis.Chronicle?label=Cratis.Chronicle&logo=nuget)](http://nuget.org/packages/cratis.chronicle)
 [![Docker](https://img.shields.io/docker/v/cratis/chronicle?label=Chronicle&logo=docker&sort=semver)](https://hub.docker.com/r/cratis/chronicle)
 
-### Application Model
+### Arc
 
 [![Nuget](https://img.shields.io/nuget/v/Cratis.Applications?label=Cratis.Applications&logo=nuget)](http://nuget.org/packages/cratis.applications)
 [![NPM](https://img.shields.io/npm/v/@cratis/applications?label=@cratis/applications&logo=npm)](https://www.npmjs.com/package/@cratis/applications)
