@@ -36,8 +36,8 @@ to help in setting what our expectations are for contributions.
 
 ### Arc
 
-[![Nuget](https://img.shields.io/nuget/v/Cratis.Applications?label=Cratis.Applications&logo=nuget)](http://nuget.org/packages/cratis.applications)
-[![NPM](https://img.shields.io/npm/v/@cratis/applications?label=@cratis/applications&logo=npm)](https://www.npmjs.com/package/@cratis/applications)
+[![Nuget](https://img.shields.io/nuget/v/Cratis.Arc?label=Cratis.Arc&logo=nuget)](http://nuget.org/packages/cratis.arc)
+[![NPM](https://img.shields.io/npm/v/@cratis/arc?label=@cratis/arc&logo=npm)](https://www.npmjs.com/package/@cratis/arc)
 
 ### Fundamentals
 
