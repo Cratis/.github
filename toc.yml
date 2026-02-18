@@ -18,3 +18,7 @@
   href: profiling.md
 - name: Consuming pre-releases
   href: consuming-pre-releases.md
+- name: Chronicle
+  href: ../Chronicle/contributing/
+- name: Documentation
+  href: ../Documentation/
