@@ -44,6 +44,10 @@ to help in setting what our expectations are for contributions.
 [![Nuget](https://img.shields.io/nuget/v/Cratis.Fundamentals?label=Cratis.Fundamentals&logo=nuget)](http://nuget.org/packages/cratis.fundamentals)
 [![NPM](https://img.shields.io/npm/v/@cratis/fundamentals?label=@cratis/fundamentals&logo=npm)](https://www.npmjs.com/package/@cratis/fundamentals)
 
+### Components
+
+[![NPM](https://img.shields.io/npm/v/@cratis/components?label=@cratis/components&logo=npm)](https://www.npmjs.com/package/@cratis/components)
+
 ### Specifications
 
 [![Nuget](https://img.shields.io/nuget/v/cratis.specifications.xunit?label=XUnit)](http://nuget.org/packages/cratis.specifications.xunit)
