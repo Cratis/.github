@@ -117,17 +117,16 @@ which generates optimized actions that can simply be called.
 We encapsulate log messages for a type in a class named the same as the type suffixed with `LogMessages`.
 It holds partial methods that represent specific log messages, leveraging the
 [compile-time logging source generation](https://docs.microsoft.com/en-us/dotnet/core/extensions/logger-message-generator) of .NET 6.
-The **EventId** must be unique within every class and should be a sequential number starting with 0.
 
 Below is an example:
 
 ```csharp
 public partial static class EventLogLogMessages
 {
-    [LoggerMessage(0, LogLevel.Information, "Committing event with '{SequenceNumber}' as sequence number")]
+    [LoggerMessage(LogLevel.Information, "Committing event with '{SequenceNumber}' as sequence number")]
     internal static partial void Committing(this ILogger logger, EventType eventType, EventSourceId eventSource, uint sequenceNumber, EventLogId eventLog);
 
-    [LoggerMessage(1, LogLevel.Error, "Problem committing event to storage")]
+    [LoggerMessage(LogLevel.Error, "Problem committing event to storage")]
     internal static partial void CommitFailure(this ILogger logger, Exception exception);
 }
 ```
