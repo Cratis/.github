@@ -2,97 +2,199 @@
 
 ## useDialog
 
-`useDialog` wires up a `CommandDialog` without needing to manage open/close state yourself.
+`useDialog` wires up a dialog component without needing to manage open/close state yourself.
 
 ```tsx
 import { useDialog } from '@cratis/arc.react/dialogs';
 
-const [dialogMediator, openDialog] = useDialog<TContext, TCommand>(
-    async (context, command) => {
-        // optional: called when user clicks Confirm, after command executes
-    }
-);
+const [DialogWrapper, showDialog] = useDialog<TResult>(DialogComponent);
 ```
 
-- `TContext` — data passed to `openDialog()` (typically a selected row)
-- `TCommand` — the command proxy type
+- `TResult` — the value type returned when the dialog closes (e.g. `CommandResult<string>` or a data object)
+- `DialogWrapper` — render this once in JSX; it mounts the dialog when `showDialog()` is called
+- `showDialog()` — call to open the dialog; returns a `Promise<[DialogResult, TResult | undefined]>`
 
-Call `openDialog(context?)` to show the dialog. Pass a row or other context when needed.
+```tsx
+const [result, value] = await showDialog();
+if (result === DialogResult.Ok) {
+    // use value
+}
+```
+
+Pass data to the dialog by calling `showDialog` with a props object:
+
+```tsx
+await showDialog({ account: selectedAccount });
+```
 
 ## useDialogContext
 
-Inside a `CommandDialog`'s `children`, call `useDialogContext()` to read the context value passed by `openDialog`:
+Inside a dialog component, call `useDialogContext<TResult>()` to get the `closeDialog` function:
 
 ```tsx
-const AddItemDialog = () => {
-    const [item] = useDialogContext<ItemSummary>();
-    const [command, setValues] = AddItem.use({ itemId: item?.id });
+import { useDialogContext, DialogResult } from '@cratis/arc.react/dialogs';
+
+const MyDialog = () => {
+    const { closeDialog } = useDialogContext<MyResult>();
 
     return (
-        <InputTextField label="Name" value={command.name} onChange={setValues('name')} />
+        <Dialog
+            title="My Dialog"
+            onConfirm={() => closeDialog(DialogResult.Ok, resultValue)}
+            onCancel={() => closeDialog(DialogResult.Cancelled)}
+        >
+            {/* content */}
+        </Dialog>
     );
 };
 ```
 
 ## CommandDialog
 
-```tsx
-import { CommandDialog } from '@cratis/components';
+`CommandDialog` (from `@cratis/components/CommandDialog`) executes a command when the user confirms. Use it inside a component that calls `useDialogContext` for the close function.
 
-<CommandDialog
-    dialogMediator={dialogMediator}
-    title="Create Account"
-    command={CreateAccount}
-    initialValuesMapper={(ctx) => ({ ownerId: ctx.id })}
->
-    <InputTextField id="name" label="Account Name" />
-    <NumberField id="initialBalance" label="Initial Balance" />
-</CommandDialog>
+```tsx
+import { useDialogContext, DialogResult } from '@cratis/arc.react/dialogs';
+import { CommandDialog } from '@cratis/components/CommandDialog';
+import { InputTextField, NumberField } from '@cratis/components/CommandForm';
+import { CreateAccount } from '../api/Accounts/CreateAccount';
+
+const CreateAccountDialog = () => {
+    const { closeDialog } = useDialogContext();
+    return (
+        <CommandDialog<CreateAccount>
+            command={CreateAccount}
+            title="Create Account"
+            okLabel="Create"
+            onConfirm={() => closeDialog(DialogResult.Ok)}
+            onCancel={() => closeDialog(DialogResult.Cancelled)}
+        >
+            <InputTextField<CreateAccount> value={c => c.name} label="Account Name" />
+            <NumberField<CreateAccount> value={c => c.initialBalance} label="Initial Balance" />
+        </CommandDialog>
+    );
+};
+
+// Parent component
+export const AccountsPage = () => {
+    const [CreateDialogWrapper, showCreate] = useDialog(CreateAccountDialog);
+
+    return (
+        <>
+            <button onClick={showCreate}>Create account</button>
+            <CreateDialogWrapper />
+        </>
+    );
+};
 ```
 
-### Props
+`CommandDialog` calls `onConfirm` only after a successful `command.execute()`, so you do not need to check `isSuccess` yourself.
 
-| Prop | Type | Description |
-| --- | --- | --- |
-| `dialogMediator` | `IDialogMediator` | From `useDialog` |
-| `title` | `string` | Dialog header text |
-| `command` | Command class | Proxy-generated command class |
-| `initialValuesMapper` | `(ctx) => Partial<Command>` | Map context to initial command values |
-| `children` | `ReactNode` | `CommandForm` field components |
-| `confirmLabel` | `string` | Confirm button text (default: "Save") |
-| `cancelLabel` | `string` | Cancel button text (default: "Cancel") |
+## Dialog (data collection without a command)
+
+`Dialog` (from `@cratis/components/Dialogs`) is for collecting data or confirming an action without executing a command.
+
+```tsx
+import { useState } from 'react';
+import { useDialogContext, DialogResult } from '@cratis/arc.react/dialogs';
+import { Dialog } from '@cratis/components/Dialogs';
+import { InputText } from 'primereact/inputtext';
+
+type CreateProjectResult = { name: string };
+
+const AddProjectDialog = () => {
+    const { closeDialog } = useDialogContext<CreateProjectResult>();
+    const [name, setName] = useState('');
+    const isValid = name.trim().length > 0;
+
+    return (
+        <Dialog
+            title="Add Project"
+            width="32rem"
+            isValid={isValid}
+            onConfirm={() => closeDialog(DialogResult.Ok, { name })}
+            onCancel={() => closeDialog(DialogResult.Cancelled)}
+        >
+            <InputText
+                value={name}
+                onChange={e => setName(e.target.value)}
+                autoFocus
+            />
+        </Dialog>
+    );
+};
+```
+
+## CommandDialog props
+
+| Prop | Required | Purpose |
+| ---- | -------- | ------- |
+| `command` | ✓ | Command constructor (proxy-generated class) |
+| `title` | ✓ | Dialog header text |
+| `initialValues` | | Values set as the change-tracking baseline (supply injected IDs here) |
+| `currentValues` | | Values to pre-populate the fields (use for edit dialogs) |
+| `onConfirm` | | Called after successful execution |
+| `onCancel` | | Called when cancelled/dismissed |
+| `okLabel` | | Confirm button text (default: `"Ok"`) |
+| `cancelLabel` | | Cancel button text (default: `"Cancel"`) |
+| `isValid` | | Extra validity gate combined with command form validity |
+| `onBeforeExecute` | | Transform command values just before `.execute()` (do not use for required fields — it runs after validation) |
+| `onFieldChange` | | Callback on every field change |
+| `buttons` | | Override button set (`DialogButtons` enum or custom ReactNode) |
 
 ## CommandForm field components
 
-All field components accept `id` matching the command property name. They read and write via the command proxy automatically when used inside `CommandDialog`.
+All fields from `@cratis/components/CommandForm`. Pass the command type as a generic parameter so the `value` accessor is fully typed:
 
 ```tsx
-import { InputTextField, NumberField, CheckboxField, DateField, DropdownField, TextAreaField } from '@cratis/components';
+import {
+    InputTextField,
+    NumberField,
+    CheckboxField,
+    DateField,
+    DropdownField,
+    TextAreaField,
+} from '@cratis/components/CommandForm';
 
-<InputTextField id="name" label="Display Name" />
-<NumberField id="amount" label="Amount" />
-<CheckboxField id="isActive" label="Active" />
-<DateField id="dueDate" label="Due Date" />
-<DropdownField id="category" label="Category" options={[...]} />
-<TextAreaField id="notes" label="Notes" />
+<InputTextField<MyCommand> value={c => c.title} label="Title" />
+<NumberField<MyCommand> value={c => c.quantity} label="Qty" />
+<CheckboxField<MyCommand> value={c => c.isActive} label="Active" />
+<DateField<MyCommand> value={c => c.dueDate} label="Due date" />
+<DropdownField<MyCommand>
+    value={c => c.status}
+    label="Status"
+    options={statusOptions}
+    optionLabel="label"
+    optionValue="value"
+/>
+<TextAreaField<MyCommand> value={c => c.notes} label="Notes" rows={3} />
 ```
 
 ## Edit dialog pattern
 
+Pre-populate fields with `currentValues` and set identity keys with `initialValues`:
+
 ```tsx
-const [editDialog, openEdit] = useDialog<AccountSummary, EditAccount>(
-    async (row, command) => { /* post-confirm */ }
-);
+const EditAccountDialog = ({ account }: { account: AccountSummary }) => {
+    const { closeDialog } = useDialogContext();
+    return (
+        <CommandDialog<UpdateAccount>
+            command={UpdateAccount}
+            title="Edit Account"
+            initialValues={{ accountId: account.id }}
+            currentValues={{ name: account.name }}
+            onConfirm={() => closeDialog(DialogResult.Ok)}
+            onCancel={() => closeDialog(DialogResult.Cancelled)}
+        >
+            <InputTextField<UpdateAccount> value={c => c.name} label="Account Name" />
+        </CommandDialog>
+    );
+};
 
-// Trigger from row selection:
-<DataPage onRowSelected={openEdit} ... />
-
-<CommandDialog
-    dialogMediator={editDialog}
-    title="Edit Account"
-    command={EditAccount}
-    initialValuesMapper={(row) => ({ accountId: row.id, name: row.name })}
->
-    <InputTextField id="name" label="Account Name" />
-</CommandDialog>
+// Pass the selected account as props when opening
+const [EditDialogWrapper, showEdit] = useDialog(EditAccountDialog);
+await showEdit({ account: selectedAccount });
 ```
+
+- `initialValues` — sets the change-tracking baseline; use for IDs that must be present for validity but are not user-entered
+- `currentValues` — pre-populates field display values; use for editable fields that should show existing data
