@@ -17,7 +17,6 @@ jobs:
     permissions:
       contents: read
       issues: write
-      models: read
 
     steps:
       - name: Collect releases from organization repositories
@@ -79,12 +78,12 @@ jobs:
             core.setOutput('count', `${releases.length}`);
             core.setOutput('since', since.toISOString());
 
-      - name: Summarize releases with LLM
+      - name: Summarize releases by category
         if: steps.collect.outputs.count != '0'
         id: summarize
         uses: actions/github-script@v8
         env:
-          MODELS_TOKEN: ${{ secrets.PAT_WORKFLOWS != '' && secrets.PAT_WORKFLOWS || github.token }}
+          DAYS: ${{ inputs.days || '7' }}
         with:
           github-token: ${{ secrets.PAT_WORKFLOWS != '' && secrets.PAT_WORKFLOWS || github.token }}
           script: |
@@ -93,43 +92,69 @@ jobs:
 
             const releasesPath = path.join(process.env.GITHUB_WORKSPACE, 'weekly-releases.json');
             const releases = JSON.parse(fs.readFileSync(releasesPath, 'utf8'));
+            const days = Number(process.env.DAYS || '7');
+            const now = new Date();
+            const startDate = new Date(now.getTime() - days * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
+            const endDate = now.toISOString().slice(0, 10);
 
-            const response = await fetch('https://models.github.ai/inference/chat/completions', {
-              method: 'POST',
-              headers: {
-                Authorization: `Bearer ${process.env.MODELS_TOKEN}`,
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({
-                model: 'openai/gpt-4.1-mini',
-                messages: [
-                  {
-                    role: 'system',
-                    content: 'You write concise, professional weekly aggregated release notes in Markdown. Group related repositories together where sensible and highlight important changes.'
-                  },
-                  {
-                    role: 'user',
-                    content: `Create release notes for the last week from this JSON: ${JSON.stringify(releases)}`
-                  }
-                ],
-                temperature: 0.2
-              })
-            });
+            const categories = ['Added', 'Changed', 'Fixed', 'Removed', 'Security', 'Deprecated'];
+            const normalizedToCanonical = new Map(categories.map(category => [category.toLowerCase(), category]));
+            const grouped = Object.fromEntries(categories.map(category => [category, []]));
 
-            let summary = '';
+            function parseReleaseBody(body) {
+              const parsed = Object.fromEntries(categories.map(category => [category, []]));
+              const normalizedBody = String(body || '').replace(/\r\n/g, '\n');
+              const lines = normalizedBody.split('\n');
+              let activeCategory = null;
 
-            if (response.ok) {
-              const payload = await response.json();
-              summary = payload?.choices?.[0]?.message?.content?.trim() || '';
+              for (const rawLine of lines) {
+                const line = rawLine.trim();
+                const headingMatch = line.match(/^#{1,6}\s*(Added|Changed|Fixed|Removed|Security|Deprecated)\b/i);
+                if (headingMatch) {
+                  activeCategory = normalizedToCanonical.get(headingMatch[1].toLowerCase()) || null;
+                  continue;
+                }
+
+                if (!activeCategory || !line) {
+                  continue;
+                }
+
+                const bulletMatch = line.match(/^[-*]\s+(.+)$/);
+                const numberedMatch = line.match(/^\d+\.\s+(.+)$/);
+                if (bulletMatch) {
+                  parsed[activeCategory].push(bulletMatch[1].trim());
+                  continue;
+                }
+
+                if (numberedMatch) {
+                  parsed[activeCategory].push(numberedMatch[1].trim());
+                }
+              }
+
+              return parsed;
             }
 
-            if (!summary) {
-              summary = [
-                '## Weekly aggregated release notes',
-                '',
-                ...releases.map(release => `- [${release.repository}](${release.url}) - **${release.title}** (${release.tag})`)
-              ].join('\\n');
+            for (const release of releases) {
+              const parsed = parseReleaseBody(release.body);
+              for (const category of categories) {
+                for (const item of parsed[category]) {
+                  grouped[category].push(`- **${release.repository}** ([${release.title}](${release.url})): ${item}`);
+                }
+              }
             }
+
+            const summaryLines = [`# Aggregated release notes for week of ${startDate} to ${endDate}`, ''];
+            for (const category of categories) {
+              summaryLines.push(`## ${category}`);
+              if (grouped[category].length) {
+                summaryLines.push(...grouped[category]);
+              } else {
+                summaryLines.push('- No updates');
+              }
+              summaryLines.push('');
+            }
+
+            const summary = summaryLines.join('\n').trim();
 
             fs.writeFileSync(path.join(process.env.GITHUB_WORKSPACE, 'weekly-release-summary.md'), summary);
 
