@@ -101,6 +101,42 @@ jobs:
             const normalizedToCanonical = new Map(categories.map(category => [category.toLowerCase(), category]));
             const grouped = Object.fromEntries(categories.map(category => [category, []]));
 
+            function isNoUpdateItem(item) {
+              const normalized = String(item || '')
+                .replace(/[`*_~]/g, '')
+                .replace(/\s*\(#\d+\)\s*$/g, '')
+                .trim()
+                .toLowerCase()
+                .replace(/[.!]+$/g, '');
+
+              if (!normalized) {
+                return true;
+              }
+
+              const exactNoUpdateValues = new Set([
+                'none',
+                'n/a',
+                'na',
+                'nothing',
+                'no change',
+                'no changes',
+                'no update',
+                'no updates',
+                'no fixes',
+                'no fix',
+                'nothing to report',
+                'not applicable'
+              ]);
+
+              if (exactNoUpdateValues.has(normalized)) {
+                return true;
+              }
+
+              return /^no\s+(new\s+)?(changes?|updates?|fixes?|additions?|removals?|deprecations?|security\s+changes?)\b/.test(normalized) ||
+                /^nothing\s+(new|to\s+report|was\s+(added|changed|fixed|removed|deprecated|done)|has\s+changed)\b/.test(normalized) ||
+                /^there\s+(are|were)\s+no\s+(changes?|updates?|fixes?|additions?|removals?|deprecations?)\b/.test(normalized);
+            }
+
             function parseReleaseBody(body) {
               const parsed = Object.fromEntries(categories.map(category => [category, []]));
               const normalizedBody = String(body || '').replace(/\r\n/g, '\n');
@@ -122,12 +158,18 @@ jobs:
                 const bulletMatch = line.match(/^[-*]\s+(.+)$/);
                 const numberedMatch = line.match(/^\d+\.\s+(.+)$/);
                 if (bulletMatch) {
-                  parsed[activeCategory].push(bulletMatch[1].trim());
+                  const item = bulletMatch[1].trim();
+                  if (!isNoUpdateItem(item)) {
+                    parsed[activeCategory].push(item);
+                  }
                   continue;
                 }
 
                 if (numberedMatch) {
-                  parsed[activeCategory].push(numberedMatch[1].trim());
+                  const item = numberedMatch[1].trim();
+                  if (!isNoUpdateItem(item)) {
+                    parsed[activeCategory].push(item);
+                  }
                 }
               }
 
