@@ -121,7 +121,7 @@ It holds partial methods that represent specific log messages, leveraging the
 Below is an example:
 
 ```csharp
-public partial static class EventLogLogMessages
+internal partial static class EventLogLogMessages
 {
     [LoggerMessage(LogLevel.Information, "Committing event with '{SequenceNumber}' as sequence number")]
     internal static partial void Committing(this ILogger logger, EventType eventType, EventSourceId eventSource, uint sequenceNumber, EventLogId eventLog);
