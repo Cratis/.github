@@ -187,7 +187,7 @@ jobs:
               }
             }
 
-            const summaryLines = [`# Aggregated release notes for week of ${startDate} to ${endDate}`, ''];
+            const summaryLines = [`# Release digest for week of ${startDate} to ${endDate}`, ''];
             for (const category of categories) {
               summaryLines.push(`## ${category}`);
               if (grouped[category].length) {
