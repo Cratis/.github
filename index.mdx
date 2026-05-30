@@ -1,0 +1,43 @@
+---
+title: Contributing
+description: How the Cratis team works — values, coding standards, naming, and how to get your changes in.
+---
+
+import { CardGrid } from '@astrojs/starlight/components';
+import SimpleCard from '@components/SimpleCard.astro';
+import TopicHero from '@components/TopicHero.astro';
+
+<TopicHero icon="heart" eyebrow="Contributing" title="Help build Cratis">
+How we work, what we value, and how to get changes in — the principles behind the stack, the coding standards we hold to, and the steps to build and ship a contribution.
+</TopicHero>
+
+## Start here
+
+<CardGrid>
+  <SimpleCard title="Our values" icon="heart" link="/contributing/values/">
+    The beliefs that shape every decision — lovable APIs, easy-to-do-right, events are facts.
+  </SimpleCard>
+  <SimpleCard title="How to contribute" icon="rocket" link="/contributing/contributing/">
+    The workflow for proposing, building, and submitting a change.
+  </SimpleCard>
+  <SimpleCard title="Code of Conduct" icon="approve-check" link="/contributing/code_of_conduct/">
+    The standard of behavior we hold each other to.
+  </SimpleCard>
+</CardGrid>
+
+## Standards & craft
+
+<CardGrid>
+  <SimpleCard title="Characteristics" icon="open-book" link="/contributing/characteristics/">
+    The CUPID qualities we aim for in the code we write.
+  </SimpleCard>
+  <SimpleCard title="Building" icon="puzzle" link="/contributing/building/">
+    How to build the projects locally and run the tests.
+  </SimpleCard>
+  <SimpleCard title="Naming" icon="list-format" link="/contributing/naming/">
+    The naming conventions that keep the codebase consistent.
+  </SimpleCard>
+  <SimpleCard title="C# conventions" icon="seti:c-sharp" link="/contributing/csharp/">
+    Formatting, records, nullability, exceptions, logging, and DI in C#.
+  </SimpleCard>
+</CardGrid>
