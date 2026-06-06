@@ -53,7 +53,7 @@ own. This can lead to unwanted side-effects and very hard to debug and reason ab
 ## Concepts
 
 To articulate the domain we're working on, we prefer using specific types for everything rather than technical building blocks such as primitives.
-We tend to create these by leveraging what we have in [Cratis](https://github.com/cratis/Cratis/blob/main/Documentation/fundamentals/concepts.md).
+We tend to create these by leveraging what we have in [Cratis Fundamentals concepts](/fundamentals/csharp/concepts/).
 For instance, lets say you have a domain where you have a model that includes person. On the person model you have a property holding the persons social security number.
 In its basic form this is a string.
 
