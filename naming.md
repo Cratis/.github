@@ -13,10 +13,10 @@ that is well understood in the domain you're targeting, abbreviations should not
 
 ## Pluralization
 
-Features in a system is often a representation of a noun in the domain you're working on.
-You should look at it as a grouping and therefor pluralize the name.
+Features in a system are often a representation of a noun in the domain you're working on.
+You should look at it as a grouping and therefore pluralize the name.
 
-For instance, lets say you have a concept called **Employee**. The feature working on
+For instance, let's say you have a concept called **Employee**. The feature working on
 it would then be **Employees**.
 
 This applies to database schemas, folders for containing the feature, API routes

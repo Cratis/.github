@@ -16,8 +16,8 @@ The goal of a fluent API is that it should provide a highly readable fluent way 
 
 ## Immutable
 
-We favor immutability when we can. The reason behind that is that immutability leads to less side-effects. Think about multi core processors
-and asynchronous code as an example, having multiple threads modify state can be dangerous and lead to unwanted side-effects. It is also
+We favor immutability when we can. The reason behind that is that immutability leads to fewer side effects. Think about multi-core processors
+and asynchronous code as an example, having multiple threads modify state can be dangerous and lead to unwanted side effects. It is also
 very hard to reason about what happened. Keeping things immutable leads to designs of creating new instances for each of these with the
 state at the time and enabling composition. With the threading example it also helps us from a performance perspective as we wouldn't
 need to lock and use expensive semaphores to assure anyone else is not modifying state.
@@ -41,20 +41,20 @@ public class Person
 
 The value will be set only at construction time and can't be modified after.
 
-Immutability also extends into the design of APIs. APIs should not return mutable objects. The source owns its state and reason to change and therefor
+Immutability also extends into the design of APIs. APIs should not return mutable objects. The source owns its state and reason to change and should therefore
 be the one mutating it. An example of this is returning a `List` or `Dictionary`. These are by design mutable. Instead you should have on
 your public contract `IEnumerable` and `IReadOnlyDictionary`. The implementation could be using mutable enumerables and return these directly
-as they implement `IEnumerable`. This implementation detail should not bleed out and by exposing the immutable interface, the consumer should
-then not just assume it can be mutated.
+as they implement `IEnumerable`. The implementation detail should not bleed out and by exposing the immutable interface, the consumer should
+not assume it can be mutated.
 
 When returning mutable objects you're at the mercy of the consumer and having to rely on it not altering the state in which it does not
-own. This can lead to unwanted side-effects and very hard to debug and reason about.
+own. This can lead to unwanted side effects that are very hard to debug and reason about.
 
 ## Concepts
 
 To articulate the domain we're working on, we prefer using specific types for everything rather than technical building blocks such as primitives.
 We tend to create these by leveraging what we have in [Cratis Fundamentals concepts](/fundamentals/csharp/concepts/).
-For instance, lets say you have a domain where you have a model that includes person. On the person model you have a property holding the persons social security number.
+For instance, let's say you have a domain where you have a model that includes a person. On the person model you have a property holding the person's social security number.
 In its basic form this is a string.
 
 ```csharp
@@ -75,7 +75,7 @@ public record Person(SocialSecurityNumber SocialSecurityNumber)
 ```
 
 When we use this new type we will quickly see the type it is expecting on the signature.
-This becomes even more clear when used in APIs, such as a repository:
+This becomes even clearer when used in APIs, such as a repository:
 
 ```csharp
 public interface IPersons
