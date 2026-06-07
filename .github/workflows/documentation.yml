@@ -10,6 +10,17 @@ on:
   push:
     branches: ["main"]
     paths:
+      - "*.md"
+      - "*.mdx"
+      - "*.png"
+      - "*.jpg"
+      - "*.jpeg"
+      - "*.gif"
+      - "*.svg"
+      - "*.webp"
+      - "*.avif"
+      - "release-digests/**"
+      - "toc.yml"
       - "Documentation/**"
 
 permissions:
