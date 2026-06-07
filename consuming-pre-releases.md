@@ -2,7 +2,7 @@
 
 All PRs that are marked as **draft** will have binary artifacts built for it so that one can test things out before the PR is accepted and merged in.
 The artifacts are not published to the production sources, as everything is built in debug mode and not considered ready
-for production. We leverage GitHub packages for these builds. You can find all the packages built [here](https://github.com/orgs/cratis/packages?repo_name=Chronicle).
+for production. We leverage GitHub packages for these builds. You can browse all the [pre-release packages on GitHub](https://github.com/orgs/cratis/packages?repo_name=Chronicle).
 
 Whenever packages have been built, the build with add comments with links to the artifacts into the pull request:
 
@@ -12,14 +12,14 @@ To consume the packages, you'll need to configure the sources in your local repo
 
 ## Docker
 
-All Docker container images can be found [here](https://github.com/orgs/cratis/packages?ecosystem=container).
+Browse all [Docker container images on GitHub](https://github.com/orgs/cratis/packages?ecosystem=container).
 
 For Docker there is no need to configure anything locally, all you need to do is change the image you're using
 from for instance `cratis/chronicle:latest-development` to the specific one @ GitHub, e.g. : `ghcr.io/cratis/chronicle:6.11.6-pr537.adedc72`.
 
 ## NuGet
 
-All NuGet packages can be found [here](https://github.com/orgs/cratis/packages?ecosystem=nuget).
+Browse all [NuGet packages on GitHub](https://github.com/orgs/cratis/packages?ecosystem=nuget).
 
 To consume packages, you'll need to configure either your global or local to your NuGet project. To start with you'll need a GitHub personal access token,
 read the [GitHub documentation](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) on how this works.

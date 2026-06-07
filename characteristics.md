@@ -14,7 +14,7 @@ deliver business value in a timely fashion.
 As a response to whether or not the [SOLID principles](https://en.wikipedia.org/wiki/SOLID) are outdated, Dan North
 came up with an alternative acronym [CUPID](https://dannorth.net/2021/03/16/cupid-the-back-story/).
 The purpose of this is to describe characteristics one should favor in a system rather than principles
-of how to do something. Recommend listening to Dan explain the background and his conclusions [here](https://dotnetrocks.com/?show=1745).
+of how to do something. Recommend listening to Dan explain the background and his conclusions on [this .NET Rocks episode](https://dotnetrocks.com/?show=1745).
 
 ### Composable
 
