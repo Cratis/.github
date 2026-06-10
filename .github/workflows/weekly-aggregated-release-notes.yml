@@ -19,26 +19,10 @@ jobs:
       contents: write
 
     steps:
-      - name: Ensure 07:00 CET/CEST run for scheduled trigger
-        id: run_window
-        if: github.event_name == 'schedule'
-        run: |
-          LOCAL_TIMEZONE="Europe/Oslo"
-          LOCAL_HOUR=$(TZ="${LOCAL_TIMEZONE}" date +%H)
-
-          if [ "${LOCAL_HOUR}" = "07" ]; then
-            echo "should_run=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "should_run=false" >> "$GITHUB_OUTPUT"
-            echo "Skipping scheduled run outside 07:00 CET/CEST (current ${LOCAL_TIMEZONE} hour: ${LOCAL_HOUR})."
-          fi
-
       - name: Checkout repository
-        if: github.event_name == 'workflow_dispatch' || steps.run_window.outputs.should_run == 'true'
         uses: actions/checkout@v4
 
       - name: Collect releases from organization repositories
-        if: github.event_name == 'workflow_dispatch' || steps.run_window.outputs.should_run == 'true'
         id: collect
         uses: actions/github-script@v8
         env:
@@ -98,7 +82,7 @@ jobs:
             core.setOutput('since', since.toISOString());
 
       - name: Summarize releases by category
-        if: (github.event_name == 'workflow_dispatch' || steps.run_window.outputs.should_run == 'true') && steps.collect.outputs.count != '0'
+        if: steps.collect.outputs.count != '0'
         id: summarize
         uses: actions/github-script@v8
         env:
@@ -220,14 +204,13 @@ jobs:
             fs.writeFileSync(path.join(process.env.GITHUB_WORKSPACE, 'weekly-release-summary.md'), summary);
 
       - name: Prepare fallback summary
-        if: (github.event_name == 'workflow_dispatch' || steps.run_window.outputs.should_run == 'true') && steps.collect.outputs.count == '0'
+        if: steps.collect.outputs.count == '0'
         run: |
           cat <<'EOF' > weekly-release-summary.md
           No releases were published in the last ${{ inputs.days || '7' }} days.
           EOF
 
       - name: Commit release digest to repository
-        if: github.event_name == 'workflow_dispatch' || steps.run_window.outputs.should_run == 'true'
         env:
           DAYS: ${{ inputs.days || '7' }}
         run: |

@@ -12,8 +12,8 @@ The repositories use one or more of the following technologies:
 
 ## Build and Test
 
-All C# based projects are added to the solution file at the root level, you can therefor
-build it quite easily from root:
+All C#-based projects are added to the solution file at the root level, so you can
+build from the root:
 
 ```shell
 dotnet build
@@ -25,5 +25,5 @@ Similarly with the specifications you can do:
 dotnet test
 ```
 
-If you're using an IDE such as Visual Studio, Rider or similar - open the solution file at the root.
-file and do the build / test run from within the IDE.
+If you're using an IDE such as Visual Studio, Rider or similar, open the solution file at
+the root and run the build or tests from within the IDE.

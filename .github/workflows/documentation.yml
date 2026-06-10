@@ -1,0 +1,38 @@
+name: Trigger documentation build
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  workflow_dispatch:
+
+  push:
+    branches: ["main"]
+    paths:
+      - "*.md"
+      - "*.mdx"
+      - "*.png"
+      - "*.jpg"
+      - "*.jpeg"
+      - "*.gif"
+      - "*.svg"
+      - "*.webp"
+      - "*.avif"
+      - "release-digests/**"
+      - "toc.yml"
+      - "Documentation/**"
+
+permissions:
+  contents: read
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Documentation Build
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.PAT_DOCUMENTATION }}
+          repository: Cratis/Documentation
+          event-type: build-docs

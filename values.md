@@ -21,16 +21,16 @@ using the software through a user interface.
 
 ## Simplicity
 
-Always stribe towards the simplest possible solution. This is especially true for public facing
+Always strive towards the simplest possible solution. This is especially true for public facing
 API surfaces. Even if the internals need to be complex, the public facing surface should expose it
 in a simple manner. Front and center; Developer Experience.
 
 ## Maintainability
 
 Once code is in production it tends to live on for years. The initial development of the code is
-therefor often then just a fraction of the time of its lifetime. It is therefor imperative that we create
+therefore often only a fraction of its lifetime. It is therefore imperative that we create
 code that can live on beyond the initial development. Writing simple code that is easy to reason
-about that can fit inside your head is a good rule of thumb. Maintainability reaches also into
+about and can fit inside your head is a good rule of thumb. Maintainability also reaches into
 architectural design patterns and we believe in decoupling our software, breaking it up into
 smaller pieces and making it composable as key points to achieve maintainability.
 
@@ -46,15 +46,15 @@ method. If needed, add comments as explanation when it doesn't feel right to do 
 ## Testability
 
 We believe that our code should be tested. The tests should serve as a specification of the system,
-for other developers to easily understand the behavior of the system. We favor BDD (Behavior Driven Design)
+for other developers to easily understand the behavior of the system. We favor BDD (Behavior Driven Development)
 over TDD (Test Driven Development) to accomplish this.
 
-Tests or specs as we refer to them as, give us the comfort of knowing early on if we have side-effects
+Tests, or specs as we refer to them, give us the comfort of knowing early on if we have side effects
 of any change we bring to the software. In order to accomplish testable code, one has to write code
 that is able to be tested. At the lowest level of testing we want to specify units in isolation and
-its behaviors. By representing dependencies through interfaces makes it possible to create fake / mock / stubs
-that lets us not worry about the actual implementation of the dependency and trust that it will have
-its own set of specifications to verify its behaviors.
+their behavior. Representing dependencies through interfaces makes it possible to create fakes, mocks, or stubs
+that let us not worry about the actual implementation of the dependency and trust that it will have
+its own set of specifications to verify its behavior.
 
 There are levels of testing:
 
@@ -67,7 +67,7 @@ also the responsiveness of a system. Common is also to write tests to test failu
 
 ## Frictionless software
 
-We want to be able to release software frictionless when we want or need to. This is accomplished
+We want to be able to release software without friction when we want or need to. This is accomplished
 by breaking up software into smaller chunks into things like microservices or even down to serverless
 solutions. By then truly decoupling these smaller chunks from each other, we can release every part
 independently. This enables true agility and we increase our responsiveness in the case of having to
@@ -77,7 +77,7 @@ should enable us to do this.
 ## Consistency in the codebase
 
 In general terms; the code stays on in a project longer than its members. Having consistency in the
-codebase that is adhering to the agreed upon standards is therefor vital. Consistency also makes it
+codebase that adheres to the agreed-upon standards is therefore vital. Consistency also makes it
 predictable. You know the pattern and can easily navigate once you know the pattern.
 
 ## Element of least surprise
@@ -91,9 +91,9 @@ Every day we have tasks that are being done repeatedly. Chances are good they ca
 If a computer can do it, make it do it. This would then take away tedious tasks and at the same
 time reduce the possibility of human error.
 
-Examples of automation is naturally towards building, automated testing of software on commits
+Examples of automation are naturally towards building, automated testing of software on commits
 and all the way to releasing and deploying software into production.
- 
+
 Within our code there are also opportunities of automation. These are identified as repetitive
 code that we tend to copy/paste around or we're following a recipe that tells us what to do.
 These can be centralized and applied as what is known as [cross-cutting concerns](https://en.wikipedia.org/wiki/Cross-cutting_concern).
