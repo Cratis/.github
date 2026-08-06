@@ -9,6 +9,26 @@ The following specific topics are important:
 * [Standardization](./standardization.md)
   * [C#](csharp.md)
 
+## Notifications
+
+GitHub only notifies you about repositories you explicitly **watch**, and new repositories appear in the
+organization regularly, so your subscriptions drift out of date on their own. Reconcile them in one command:
+
+```bash
+git clone git@github.com:Cratis/Automation.git
+cd Automation/Source/GitHub
+./gh-subscribe.sh
+```
+
+It watches every repository in the organization, mutes archived repositories and forks, and follows organization
+members. It is idempotent, so run it again whenever new repositories show up. You do not have to be an organization
+member — non-members get the public repositories and public member list.
+
+Turning on **email** delivery is a separate manual step. GitHub exposes no API for delivery preferences, so watching
+everything still only fills the web inbox until you tick the Email boxes under
+[notification settings](https://github.com/settings/notifications). The full recipe, including that step, is in the
+[notifications guide in the Automation repository](https://github.com/Cratis/Automation/blob/main/Documentation/GitHub/notifications.md).
+
 ## Size
 
 Contributions, be it features or bug fixes should be small and digestible.
