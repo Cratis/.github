@@ -44,6 +44,7 @@ jobs:
             });
 
             const releases = [];
+            const versionMovements = [];
 
             for (const repository of repositories) {
               const repositoryReleases = await github.paginate(github.rest.repos.listReleases, {
@@ -52,16 +53,30 @@ jobs:
                 per_page: 100
               });
 
-              for (const release of repositoryReleases) {
-                if (release.draft || !release.published_at) {
-                  continue;
-                }
+              const publishedReleases = repositoryReleases
+                .filter(release => !release.draft && release.published_at)
+                .sort((left, right) => new Date(right.published_at) - new Date(left.published_at));
+              const weeklyReleases = publishedReleases.filter(release => new Date(release.published_at) >= since);
 
-                const publishedAt = new Date(release.published_at);
-                if (publishedAt < since) {
-                  continue;
-                }
+              if (weeklyReleases.length) {
+                const currentRelease = weeklyReleases[0];
+                const previousRelease = publishedReleases.find(release => new Date(release.published_at) < since);
 
+                versionMovements.push({
+                  repository: repository.name,
+                  repositoryUrl: repository.html_url,
+                  previous: previousRelease && {
+                    tag: previousRelease.tag_name,
+                    url: previousRelease.html_url
+                  },
+                  current: {
+                    tag: currentRelease.tag_name,
+                    url: currentRelease.html_url
+                  }
+                });
+              }
+
+              for (const release of weeklyReleases) {
                 releases.push({
                   repository: repository.name,
                   title: release.name || release.tag_name,
@@ -74,9 +89,11 @@ jobs:
             }
 
             releases.sort((left, right) => new Date(right.publishedAt) - new Date(left.publishedAt));
+            versionMovements.sort((left, right) => left.repository.localeCompare(right.repository));
 
             const workspace = process.env.GITHUB_WORKSPACE;
             fs.writeFileSync(path.join(workspace, 'weekly-releases.json'), JSON.stringify(releases, null, 2));
+            fs.writeFileSync(path.join(workspace, 'weekly-version-movements.json'), JSON.stringify(versionMovements, null, 2));
 
             core.setOutput('count', `${releases.length}`);
             core.setOutput('since', since.toISOString());
@@ -95,6 +112,8 @@ jobs:
 
             const releasesPath = path.join(process.env.GITHUB_WORKSPACE, 'weekly-releases.json');
             const releases = JSON.parse(fs.readFileSync(releasesPath, 'utf8'));
+            const versionMovementsPath = path.join(process.env.GITHUB_WORKSPACE, 'weekly-version-movements.json');
+            const versionMovements = JSON.parse(fs.readFileSync(versionMovementsPath, 'utf8'));
             const days = Number(process.env.DAYS || '7');
             const now = new Date();
             const startDate = new Date(now.getTime() - days * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
@@ -188,7 +207,23 @@ jobs:
               }
             }
 
-            const summaryLines = [`# Release digest for week of ${startDate} to ${endDate}`, ''];
+            const summaryLines = [
+              `# Release digest for week of ${startDate} to ${endDate}`,
+              '',
+              '## Version movement',
+              '',
+              '| Repository | Previous version | Current version |',
+              '| --- | --- | --- |'
+            ];
+            for (const movement of versionMovements) {
+              const previousVersion = movement.previous
+                ? `[${movement.previous.tag}](${movement.previous.url})`
+                : 'First release';
+              const currentVersion = `[${movement.current.tag}](${movement.current.url})`;
+              summaryLines.push(`| [${movement.repository}](${movement.repositoryUrl}) | ${previousVersion} | ${currentVersion} |`);
+            }
+            summaryLines.push('');
+
             for (const category of categories) {
               summaryLines.push(`## ${category}`);
               if (grouped[category].length) {
