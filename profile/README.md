@@ -40,7 +40,7 @@ All documentation can be found at [https://cratis.io](https://cratis.io). Want t
 
 | Project | What it is |
 | ------- | ---------- |
-| [Studio](https://github.com/Cratis/Studio) | Collaborative environment for designing, visualizing, and editing Screenplay event models. |
+| Studio | Collaborative environment for designing, visualizing, and editing Screenplay event models. |
 | [Screenplay](https://github.com/Cratis/Screenplay) | A model-first language for event-sourced, CQRS systems — commands, events, projections. |
 | [Stage](https://github.com/Cratis/Stage) | Renders Screenplay models into reviewable Arc + Chronicle applications. |
 | [Scene](https://github.com/Cratis/Scene) | Describing a user interface without describing a platform — the UI model of the model-first layer. |
@@ -54,7 +54,7 @@ All documentation can be found at [https://cratis.io](https://cratis.io). Want t
 | [Specifications](https://github.com/Cratis/Specifications) | Specification by Example (BDD) for .NET — Given/When/Then specs with xUnit and NUnit. |
 | [Synopsis](https://github.com/Cratis/Synopsis) | Turns your specs into living documentation — browsable HTML from .NET, JS/TS, and Gherkin test suites. |
 | [AI](https://github.com/Cratis/AI) | Free, MIT-licensed AI skills, rules, and agent guidance for building with the Cratis ecosystem (preview). |
-| [Ensemble](https://github.com/Cratis/Ensemble) | Deterministic expert workflows for AI agents building with the Cratis stack — pre-release, coming soon. |
+| Ensemble | Deterministic expert workflows for AI agents building with the Cratis stack — pre-release, coming soon. |
 | [Samples](https://github.com/Cratis/Samples) | Runnable event sourcing and CQRS samples for the whole stack. |
 
 ## Values
