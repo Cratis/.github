@@ -28,7 +28,8 @@ jobs:
         env:
           DAYS: ${{ inputs.days || '7' }}
         with:
-          github-token: ${{ secrets.PAT_WORKFLOWS != '' && secrets.PAT_WORKFLOWS || github.token }}
+          # Public collection needs no organization-wide PAT access.
+          github-token: ${{ github.token }}
           script: |
             const fs = require('fs');
             const path = require('path');
@@ -37,59 +38,8 @@ jobs:
             const days = Number(process.env.DAYS || '7');
             const since = new Date(Date.now() - days * 24 * 60 * 60 * 1000);
 
-            const repositories = await github.paginate(github.rest.repos.listForOrg, {
-              org,
-              type: 'all',
-              per_page: 100
-            });
-
-            const releases = [];
-            const versionMovements = [];
-
-            for (const repository of repositories) {
-              const repositoryReleases = await github.paginate(github.rest.repos.listReleases, {
-                owner: org,
-                repo: repository.name,
-                per_page: 100
-              });
-
-              const publishedReleases = repositoryReleases
-                .filter(release => !release.draft && release.published_at)
-                .sort((left, right) => new Date(right.published_at) - new Date(left.published_at));
-              const weeklyReleases = publishedReleases.filter(release => new Date(release.published_at) >= since);
-
-              if (weeklyReleases.length) {
-                const currentRelease = weeklyReleases[0];
-                const previousRelease = publishedReleases.find(release => new Date(release.published_at) < since);
-
-                versionMovements.push({
-                  repository: repository.name,
-                  repositoryUrl: repository.html_url,
-                  previous: previousRelease && {
-                    tag: previousRelease.tag_name,
-                    url: previousRelease.html_url
-                  },
-                  current: {
-                    tag: currentRelease.tag_name,
-                    url: currentRelease.html_url
-                  }
-                });
-              }
-
-              for (const release of weeklyReleases) {
-                releases.push({
-                  repository: repository.name,
-                  title: release.name || release.tag_name,
-                  tag: release.tag_name,
-                  publishedAt: release.published_at,
-                  url: release.html_url,
-                  body: (release.body || '').slice(0, 3000)
-                });
-              }
-            }
-
-            releases.sort((left, right) => new Date(right.publishedAt) - new Date(left.publishedAt));
-            versionMovements.sort((left, right) => left.repository.localeCompare(right.repository));
+            const { collectPublicReleases } = require(path.join(process.env.GITHUB_WORKSPACE, '.github/scripts/collect-public-releases.cjs'));
+            const { releases, versionMovements } = await collectPublicReleases({ github, org, since });
 
             const workspace = process.env.GITHUB_WORKSPACE;
             fs.writeFileSync(path.join(workspace, 'weekly-releases.json'), JSON.stringify(releases, null, 2));
@@ -234,7 +184,9 @@ jobs:
               summaryLines.push('');
             }
 
-            const summary = summaryLines.join('\n').trim();
+            // Share the final renderer with offline historical digest regeneration.
+            const { renderReleaseDigest } = require(path.join(process.env.GITHUB_WORKSPACE, '.github/scripts/render-release-digest.cjs'));
+            const summary = renderReleaseDigest(summaryLines.join('\n'));
 
             fs.writeFileSync(path.join(process.env.GITHUB_WORKSPACE, 'weekly-release-summary.md'), summary);
 

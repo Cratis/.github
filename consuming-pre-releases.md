@@ -6,7 +6,7 @@ for production. We leverage GitHub packages for these builds. You can find all t
 
 Whenever packages have been built, the build with add comments with links to the artifacts into the pull request:
 
-![](./github-comments-pr.png)
+![GitHub Actions bot comment linking to a NuGet pre-release package built for the pull request](./github-comments-pr.png)
 
 To consume the packages, you'll need to configure the sources in your local repository.
 
