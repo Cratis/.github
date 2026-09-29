@@ -59,7 +59,7 @@ async function collectPublicReleases({ github, org, since }) {
                 url: release.html_url,
                 // Pull request descriptions are published verbatim, so template guidance left in an HTML comment
                 // reaches the release body; the release page hides it, and so does the digest.
-                body: (release.body || '').replace(/<!--[\s\S]*?-->\s*/g, '').trim().slice(0, 3000)
+                body: (release.body || '').replace(/<!--[\s\S]*?-->[ \t]*/g, '').trim().slice(0, 3000)
             });
         }
     }

@@ -104,6 +104,14 @@ test('removes HTML comments left from the pull request template before the body 
     assert.equal(result.releases[0].body, '## Added\n\n- Synthetic update');
 });
 
+test('a comment at the end of a line does not join it to the next line', async () => {
+    const mock = mockGithub([repository('ZetaWidget')], {}, {
+        ZetaWidget: [release('new', '2026-01-09T00:00:00Z', { body: '## Added\n\n- one <!-- note -->\n- two\n\n## Fixed\n\n- three' })]
+    });
+    const result = await collectPublicReleases({ ...mock, org, since });
+    assert.deepEqual(result.releases[0].body.split('\n').map(line => line.trim()), ['## Added', '', '- one', '- two', '', '## Fixed', '', '- three']);
+});
+
 // Execute the actual collection step, including its production helper and output writes.
 async function runWorkflow(github, writes, outputs) {
     const workflow = fs.readFileSync(path.join(__dirname, '../workflows/weekly-aggregated-release-notes.yml'), 'utf8');
