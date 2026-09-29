@@ -5,12 +5,12 @@ description: >
   Breaks the work into ordered, parallelisable tasks, delegates each task
   to the right specialist agent, and ensures quality gates are met before
   the work is considered done.
-model: claude-sonnet-4-5
 tools:
-  - githubRepo
-  - codeSearch
-  - usages
-  - terminalLastCommand
+  - Read
+  - Grep
+  - Glob
+  - Bash
+  - Agent
 ---
 <!-- cratis-ai-managed: agents/planner.md -->
 
@@ -116,7 +116,7 @@ For an implemented application slice, require the applicable changed-lane gates 
 - [ ] `Documentation/verify-markdown.sh` passes when documentation is added or changed
 - [ ] Code review by `code-reviewer` finds no blocking issues
 - [ ] Security review by `security-reviewer` finds no vulnerabilities
-- [ ] PR description follows the pull request template
+- [ ] PR description follows the pull request template and the release-note contract in `pull-requests.md`; test and review notes are in a PR comment
 
 ---
 
