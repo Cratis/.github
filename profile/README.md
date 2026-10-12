@@ -41,7 +41,7 @@ Engineering writing lives on the blog at [https://blog.cratis.io](https://blog.c
 | [Narrator](https://github.com/Cratis/Narrator) | Browse Chronicle event stores from VS Code. |
 | [Lens](https://github.com/Cratis/Lens) | Browser extension for Arc apps — switch tenant and identity, execute commands and queries. |
 
-### Model-first layer (experimental)
+### Model-first layer
 
 | Project | What it is |
 | ------- | ---------- |
