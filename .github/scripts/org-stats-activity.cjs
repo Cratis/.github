@@ -3,7 +3,7 @@
 
 const { windows } = require('./org-stats.cjs');
 const { wait, progressLogger, retryGraphql } = require('./org-stats-client.cjs');
-const prFields = 'id number url title mergedAt updatedAt author { __typename login ... on User { name avatarUrl url } } repository { name }';
+const prFields = 'id number url title mergedAt updatedAt createdAt mergeCommit { oid } author { __typename login ... on User { name avatarUrl url } } repository { name }';
 const issueFields = 'createdAt closedAt updatedAt';
 function countWindows(now, digestSince) {
     const w = windows(now), result = [];

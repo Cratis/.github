@@ -74,7 +74,7 @@ async function main() {
         fs.writeFileSync(path.join(directory, 'discord-sample.json'), JSON.stringify(weeklyDiscord(numbers, `https://github.com/Cratis/.github/blob/main/release-digests/${new Date(now.getTime() - days * 86400000).toISOString().slice(0, 10)}-to-${now.toISOString().slice(0, 10)}.md`), null, 2) + '\n');
     }
     console.log(JSON.stringify({ changed: result.changed, repositoryCount: snapshot.repositoryCount, releases: snapshot.releases,
-        mergedPullRequests: snapshot.mergedPullRequests, issues: snapshot.issues, runtimeSeconds: Number(((Date.now() - started) / 1000).toFixed(1)) }, null, 2));
+        mergedPullRequests: snapshot.mergedPullRequests, issues: snapshot.issues, deliveryLeadTime: snapshot.deliveryLeadTime, runtimeSeconds: Number(((Date.now() - started) / 1000).toFixed(1)) }, null, 2));
 }
 module.exports = { readPrevious, meaningfulChange, writeStats, postDiscord, localGithub };
 if (require.main === module) main().catch(error => { console.error(error.message); process.exitCode = 1; });

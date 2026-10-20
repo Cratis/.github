@@ -39,7 +39,7 @@ function prepareReleases(repositories, now) {
             .sort((a, b) => a.publishedAt.localeCompare(b.publishedAt) || a.tagName.localeCompare(b.tagName))
             .map(release => {
                 const item = { repository: repository.name, repositoryUrl: repository.url, tag: release.tagName,
-                    url: release.url, publishedAt: release.publishedAt, kind: release.isPrerelease ? 'prerelease' : classifyRelease(release.tagName, previous) };
+                    url: release.url, publishedAt: release.publishedAt, tagCommit: release.tagCommit, kind: release.isPrerelease ? 'prerelease' : classifyRelease(release.tagName, previous) };
                 // Compare stable releases with the previous stable release, so 2.0.0 after 2.0.0-rc.1 is major.
                 if (!release.isPrerelease) previous = release.tagName;
                 return item;
@@ -58,6 +58,35 @@ function streaks(releases, today) {
 }
 function kinds(releases) {
     return Object.fromEntries(['major', 'minor', 'patch', 'prerelease'].map(kind => [kind, releases.filter(r => r.kind === kind).length]));
+}
+function repositoryReleases(releases) {
+    const counts = new Map();
+    for (const release of releases) counts.set(release.repository, (counts.get(release.repository) || 0) + 1);
+    return [...counts].map(([name, releases]) => ({ name, releases }))
+        .sort((a, b) => b.releases - a.releases || a.name.localeCompare(b.name));
+}
+function percentiles(minutes) {
+    const sorted = [...minutes].sort((a, b) => a - b);
+    const rank = percentile => Number(sorted[Math.ceil(sorted.length * percentile) - 1].toFixed(1));
+    return { medianMinutes: rank(0.5), p90Minutes: rank(0.9) };
+}
+function deliveryLeadTime(releases, pullRequests) {
+    const merges = new Map();
+    for (const pr of pullRequests) {
+        if (pr.mergeCommit?.oid && pr.repository?.name) merges.set(`${pr.repository.name}:${pr.mergeCommit.oid}`, pr);
+    }
+    const mergeMinutes = [], openedMinutes = [];
+    for (const release of releases) {
+        const pr = release.tagCommit?.oid && merges.get(`${release.repository}:${release.tagCommit.oid}`);
+        if (!pr) continue;
+        const merged = (Date.parse(release.publishedAt) - Date.parse(pr.mergedAt)) / 60000;
+        const opened = (Date.parse(release.publishedAt) - Date.parse(pr.createdAt)) / 60000;
+        if (!Number.isFinite(merged) || !Number.isFinite(opened) || merged <= 0 || opened <= 0) continue;
+        mergeMinutes.push(merged);
+        openedMinutes.push(opened);
+    }
+    return mergeMinutes.length ? { matchedReleases: mergeMinutes.length,
+        mergeToRelease: percentiles(mergeMinutes), openedToRelease: percentiles(openedMinutes) } : undefined;
 }
 function milestones(releases, streak) {
     const reached = [], next = [];
@@ -98,13 +127,18 @@ function aggregate({ org, now, repositories, counts, contributors, pullRequests 
     const allDays = new Map();
     for (const r of releases) allDays.set(date(r.publishedAt), (allDays.get(date(r.publishedAt)) || 0) + 1);
     const calendarDays = new Map();
-    for (const r of recent(365)) calendarDays.set(date(r.publishedAt), (calendarDays.get(date(r.publishedAt)) || 0) + 1);
+    for (const r of recent(365)) {
+        const day = date(r.publishedAt);
+        if (!calendarDays.has(day)) calendarDays.set(day, []);
+        calendarDays.get(day).push(r);
+    }
     const daily = Array.from({ length: 365 }, (_, i) => {
         const day = shift(w.today, i - 364);
-        return { date: day, releases: calendarDays.get(day) || 0 };
+        const items = calendarDays.get(day) || [];
+        return { date: day, releases: items.length, repositories: repositoryReleases(items) };
     });
     const busiest = [...allDays].sort((a, b) => b[1] - a[1] || b[0].localeCompare(a[0]))[0];
-    const streak = streaks(releases, w.today);
+    const streak = streaks(releases, w.today), leadTime = deliveryLeadTime(recent(30), pullRequests);
     return {
         schemaVersion: 1, generatedAt: w.end, organization: org, scope, repositoryCount: repositories.length,
         releases: { last7Days: recent(7).length, last30Days: recent(30).length, last90Days: recent(90).length,
@@ -115,7 +149,8 @@ function aggregate({ org, now, repositories, counts, contributors, pullRequests 
             dependencyUpdatesLast7Days: pullRequests.filter(p => p.mergedAt >= w.since(7) && /^(dependabot|renovate)(\[bot\])?$/i.test(p.author?.login || '')).length },
         issues: { openedLast7Days: counts.open7, closedLast7Days: counts.close7, closedLast30Days: counts.close30, closedLast365Days: counts.close365 },
         contributors: { activeLast30Days: new Set(pullRequests.filter(p => p.mergedAt >= w.since(30) && !isBot(p.author)).map(p => p.author.login)).size, firstTime: contributors },
-        daily,
+        daily, releasesThisWeek: repositoryReleases(recent(7)).slice(0, 5),
+        ...(leadTime ? { deliveryLeadTime: { windowDays: 30, ...leadTime } } : {}),
         weekly: w.weekly.map((window, i) => ({ weekStart: window.start, releases: during(window.start, window.end).length, mergedPullRequests: counts[`wpr${i}`], issuesClosed: counts[`wclose${i}`] })),
         monthly: w.monthly.map((window, i) => ({ month: window.start.slice(0, 7), releases: during(window.start, window.end).length, mergedPullRequests: counts[`mpr${i}`], issuesOpened: counts[`mopen${i}`], issuesClosed: counts[`mclose${i}`] })),
         repositories: repositories.map(repository => {
@@ -127,13 +162,12 @@ function aggregate({ org, now, repositories, counts, contributors, pullRequests 
         milestones: milestones(releases, streak)
     };
 }
-function weekNumbers({ releases, counts, contributors, streak, since, until }) {
+function weekNumbers({ releases, counts, contributors, streak, since, until, pullRequests = [] }) {
     const selected = releases.filter(r => r.publishedAt >= since && r.publishedAt < until);
-    const repos = new Map();
-    for (const r of selected) repos.set(r.repository, (repos.get(r.repository) || 0) + 1);
-    const busiest = [...repos].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))[0];
+    const busiest = repositoryReleases(selected)[0], leadTime = deliveryLeadTime(selected, pullRequests);
     return { releases: selected.length, kinds: kinds(selected), mergedPullRequests: counts.digestPr, issuesClosed: counts.digestClose,
-        busiestRepository: busiest ? { name: busiest[0], releases: busiest[1], url: selected.find(r => r.repository === busiest[0]).repositoryUrl } : null,
+        busiestRepository: busiest ? { ...busiest, url: selected.find(r => r.repository === busiest.name).repositoryUrl } : null,
+        ...(leadTime ? { deliveryLeadTime: leadTime } : {}),
         currentStreak: streak.currentDays, firstTime: contributors.filter(c => c.firstMergedAt >= since && c.firstMergedAt < until) };
 }
-module.exports = { DAY, scope, date, shift, monday, monthStart, isBot, classifyRelease, prepareReleases, streaks, kinds, milestones, windows, aggregate, weekNumbers };
+module.exports = { DAY, scope, date, shift, monday, monthStart, isBot, classifyRelease, prepareReleases, streaks, kinds, repositoryReleases, deliveryLeadTime, milestones, windows, aggregate, weekNumbers };

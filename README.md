@@ -26,6 +26,16 @@ contributors. Only remaining non-bot candidates need one org-scoped, date-only
 pre-window search each, paced through a single GraphQL queue. Creation order
 is never assumed to be merge order.
 
+The snapshot also includes per-day repository release counts and the top five
+releasing repositories over the last seven UTC calendar days; the profile names
+the top three. Calendar SVG titles show each day's top three repositories.
+Optional delivery lead times cover releases published in the last 30 UTC calendar
+days, matching each release's tag commit to a merged PR's merge commit in the same
+repository. Only positive durations are included; median and p90 use nearest-rank
+percentiles, in minutes rounded to one decimal. The field is omitted without matches.
+The weekly digest computes lead time for its exact lookback window instead.
+These metrics use extra fields on existing queries, not additional API calls.
+
 The weekly digest includes week-in-numbers and optionally posts to Discord.
 Configure `DISCORD_WEBHOOK_URL` to enable weekly posts and daily milestone
 celebrations. Missing webhooks are skipped; Discord failures only warn. A newly

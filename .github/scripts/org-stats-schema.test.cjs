@@ -34,6 +34,29 @@ function validateSnapshot(s) {
         repositories: array(r => shape(r, { name: text, url, releasesLast30Days: integer, releasesLast365Days: integer, latestRelease: v => shape(v, { tag: text, url, publishedAt: timestamp, kind }) })),
         milestones: m => shape(m, { reached: array(v => shape(v, { id: text, label: text, reachedOn: day })), next: array(v => shape(v, { id: text, label: text, remaining: integer })) })
     });
+    const repositoryCounts = items => {
+        array(r => shape(r, { name: text, releases: n => { integer(n); assert.ok(n > 0); } }))(items);
+        assert.deepEqual(items, [...items].sort((a, b) => b.releases - a.releases || a.name.localeCompare(b.name)));
+    };
+    for (const d of s.daily) {
+        if (!Object.hasOwn(d, 'repositories')) continue;
+        repositoryCounts(d.repositories);
+        assert.equal(d.repositories.reduce((sum, r) => sum + r.releases, 0), d.releases);
+    }
+    if (Object.hasOwn(s, 'releasesThisWeek')) {
+        repositoryCounts(s.releasesThisWeek);
+        assert.ok(s.releasesThisWeek.length <= 5);
+    }
+    if (Object.hasOwn(s, 'deliveryLeadTime')) {
+        const minutes = n => { assert.ok(Number.isFinite(n) && n >= 0); assert.equal(n, Number(n.toFixed(1))); };
+        const percentiles = v => {
+            shape(v, { medianMinutes: minutes, p90Minutes: minutes });
+            assert.ok(v.p90Minutes >= v.medianMinutes);
+        };
+        shape(s.deliveryLeadTime, { windowDays: n => assert.equal(n, 30), matchedReleases: n => { integer(n); assert.ok(n > 0); },
+            mergeToRelease: percentiles, openedToRelease: percentiles });
+        assert.ok(s.deliveryLeadTime.matchedReleases <= s.releases.last30Days);
+    }
     const today = s.generatedAt.slice(0, 10);
     assert.equal(s.daily.length, 365); assert.equal(s.weekly.length, 53); assert.equal(s.monthly.length, 12);
     s.daily.forEach((d, i) => assert.equal(d.date, shift(today, i - 364)));

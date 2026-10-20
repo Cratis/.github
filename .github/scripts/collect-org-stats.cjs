@@ -52,7 +52,7 @@ async function collectRepositories(github, org, { progress = progressLogger(), p
         const next = await Promise.all(batches.map(async batch => {
             const fields = batch.map(({ repository, cursor }, i) => `r${i}: repository(owner: ${JSON.stringify(org)}, name: ${JSON.stringify(repository.name)}) {
                 isPrivate isArchived isFork releases(first: 50${cursor ? `, after: ${JSON.stringify(cursor)}` : ''}) {
-                    nodes { tagName url publishedAt isDraft isPrerelease } pageInfo { hasNextPage endCursor }
+                    nodes { tagName url publishedAt isDraft isPrerelease tagCommit { oid } } pageInfo { hasNextPage endCursor }
                 }
             }`).join('\n');
             const response = await request(`query { ${fields} }`);
@@ -107,7 +107,7 @@ async function collectOrgStats({ github, org = 'Cratis', now = new Date(), diges
     started = clock();
     const snapshot = aggregate({ org, now, repositories: eligible, counts, contributors: contributors.filter(c => c.firstMergedAt >= w.since(90)), pullRequests });
     const releases = prepareReleases(eligible, w.end);
-    const numbers = digestSince ? weekNumbers({ releases, counts, contributors, streak: streaks(releases, w.today), since: digestSince, until: w.end }) : null;
+    const numbers = digestSince ? weekNumbers({ releases, counts, contributors, pullRequests, streak: streaks(releases, w.today), since: digestSince, until: w.end }) : null;
     progress(`aggregation: complete in ${((clock() - started) / 1000).toFixed(1)}s`);
     return { snapshot, numbers };
 }
