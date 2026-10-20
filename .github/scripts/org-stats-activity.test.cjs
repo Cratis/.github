@@ -23,7 +23,7 @@ test('updated-order pagination retains exact start, filters merge dates, and sto
         assert.match(query, /orderBy: \{ field: UPDATED_AT, direction: DESC \}/);
         if (query.includes('pullRequests(')) {
             assert.match(query, /states: MERGED/);
-            assert.match(query, /id number url title mergedAt updatedAt author/);
+            assert.match(query, /id number url title mergedAt updatedAt createdAt mergeCommit \{ oid \} author/);
             const nodes = variables.cursor === null ? [pr('new', '2026-10-20T00:00:00.000Z'),
                 pr('old', '2020-01-01T00:00:00.000Z', { updatedAt: since }), pr('boundary', since)] :
                 [pr('outside', '2025-10-19T23:59:59.000Z')];
