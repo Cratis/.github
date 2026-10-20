@@ -4,6 +4,12 @@
 
 **At a glance**
 
+<!-- org-stats:start -->
+Last 7 days: **641 releases** (419 of them major or minor), **993 merged pull requests**, **1,169 issues closed** · **77-day** release streak.
+
+![Daily releases over the last 53 weeks](https://raw.githubusercontent.com/Cratis/.github/main/stats/release-calendar.svg)
+<!-- org-stats:end -->
+
 - Over 2.5 million downloads across NuGet, npm, Docker Hub and Hex, counted October 2026.
 - [Chronicle](https://www.cratis.io/chronicle/), including its predecessors Aksio Cratis and the Dolittle Runtime: over 1.5 million downloads.
 - [Arc](https://www.cratis.io/arc/), including Aksio Cratis Applications and the Dolittle SDK: over 1.2 million downloads.
