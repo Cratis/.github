@@ -6,7 +6,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const { classifyRelease, isBot, prepareReleases, streaks, milestones, windows, aggregate, weekNumbers } = require('./org-stats.cjs');
-const { publicRepository, collectRepositories, countQueries, collectCounts, searchClient, mergedInWindow, firstTimeContributors, collectOrgStats } = require('./collect-org-stats.cjs');
+const { publicRepository, collectRepositories, countWindows, collectOrgStats } = require('./collect-org-stats.cjs');
 const { renderCalendar, updateProfile, renderWeekNumbers, weeklyDiscord, milestoneDiscord } = require('./render-org-stats.cjs');
 const { meaningfulChange, postDiscord, localGithub } = require('./publish-org-stats.cjs');
 const { collectPublicReleases } = require('./collect-public-releases.cjs');
@@ -18,7 +18,7 @@ function fixture() {
         release('v1.1.1', '2026-10-20T12:00:00Z'), release('v1.2.0-rc.1', '2026-10-20T13:00:00Z'),
         release('v1.2.0', '2026-10-21T03:00:00Z'), release('v99.0.0', '2026-10-21T06:00:00Z'), release('v100.0.0', '2026-10-19T12:00:00Z', { isDraft: true })
     ] }, { name: 'Empty', url: 'https://github.com/Cratis/Empty', releases: [] }];
-    const counts = Object.fromEntries(countQueries('repo:Cratis/Widget', now, '2026-10-14T04:00:00Z').map(q => [q.key, 2]));
+    const counts = Object.fromEntries(countWindows(now, '2026-10-14T04:00:00Z').map(q => [q.key, 2]));
     return { org: 'Cratis', now, repositories, counts, contributors: [], pullRequests: [
         { mergedAt: '2026-10-20T13:00:00Z', author: { login: 'human', __typename: 'User' } },
         { mergedAt: '2026-10-20T13:00:00Z', author: { login: 'dependabot[bot]', __typename: 'Bot' } }
@@ -141,43 +141,6 @@ test('repository collection excludes private, archived, forks and rechecks curre
     assert.equal(publicRepository({ isPrivate: false }), false);
     await assert.rejects(collectRepositories({ graphql: async () => { throw new Error('API unavailable'); } }, 'Cratis'), /API unavailable/);
 });
-test('search uses total counts, explicit repo scope, paced batches and half-open windows', async () => {
-    const queries = countQueries('repo:Cratis/Widget', now, '2026-10-14T04:00:00Z');
-    assert.ok(queries.length > 140);
-    for (const q of queries) { assert.match(q.query, /^repo:Cratis\/Widget /); assert.match(q.query, /:>=/); assert.match(q.query, /:</); }
-    const pauses = [], requests = [];
-    const search = searchClient({ graphql: async query => {
-        requests.push(query);
-        return Object.fromEntries([...query.matchAll(/s(\d+): search/g)].map(m => [`s${m[1]}`, { issueCount: Number(m[1]) }]));
-    } }, async ms => pauses.push(ms), { clock: () => 0 });
-    const counts = await search(queries.slice(0, 16));
-    assert.equal(Object.keys(counts).length, 16); assert.equal(requests.length, 2); assert.equal(pauses.length, 1);
-    assert.equal(pauses[0], 2100);
-    assert.doesNotMatch(requests[0], /nodes/);
-});
-test('merged PR search pages and bisects intervals exceeding the 1000-result cap', async () => {
-    const requests = [];
-    const records = await mergedInWindow(async queries => {
-        requests.push(queries);
-        return Object.fromEntries(queries.map(q => {
-            if (requests.length === 1) return [q.key, { issueCount: 1001 }];
-            if (requests.length === 2 && q.start === '2026-10-01T00:00:00.000Z') return [q.key, { issueCount: 2, nodes: [{ url: 'first' }], pageInfo: { hasNextPage: true, endCursor: 'next' } }];
-            if (q.after) { assert.equal(q.after, 'next'); return [q.key, { issueCount: 2, nodes: [{ url: 'second' }], pageInfo: { hasNextPage: false } }]; }
-            return [q.key, { issueCount: 1, nodes: [{ url: 'third' }], pageInfo: { hasNextPage: false } }];
-        }));
-    }, 'repo:Cratis/Widget', '2026-10-01T00:00:00Z', '2026-10-02T00:00:00Z');
-    assert.deepEqual(records.map(r => r.url), ['first', 'third', 'second']);
-    assert.equal(requests[1].length, 2);
-});
-test('first-time contributors use earliest merged date, not creation order, and exclude bots and prior contributors', async () => {
-    const pr = (login, mergedAt) => ({ author: { login, name: login, avatarUrl: `https://avatars.githubusercontent.com/${login}`, url: `https://github.com/${login}` },
-        mergedAt, repository: { name: 'Widget' }, url: 'https://github.com/Cratis/Widget/pull/1', title: 'Example' });
-    const result = await firstTimeContributors(async queries => {
-        assert.equal(queries.length, 2); assert.match(queries[0].query, /merged:<2026-07-24T00:00:00Z sort:created-asc/);
-        return { a0: { issueCount: 0 }, a1: { issueCount: 1 } };
-    }, 'repo:Cratis/Widget', [pr('new', '2026-10-20T00:00:00Z'), pr('new', '2026-09-01T00:00:00Z'), pr('old', '2026-10-19T00:00:00Z'), pr('Copilot', '2026-10-20T00:00:00Z')], '2026-07-24T00:00:00Z');
-    assert.equal(result.length, 1); assert.equal(result[0].login, 'new'); assert.equal(result[0].firstMergedAt, '2026-09-01T00:00:00Z');
-});
 test('weekly release collection honors optional end boundary without changing default behavior', async () => {
     const list = Symbol('list'), releases = Symbol('releases');
     const repo = { name: 'Widget', visibility: 'public', private: false, html_url: 'https://github.com/Cratis/Widget' };
@@ -194,61 +157,6 @@ test('collection fails closed on absent public repos; local client requires toke
 
 module.exports = { fixture };
 
-test('complete collector combines public release pages, search counts and contributors', async () => {
-    const publicMeta = { isPrivate: false, isArchived: false, isFork: false };
-    const github = { graphql: async (query, variables) => {
-        if (variables) return { organization: { repositories: { nodes: [{ name: 'Widget', url: 'https://github.com/Cratis/Widget', ...publicMeta }], pageInfo: { hasNextPage: false } } } };
-        if (query.includes('r0: repository')) return { r0: { ...publicMeta, releases: { nodes: fixture().repositories[0].releases, pageInfo: { hasNextPage: false } } } };
-        assert.match(query, /repo:Cratis\/Widget/);
-        return Object.fromEntries([...query.matchAll(/s(\d+): search/g)].map(m => [`s${m[1]}`, { issueCount: 0, nodes: [], pageInfo: { hasNextPage: false } }]));
-    } };
-    const result = await collectOrgStats({ github, now, digestSince: '2026-10-14T04:00:00Z', pause: async () => {} });
-    assert.equal(result.snapshot.repositoryCount, 1);
-    assert.equal(result.snapshot.releases.allTime, 5);
-    assert.equal(result.numbers.releases, 4);
-    assert.equal(result.numbers.mergedPullRequests, 0);
-    require('./org-stats-schema.test.cjs').validateSnapshot(result.snapshot);
-});
-
-test('disjoint count searches reproduce every rolling, weekly, monthly and digest window', async () => {
-    // Includes a leap day, weeks crossing months/years, partial current day and
-    // exact boundaries; the same records must not be counted twice.
-    for (const current of ['2026-10-21T04:00:00.000Z', '2024-03-01T00:00:00.000Z', '2027-01-01T04:00:00.000Z']) {
-        const w = windows(current), digestSince = new Date(Date.parse(current) - 7 * 86400000).toISOString();
-        const since = w.since(90);
-        const records = Object.fromEntries(['merged', 'closed', 'created'].map((field, index) => [field,
-            Array.from({ length: 420 }, (_, i) => new Date(Date.parse(current.slice(0, 10)) - i * 86400000 + index * 3600000).toISOString())]));
-        records.merged.push(current, since, digestSince);
-        const prs = records.merged.filter(t => t >= since && t < current).map(mergedAt => ({ mergedAt }));
-        const desired = countQueries('repo:Cratis/Widget', current, digestSince);
-        let searched;
-        const counts = await collectCounts(async queries => {
-            searched = queries;
-            return Object.fromEntries(queries.map(q => [q.key, { issueCount: records[q.field].filter(t => t >= q.start && t < q.end).length }]));
-        }, 'repo:Cratis/Widget', current, digestSince, prs, since);
-        for (const q of desired) assert.equal(counts[q.key], records[q.field].filter(t => t >= q.start && t < q.end).length, `${current}: ${q.key}`);
-        assert.ok(searched.length < desired.length);
-        assert.ok(searched.filter(q => q.field === 'merged').every(q => q.end <= since));
-        for (const field of ['merged', 'closed', 'created']) {
-            const queries = searched.filter(q => q.field === field);
-            for (let i = 1; i < queries.length; i++) assert.ok(queries[i - 1].end <= queries[i].start);
-        }
-    }
-});
-test('node search batches are small and omit contributor display details until needed', async () => {
-    const requests = [];
-    const search = searchClient({ graphql: async query => {
-        requests.push(query);
-        return Object.fromEntries([...query.matchAll(/s(\d+): search/g)].map(m => [`s${m[1]}`, { nodes: [] }]));
-    } }, async () => {}, { progress: () => {}, clock: () => 0 });
-    await search(Array.from({ length: 7 }, (_, i) => ({ key: `p${i}`, query: 'is:pr is:merged repo:Cratis/Widget', nodes: true })));
-    assert.equal(requests.length, 3);
-    for (const query of requests) {
-        assert.ok([...query.matchAll(/: search/g)].length <= 3);
-        assert.doesNotMatch(query, /avatarUrl|repository \{|title/);
-        assert.match(query, /id mergedAt author/);
-    }
-});
 test('release queries bound cost, retain complete pagination and report phase progress', async () => {
     let active = 0, maximum = 0;
     const logs = [], meta = { isPrivate: false, isArchived: false, isFork: false };
@@ -267,45 +175,4 @@ test('release queries bound cost, retain complete pagination and report phase pr
     assert.ok(logs.includes('repos: page 1, 7 eligible'));
     assert.ok(logs.some(line => /releases: R6 page 1/.test(line)));
     assert.ok(logs.some(line => /releases: complete in/.test(line)));
-});
-test('contributor detail hydration is limited to genuine newcomers', async () => {
-    const prs = ['new', 'old', 'dependabot[bot]'].map((login, i) => ({ id: `P${i}`, mergedAt: '2026-10-20T00:00:00Z', author: { login } }));
-    const result = await firstTimeContributors(async () => ({ a0: { issueCount: 0 }, a1: { issueCount: 10 } }), 'repo:Cratis/Widget', prs, '2026-07-24T00:00:00Z', async candidates => {
-        assert.deepEqual(candidates, [prs[0]]);
-        return [{ ...prs[0], title: 'First PR', url: 'https://github.com/Cratis/Widget/pull/1', repository: { name: 'Widget' },
-            author: { login: 'new', name: 'New Contributor', avatarUrl: 'https://example.test/avatar', url: 'https://github.com/new' } }];
-    });
-    assert.equal(result.length, 1); assert.equal(result[0].name, 'New Contributor');
-    assert.equal(result[0].pullRequestTitle, 'First PR');
-});
-
-test('complete collector hydrates newcomer details by id and reuses merged records for counts', async () => {
-    const meta = { isPrivate: false, isArchived: false, isFork: false };
-    const mergedAt = '2026-10-20T12:00:00.000Z';
-    let hydrationCalls = 0;
-    const messages = [];
-    const github = { graphql: async (query, variables) => {
-        if (variables?.org) return { organization: { repositories: { nodes: [{ name: 'Widget', url: 'https://github.com/Cratis/Widget', ...meta }], pageInfo: { hasNextPage: false } } } };
-        if (query.includes('r0: repository')) return { r0: { ...meta, releases: { nodes: [], pageInfo: { hasNextPage: false } } } };
-        if (variables?.ids) {
-            hydrationCalls++;
-            assert.deepEqual(variables.ids, ['P1']);
-            return { nodes: [{ mergedAt, title: 'First contribution', url: 'https://github.com/Cratis/Widget/pull/1', repository: { name: 'Widget' },
-                author: { login: 'new', name: 'New Contributor', avatarUrl: 'https://example.test/avatar', url: 'https://github.com/new' } }] };
-        }
-        return Object.fromEntries([...query.matchAll(/s(\d+): search\(type: ISSUE, query: ("(?:\\.|[^"\\])*"), first: (\d+)/g)].map(m => {
-            const filter = JSON.parse(m[2]);
-            const range = filter.match(/merged:>=(\S+) merged:<(\S+)/);
-            const contains = m[3] === '100' && range && mergedAt >= range[1] && mergedAt < range[2];
-            return [`s${m[1]}`, { issueCount: contains ? 1 : 0, nodes: contains ? [{ id: 'P1', mergedAt, author: { login: 'new', __typename: 'User' } }] : [], pageInfo: { hasNextPage: false } }];
-        }));
-    } };
-    const result = await collectOrgStats({ github, now, digestSince: '2026-10-14T04:00:00Z', pause: async () => {}, progress: line => messages.push(line) });
-    assert.equal(hydrationCalls, 1);
-    assert.equal(result.snapshot.contributors.activeLast30Days, 1);
-    assert.equal(result.snapshot.contributors.firstTime[0].name, 'New Contributor');
-    assert.equal(result.snapshot.mergedPullRequests.last7Days, 1);
-    assert.equal(result.numbers.mergedPullRequests, 1);
-    for (const phase of ['repos', 'releases', 'contributors', 'counts', 'aggregation']) assert.ok(messages.some(line => line.startsWith(`${phase}: complete in`)));
-    require('./org-stats-schema.test.cjs').validateSnapshot(result.snapshot);
 });

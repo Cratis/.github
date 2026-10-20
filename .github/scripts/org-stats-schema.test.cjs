@@ -6,7 +6,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const { shift, monday, monthStart, aggregate } = require('./org-stats.cjs');
-const { countQueries } = require('./collect-org-stats.cjs');
+const { countWindows } = require('./collect-org-stats.cjs');
 const integer = value => assert.ok(Number.isInteger(value) && value >= 0, `Expected nonnegative integer: ${value}`);
 const text = value => assert.equal(typeof value, 'string');
 const day = value => { text(value); assert.match(value, /^\d{4}-\d{2}-\d{2}$/); assert.equal(new Date(value).toISOString().slice(0, 10), value); };
@@ -53,7 +53,7 @@ function validateSnapshot(s) {
 }
 test('schema checks every required field and rejects a missing contract member', () => {
     const now = '2026-10-21T04:17:00.000Z';
-    const counts = Object.fromEntries(countQueries('repo:Cratis/Widget', now).map(q => [q.key, 0]));
+    const counts = Object.fromEntries(countWindows(now).map(q => [q.key, 0]));
     const snapshot = aggregate({ org: 'Cratis', now, repositories: [], counts, contributors: [], pullRequests: [] });
     validateSnapshot(snapshot);
     delete snapshot.mergedPullRequests.dependencyUpdatesLast7Days;
