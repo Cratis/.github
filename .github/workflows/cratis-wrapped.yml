@@ -1,0 +1,95 @@
+name: Cratis Wrapped
+
+on:
+  schedule:
+    - cron: '41 6 1 1 *'
+  workflow_dispatch:
+    inputs:
+      year:
+        description: Calendar year (empty uses the current year, or previous year on 1 January)
+        required: false
+        type: string
+      publish:
+        description: Commit the recap and post to Discord
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: org-stats-main
+  cancel-in-progress: false
+
+jobs:
+  wrapped:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Collect yearly activity
+        id: collect
+        uses: actions/github-script@v8
+        env:
+          WRAPPED_YEAR: ${{ inputs.year }}
+        with:
+          github-token: ${{ github.token }}
+          script: |
+            const path = require('node:path');
+            const fs = require('node:fs');
+            const root = process.env.GITHUB_WORKSPACE;
+            const { collectWrapped } = require(path.join(root, '.github/scripts/collect-wrapped.cjs'));
+            const { writeWrapped } = require(path.join(root, '.github/scripts/publish-wrapped.cjs'));
+            const { wrappedDiscord } = require(path.join(root, '.github/scripts/render-wrapped.cjs'));
+            const numbers = await collectWrapped({ github, org: context.repo.owner, year: process.env.WRAPPED_YEAR });
+            const file = `release-digests/wrapped-${numbers.year}.md`;
+            writeWrapped(path.join(root, file), numbers);
+            core.setOutput('file', file);
+            await core.summary.addRaw(fs.readFileSync(path.join(root, file), 'utf8')).write();
+            const url = `https://github.com/${context.repo.owner}/${context.repo.repo}/blob/main/${file}`;
+            fs.writeFileSync(path.join(process.env.RUNNER_TEMP, 'wrapped-discord.json'), JSON.stringify(wrappedDiscord(numbers, url)));
+
+      - name: Upload recap
+        uses: actions/upload-artifact@v4
+        with:
+          name: cratis-wrapped
+          path: ${{ steps.collect.outputs.file }}
+
+      - name: Commit yearly recap
+        if: github.event_name == 'schedule' || inputs.publish
+        env:
+          WRAPPED_FILE: ${{ steps.collect.outputs.file }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -- "$WRAPPED_FILE"
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "chore: publish Cratis Wrapped"
+          for attempt in 1 2 3; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            sleep "$((attempt * 2))"
+          done
+          exit 1
+
+      - name: Post recap to Discord
+        if: github.event_name == 'schedule' || inputs.publish
+        uses: actions/github-script@v8
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        with:
+          script: |
+            if (!process.env.DISCORD_WEBHOOK_URL) return;
+            const path = require('node:path');
+            const fs = require('node:fs');
+            const { postDiscord } = require(path.join(process.env.GITHUB_WORKSPACE, '.github/scripts/publish-org-stats.cjs'));
+            const payload = JSON.parse(fs.readFileSync(path.join(process.env.RUNNER_TEMP, 'wrapped-discord.json'), 'utf8'));
+            await postDiscord({ webhook: process.env.DISCORD_WEBHOOK_URL, payload, notice: core.notice, warning: core.warning });

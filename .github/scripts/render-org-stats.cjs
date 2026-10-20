@@ -85,4 +85,4 @@ function milestoneDiscord(snapshot, previous) {
         description: reached.map(m => `**${m.label}** (${m.reachedOn})`).join('\n').slice(0, 3900),
         url: 'https://github.com/Cratis', color: 0x248557 }] };
 }
-module.exports = { escapeXml, calendarTitle, humanDuration, renderCalendar, renderProfile, updateProfile, renderWeekNumbers, weeklyDiscord, milestoneDiscord };
+module.exports = { escapeXml, markdown, plural, kindsText, calendarTitle, humanDuration, renderCalendar, renderProfile, updateProfile, renderWeekNumbers, weeklyDiscord, milestoneDiscord };

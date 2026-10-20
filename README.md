@@ -41,6 +41,12 @@ Configure `DISCORD_WEBHOOK_URL` to enable weekly posts and daily milestone
 celebrations. Missing webhooks are skipped; Discord failures only warn. A newly
 reached milestone means its id was absent from the previously committed snapshot.
 
+On 1 January, **Cratis Wrapped** publishes the previous calendar year's recap to
+`release-digests/wrapped-YYYY.md`, with an optional Discord post. Dispatch the
+workflow with a `year` for a historical recap or a current-year preview; `publish`
+defaults to false, producing only an artifact and job summary. For a local preview
+without committing or posting, run `GITHUB_TOKEN="$(gh auth token)" node .github/scripts/publish-wrapped.cjs --year 2026 --out .ai-work/org-stats/wrapped-2026.md`.
+
 Run locally (requires Node.js 22+ and an authenticated GitHub CLI):
 
 ```sh
