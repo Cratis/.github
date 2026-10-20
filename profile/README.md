@@ -2,13 +2,21 @@
 
 **Open-source (MIT) tools for building event-sourced and CQRS applications — free to use, from the event store to the UI.**
 
+**At a glance**
+
+- Over 2.5 million downloads across NuGet, npm, Docker Hub and Hex, counted October 2026.
+- [Chronicle](https://www.cratis.io/chronicle/), including its predecessors Aksio Cratis and the Dolittle Runtime: over 1.5 million downloads.
+- [Arc](https://www.cratis.io/arc/), including Aksio Cratis Applications and the Dolittle SDK: over 1.2 million downloads.
+- MIT licensed and free to use. [Cratis Studio](https://cratis.studio/) is a paid Preview product.
+- Founded in Norway by [Einar Ingebrigtsen](https://github.com/einari) and [Sindre Alstad Wilting](https://github.com/woksin). Company site: [cratis.no](https://cratis.no/).
+
 Join us on [Discord](https://discord.gg/kt4AMpV8WV) to ask questions and get help from the Cratis team and other developers, discuss design before opening a proposal, and follow release news.
 
 At the center is [**Chronicle**](https://github.com/Cratis/Chronicle), an event-sourcing database and processing runtime with a first-class .NET SDK and additional TypeScript, Kotlin/Java (JVM), and Elixir clients — with a Python client coming soon — plus pluggable storage-provider implementations including MongoDB (default), PostgreSQL, SQL Server, and SQLite. Around Chronicle, Cratis provides [Arc](https://github.com/Cratis/Arc), an opinionated CQRS framework for ASP.NET Core that works with or without event sourcing; [Components](https://github.com/Cratis/Components) for React; the [CLI](https://github.com/Cratis/cli) and Workbench inspection surfaces; an experimental model-first layer; and supporting libraries and tools. Everything Cratis publishes today is MIT licensed and free to use.
 
 Cratis is built on a simple conviction: event sourcing is worth it for almost any system that deals with information and business flows — and it should never feel exotic. Everything here is designed to make event sourcing look and feel like idiomatic code in your language, familiar even if you have never event-sourced before, with less friction and boilerplate and a focus on productivity, quality, and reliability. And it is deliberately simple: one ecosystem with the tools a team needs — AI-friendly by design, with free [AI skills](https://github.com/Cratis/AI) for building with the stack.
 
-All documentation can be found at [https://cratis.io](https://cratis.io).
+All documentation can be found at [www.cratis.io](https://www.cratis.io/).
 Engineering writing lives on the blog at [https://blog.cratis.io](https://blog.cratis.io). Want to see it running? Start with the [Samples](https://github.com/Cratis/Samples).
 
 ## The ecosystem
