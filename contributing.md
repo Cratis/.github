@@ -1,4 +1,4 @@
-# Contributing
+# Contribution guidelines
 
 To contribute you should read through our guidelines to make it easier to get pull requests
 approved.
