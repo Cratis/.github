@@ -107,3 +107,11 @@ test('release preparation keeps previous-year baseline for classifying the first
         { tagName: 'v2.0.0', publishedAt: window.since }] }], window.until);
     assert.equal(numbers({ releases }).kinds.major, 1);
 });
+
+test('a year in progress lists months up to the current one only', () => {
+    const { wrappedNumbers } = require('./collect-wrapped.cjs');
+    const numbers = wrappedNumbers({ window: { year: 2026, since: '2026-01-01T00:00:00.000Z', until: '2026-10-20T12:00:00.000Z', partial: true },
+        releases: [], pullRequests: [], issues: [], contributors: [] });
+    assert.deepEqual(numbers.months.map(m => m.month).slice(-2), ['2026-09', '2026-10']);
+    assert.equal(numbers.months.length, 10);
+});

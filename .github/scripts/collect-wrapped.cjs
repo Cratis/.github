@@ -34,7 +34,8 @@ function wrappedNumbers({ window, releases, pullRequests, issues, contributors }
         const month = `${window.year}-${String(i + 1).padStart(2, '0')}`;
         return { month, releases: selected.filter(r => r.publishedAt.startsWith(month)).length,
             mergedPullRequests: merged.filter(pr => pr.mergedAt.startsWith(month)).length };
-    });
+    // A preview of a year in progress stops at the current month instead of listing empty future months.
+    }).filter(m => `${m.month}-01T00:00:00.000Z` < window.until);
     const days = new Map();
     for (const release of selected) {
         const day = date(release.publishedAt);
