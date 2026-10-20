@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-20T14:06:44.128Z",
+  "generatedAt": "2026-10-20T14:29:17.696Z",
   "organization": "Cratis",
   "scope": "public, non-archived, non-fork repositories",
   "repositoryCount": 52,
@@ -13,8 +13,8 @@
     "averagePerDayLast30Days": 62.3,
     "last365DaysByKind": {
       "major": 66,
-      "minor": 1647,
-      "patch": 1812,
+      "minor": 1645,
+      "patch": 1814,
       "prerelease": 74
     },
     "last7DaysByKind": {
@@ -34,16 +34,16 @@
     }
   },
   "mergedPullRequests": {
-    "last7Days": 993,
-    "last30Days": 3142,
-    "last365Days": 7323,
+    "last7Days": 995,
+    "last30Days": 3144,
+    "last365Days": 7325,
     "dependencyUpdatesLast7Days": 0
   },
   "issues": {
-    "openedLast7Days": 1211,
-    "closedLast7Days": 1169,
-    "closedLast30Days": 3176,
-    "closedLast365Days": 4758
+    "openedLast7Days": 1212,
+    "closedLast7Days": 1170,
+    "closedLast30Days": 3177,
+    "closedLast365Days": 4759
   },
   "contributors": {
     "activeLast30Days": 3,
@@ -1838,8 +1838,8 @@
     {
       "weekStart": "2026-10-19",
       "releases": 164,
-      "mergedPullRequests": 324,
-      "issuesClosed": 393
+      "mergedPullRequests": 326,
+      "issuesClosed": 394
     }
   ],
   "monthly": [
@@ -1923,9 +1923,9 @@
     {
       "month": "2026-10",
       "releases": 1417,
-      "mergedPullRequests": 2171,
-      "issuesOpened": 2776,
-      "issuesClosed": 2344
+      "mergedPullRequests": 2173,
+      "issuesOpened": 2777,
+      "issuesClosed": 2345
     }
   ],
   "repositories": [
