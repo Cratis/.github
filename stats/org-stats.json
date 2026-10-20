@@ -1,26 +1,26 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-20T14:29:17.696Z",
+  "generatedAt": "2026-10-20T16:53:32.883Z",
   "organization": "Cratis",
   "scope": "public, non-archived, non-fork repositories",
   "repositoryCount": 52,
   "releases": {
-    "last7Days": 641,
-    "last30Days": 1869,
-    "last90Days": 2616,
-    "last365Days": 3632,
-    "allTime": 4278,
-    "averagePerDayLast30Days": 62.3,
+    "last7Days": 651,
+    "last30Days": 1879,
+    "last90Days": 2626,
+    "last365Days": 3642,
+    "allTime": 4284,
+    "averagePerDayLast30Days": 62.6,
     "last365DaysByKind": {
       "major": 66,
-      "minor": 1645,
-      "patch": 1814,
+      "minor": 1650,
+      "patch": 1819,
       "prerelease": 74
     },
     "last7DaysByKind": {
       "major": 0,
-      "minor": 419,
-      "patch": 221,
+      "minor": 424,
+      "patch": 226,
       "prerelease": 0
     },
     "busiestDay": {
@@ -34,16 +34,16 @@
     }
   },
   "mergedPullRequests": {
-    "last7Days": 995,
-    "last30Days": 3144,
-    "last365Days": 7325,
+    "last7Days": 1021,
+    "last30Days": 3170,
+    "last365Days": 7351,
     "dependencyUpdatesLast7Days": 0
   },
   "issues": {
-    "openedLast7Days": 1212,
-    "closedLast7Days": 1170,
-    "closedLast30Days": 3177,
-    "closedLast365Days": 4759
+    "openedLast7Days": 1242,
+    "closedLast7Days": 1200,
+    "closedLast30Days": 3207,
+    "closedLast365Days": 4789
   },
   "contributors": {
     "activeLast30Days": 3,
@@ -63,1465 +63,6453 @@
   "daily": [
     {
       "date": "2025-10-21",
-      "releases": 5
+      "releases": 5,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle",
+          "releases": 2
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2025-10-22",
-      "releases": 1
+      "releases": 1,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2025-10-23",
-      "releases": 3
+      "releases": 3,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 3
+        }
+      ]
     },
     {
       "date": "2025-10-24",
-      "releases": 1
+      "releases": 1,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2025-10-25",
-      "releases": 1
+      "releases": 1,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2025-10-26",
-      "releases": 5
+      "releases": 5,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 5
+        }
+      ]
     },
     {
       "date": "2025-10-27",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2025-10-28",
-      "releases": 5
+      "releases": 5,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 4
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2025-10-29",
-      "releases": 4
+      "releases": 4,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 3
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2025-10-30",
-      "releases": 1
+      "releases": 1,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2025-10-31",
-      "releases": 2
+      "releases": 2,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 2
+        }
+      ]
     },
     {
       "date": "2025-11-01",
-      "releases": 3
+      "releases": 3,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2025-11-02",
-      "releases": 11
+      "releases": 11,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 6
+        },
+        {
+          "name": "Chronicle",
+          "releases": 5
+        }
+      ]
     },
     {
       "date": "2025-11-03",
-      "releases": 2
+      "releases": 2,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 2
+        }
+      ]
     },
     {
       "date": "2025-11-04",
-      "releases": 6
+      "releases": 6,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 6
+        }
+      ]
     },
     {
       "date": "2025-11-05",
-      "releases": 1
+      "releases": 1,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2025-11-06",
-      "releases": 3
+      "releases": 3,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 2
+        },
+        {
+          "name": "Arc",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2025-11-07",
-      "releases": 5
+      "releases": 5,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 5
+        }
+      ]
     },
     {
       "date": "2025-11-08",
-      "releases": 1
+      "releases": 1,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2025-11-09",
-      "releases": 2
+      "releases": 2,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 2
+        }
+      ]
     },
     {
       "date": "2025-11-10",
-      "releases": 2
+      "releases": 2,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2025-11-11",
-      "releases": 1
+      "releases": 1,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2025-11-12",
-      "releases": 1
+      "releases": 1,
+      "repositories": [
+        {
+          "name": "Fundamentals",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2025-11-13",
-      "releases": 2
+      "releases": 2,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 2
+        }
+      ]
     },
     {
       "date": "2025-11-14",
-      "releases": 3
+      "releases": 3,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 3
+        }
+      ]
     },
     {
       "date": "2025-11-15",
-      "releases": 2
+      "releases": 2,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 2
+        }
+      ]
     },
     {
       "date": "2025-11-16",
-      "releases": 4
+      "releases": 4,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 3
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2025-11-17",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2025-11-18",
-      "releases": 4
+      "releases": 4,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 4
+        }
+      ]
     },
     {
       "date": "2025-11-19",
-      "releases": 4
+      "releases": 4,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle",
+          "releases": 2
+        }
+      ]
     },
     {
       "date": "2025-11-20",
-      "releases": 7
+      "releases": 7,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 4
+        },
+        {
+          "name": "Chronicle",
+          "releases": 3
+        }
+      ]
     },
     {
       "date": "2025-11-21",
-      "releases": 5
+      "releases": 5,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 2
+        },
+        {
+          "name": "Dockerfiles",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2025-11-22",
-      "releases": 2
+      "releases": 2,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2025-11-23",
-      "releases": 7
+      "releases": 7,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 4
+        },
+        {
+          "name": "Chronicle",
+          "releases": 3
+        }
+      ]
     },
     {
       "date": "2025-11-24",
-      "releases": 1
+      "releases": 1,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2025-11-25",
-      "releases": 5
+      "releases": 5,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 5
+        }
+      ]
     },
     {
       "date": "2025-11-26",
-      "releases": 2
+      "releases": 2,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 2
+        }
+      ]
     },
     {
       "date": "2025-11-27",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2025-11-28",
-      "releases": 1
+      "releases": 1,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2025-11-29",
-      "releases": 5
+      "releases": 5,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 5
+        }
+      ]
     },
     {
       "date": "2025-11-30",
-      "releases": 2
+      "releases": 2,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2025-12-01",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2025-12-02",
-      "releases": 2
+      "releases": 2,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2025-12-03",
-      "releases": 3
+      "releases": 3,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 3
+        }
+      ]
     },
     {
       "date": "2025-12-04",
-      "releases": 1
+      "releases": 1,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2025-12-05",
-      "releases": 1
+      "releases": 1,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2025-12-06",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2025-12-07",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2025-12-08",
-      "releases": 1
+      "releases": 1,
+      "repositories": [
+        {
+          "name": "Fundamentals",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2025-12-09",
-      "releases": 2
+      "releases": 2,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 2
+        }
+      ]
     },
     {
       "date": "2025-12-10",
-      "releases": 7
+      "releases": 7,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 3
+        },
+        {
+          "name": "Arc",
+          "releases": 2
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 2
+        }
+      ]
     },
     {
       "date": "2025-12-11",
-      "releases": 2
+      "releases": 2,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 2
+        }
+      ]
     },
     {
       "date": "2025-12-12",
-      "releases": 5
+      "releases": 5,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 3
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 2
+        }
+      ]
     },
     {
       "date": "2025-12-13",
-      "releases": 6
+      "releases": 6,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 3
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2025-12-14",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2025-12-15",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2025-12-16",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2025-12-17",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2025-12-18",
-      "releases": 1
+      "releases": 1,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2025-12-19",
-      "releases": 1
+      "releases": 1,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2025-12-20",
-      "releases": 1
+      "releases": 1,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2025-12-21",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2025-12-22",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2025-12-23",
-      "releases": 3
+      "releases": 3,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 3
+        }
+      ]
     },
     {
       "date": "2025-12-24",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2025-12-25",
-      "releases": 4
+      "releases": 4,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 4
+        }
+      ]
     },
     {
       "date": "2025-12-26",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2025-12-27",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2025-12-28",
-      "releases": 1
+      "releases": 1,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2025-12-29",
-      "releases": 2
+      "releases": 2,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 2
+        }
+      ]
     },
     {
       "date": "2025-12-30",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2025-12-31",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2026-01-01",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2026-01-02",
-      "releases": 3
+      "releases": 3,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 2
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-01-03",
-      "releases": 1
+      "releases": 1,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-01-04",
-      "releases": 1
+      "releases": 1,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-01-05",
-      "releases": 1
+      "releases": 1,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-01-06",
-      "releases": 11
+      "releases": 11,
+      "repositories": [
+        {
+          "name": "Components",
+          "releases": 11
+        }
+      ]
     },
     {
       "date": "2026-01-07",
-      "releases": 1
+      "releases": 1,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-01-08",
-      "releases": 4
+      "releases": 4,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 4
+        }
+      ]
     },
     {
       "date": "2026-01-09",
-      "releases": 2
+      "releases": 2,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 2
+        }
+      ]
     },
     {
       "date": "2026-01-10",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2026-01-11",
-      "releases": 7
+      "releases": 7,
+      "repositories": [
+        {
+          "name": "Components",
+          "releases": 7
+        }
+      ]
     },
     {
       "date": "2026-01-12",
-      "releases": 2
+      "releases": 2,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 1
+        },
+        {
+          "name": "Components",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-01-13",
-      "releases": 3
+      "releases": 3,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 3
+        }
+      ]
     },
     {
       "date": "2026-01-14",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2026-01-15",
-      "releases": 2
+      "releases": 2,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 1
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-01-16",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2026-01-17",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2026-01-18",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2026-01-19",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2026-01-20",
-      "releases": 3
+      "releases": 3,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 3
+        }
+      ]
     },
     {
       "date": "2026-01-21",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2026-01-22",
-      "releases": 2
+      "releases": 2,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 2
+        }
+      ]
     },
     {
       "date": "2026-01-23",
-      "releases": 2
+      "releases": 2,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 2
+        }
+      ]
     },
     {
       "date": "2026-01-24",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2026-01-25",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2026-01-26",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2026-01-27",
-      "releases": 3
+      "releases": 3,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 3
+        }
+      ]
     },
     {
       "date": "2026-01-28",
-      "releases": 1
+      "releases": 1,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-01-29",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2026-01-30",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2026-01-31",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2026-02-01",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2026-02-02",
-      "releases": 1
+      "releases": 1,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-02-03",
-      "releases": 1
+      "releases": 1,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-02-04",
-      "releases": 11
+      "releases": 11,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 9
+        },
+        {
+          "name": "Arc",
+          "releases": 2
+        }
+      ]
     },
     {
       "date": "2026-02-05",
-      "releases": 2
+      "releases": 2,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 2
+        }
+      ]
     },
     {
       "date": "2026-02-06",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2026-02-07",
-      "releases": 1
+      "releases": 1,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-02-08",
-      "releases": 3
+      "releases": 3,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-02-09",
-      "releases": 1
+      "releases": 1,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-02-10",
-      "releases": 4
+      "releases": 4,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 2
+        },
+        {
+          "name": "Components",
+          "releases": 1
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-02-11",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2026-02-12",
-      "releases": 4
+      "releases": 4,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 3
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-02-13",
-      "releases": 3
+      "releases": 3,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 2
+        },
+        {
+          "name": "Arc",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-02-14",
-      "releases": 2
+      "releases": 2,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 1
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-02-15",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2026-02-16",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2026-02-17",
-      "releases": 1
+      "releases": 1,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-02-18",
-      "releases": 4
+      "releases": 4,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle",
+          "releases": 2
+        }
+      ]
     },
     {
       "date": "2026-02-19",
-      "releases": 10
+      "releases": 10,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 7
+        },
+        {
+          "name": "Arc",
+          "releases": 3
+        }
+      ]
     },
     {
       "date": "2026-02-20",
-      "releases": 9
+      "releases": 9,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 5
+        },
+        {
+          "name": "Chronicle",
+          "releases": 4
+        }
+      ]
     },
     {
       "date": "2026-02-21",
-      "releases": 1
+      "releases": 1,
+      "repositories": [
+        {
+          "name": "Components",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-02-22",
-      "releases": 9
+      "releases": 9,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 4
+        },
+        {
+          "name": "Components",
+          "releases": 3
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-02-23",
-      "releases": 4
+      "releases": 4,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 3
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-02-24",
-      "releases": 5
+      "releases": 5,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 3
+        },
+        {
+          "name": "Arc",
+          "releases": 2
+        }
+      ]
     },
     {
       "date": "2026-02-25",
-      "releases": 5
+      "releases": 5,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 4
+        },
+        {
+          "name": "Components",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-02-26",
-      "releases": 1
+      "releases": 1,
+      "repositories": [
+        {
+          "name": "Components",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-02-27",
-      "releases": 5
+      "releases": 5,
+      "repositories": [
+        {
+          "name": "Components",
+          "releases": 3
+        },
+        {
+          "name": "Arc",
+          "releases": 2
+        }
+      ]
     },
     {
       "date": "2026-02-28",
-      "releases": 3
+      "releases": 3,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        },
+        {
+          "name": "Components",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-03-01",
-      "releases": 3
+      "releases": 3,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 2
+        },
+        {
+          "name": "Components",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-03-02",
-      "releases": 5
+      "releases": 5,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 3
+        },
+        {
+          "name": "Components",
+          "releases": 2
+        }
+      ]
     },
     {
       "date": "2026-03-03",
-      "releases": 2
+      "releases": 2,
+      "repositories": [
+        {
+          "name": "Components",
+          "releases": 2
+        }
+      ]
     },
     {
       "date": "2026-03-04",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2026-03-05",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2026-03-06",
-      "releases": 1
+      "releases": 1,
+      "repositories": [
+        {
+          "name": "Components",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-03-07",
-      "releases": 5
+      "releases": 5,
+      "repositories": [
+        {
+          "name": "Templates",
+          "releases": 2
+        },
+        {
+          "name": "Arc",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        },
+        {
+          "name": "Components",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-03-08",
-      "releases": 4
+      "releases": 4,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 3
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-03-09",
-      "releases": 4
+      "releases": 4,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle",
+          "releases": 2
+        }
+      ]
     },
     {
       "date": "2026-03-10",
-      "releases": 9
+      "releases": 9,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 4
+        },
+        {
+          "name": "Chronicle",
+          "releases": 3
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 1
+        },
+        {
+          "name": "Templates",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-03-11",
-      "releases": 2
+      "releases": 2,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-03-12",
-      "releases": 2
+      "releases": 2,
+      "repositories": [
+        {
+          "name": "AuthProxy",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-03-13",
-      "releases": 13
+      "releases": 13,
+      "repositories": [
+        {
+          "name": "Components",
+          "releases": 12
+        },
+        {
+          "name": "Templates",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-03-14",
-      "releases": 2
+      "releases": 2,
+      "repositories": [
+        {
+          "name": "Components",
+          "releases": 2
+        }
+      ]
     },
     {
       "date": "2026-03-15",
-      "releases": 1
+      "releases": 1,
+      "repositories": [
+        {
+          "name": "AuthProxy",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-03-16",
-      "releases": 1
+      "releases": 1,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-03-17",
-      "releases": 3
+      "releases": 3,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 2
+        },
+        {
+          "name": "Arc",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-03-18",
-      "releases": 8
+      "releases": 8,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 5
+        },
+        {
+          "name": "Components",
+          "releases": 2
+        },
+        {
+          "name": "Templates",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-03-19",
-      "releases": 3
+      "releases": 3,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 2
+        },
+        {
+          "name": "Arc",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-03-20",
-      "releases": 4
+      "releases": 4,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 4
+        }
+      ]
     },
     {
       "date": "2026-03-21",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2026-03-22",
-      "releases": 1
+      "releases": 1,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-03-23",
-      "releases": 2
+      "releases": 2,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-03-24",
-      "releases": 1
+      "releases": 1,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-03-25",
-      "releases": 1
+      "releases": 1,
+      "repositories": [
+        {
+          "name": "Components",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-03-26",
-      "releases": 7
+      "releases": 7,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 3
+        },
+        {
+          "name": "Components",
+          "releases": 3
+        },
+        {
+          "name": "Arc",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-03-27",
-      "releases": 8
+      "releases": 8,
+      "repositories": [
+        {
+          "name": "Components",
+          "releases": 4
+        },
+        {
+          "name": "Arc",
+          "releases": 3
+        },
+        {
+          "name": "Templates",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-03-28",
-      "releases": 4
+      "releases": 4,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 3
+        },
+        {
+          "name": "Arc",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-03-29",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2026-03-30",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2026-03-31",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2026-04-01",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2026-04-02",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2026-04-03",
-      "releases": 4
+      "releases": 4,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle",
+          "releases": 2
+        }
+      ]
     },
     {
       "date": "2026-04-04",
-      "releases": 4
+      "releases": 4,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 3
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-04-05",
-      "releases": 5
+      "releases": 5,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 3
+        },
+        {
+          "name": "AuthProxy",
+          "releases": 2
+        }
+      ]
     },
     {
       "date": "2026-04-06",
-      "releases": 1
+      "releases": 1,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-04-07",
-      "releases": 9
+      "releases": 9,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 4
+        },
+        {
+          "name": "Arc",
+          "releases": 3
+        },
+        {
+          "name": "Components",
+          "releases": 2
+        }
+      ]
     },
     {
       "date": "2026-04-08",
-      "releases": 1
+      "releases": 1,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-04-09",
-      "releases": 2
+      "releases": 2,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-04-10",
-      "releases": 7
+      "releases": 7,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 3
+        },
+        {
+          "name": "Chronicle",
+          "releases": 3
+        },
+        {
+          "name": "AuthProxy",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-04-11",
-      "releases": 3
+      "releases": 3,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-04-12",
-      "releases": 13
+      "releases": 13,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 6
+        },
+        {
+          "name": "AuthProxy",
+          "releases": 5
+        },
+        {
+          "name": "Arc",
+          "releases": 1
+        },
+        {
+          "name": "Templates",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-04-13",
-      "releases": 3
+      "releases": 3,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 3
+        }
+      ]
     },
     {
       "date": "2026-04-14",
-      "releases": 5
+      "releases": 5,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 2
+        },
+        {
+          "name": "AuthProxy",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-04-15",
-      "releases": 7
+      "releases": 7,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 4
+        },
+        {
+          "name": "Arc",
+          "releases": 2
+        },
+        {
+          "name": "AuthProxy",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-04-16",
-      "releases": 5
+      "releases": 5,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 5
+        }
+      ]
     },
     {
       "date": "2026-04-17",
-      "releases": 3
+      "releases": 3,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-04-18",
-      "releases": 6
+      "releases": 6,
+      "repositories": [
+        {
+          "name": "AuthProxy",
+          "releases": 6
+        }
+      ]
     },
     {
       "date": "2026-04-19",
-      "releases": 10
+      "releases": 10,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 3
+        },
+        {
+          "name": "AuthProxy",
+          "releases": 3
+        },
+        {
+          "name": "Chronicle",
+          "releases": 2
+        },
+        {
+          "name": "Components",
+          "releases": 2
+        }
+      ]
     },
     {
       "date": "2026-04-20",
-      "releases": 9
+      "releases": 9,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 5
+        },
+        {
+          "name": "AuthProxy",
+          "releases": 3
+        },
+        {
+          "name": "Arc",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-04-21",
-      "releases": 1
+      "releases": 1,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-04-22",
-      "releases": 4
+      "releases": 4,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 3
+        },
+        {
+          "name": "Arc",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-04-23",
-      "releases": 1
+      "releases": 1,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-04-24",
-      "releases": 2
+      "releases": 2,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 2
+        }
+      ]
     },
     {
       "date": "2026-04-25",
-      "releases": 2
+      "releases": 2,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 2
+        }
+      ]
     },
     {
       "date": "2026-04-26",
-      "releases": 3
+      "releases": 3,
+      "repositories": [
+        {
+          "name": "Components",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-04-27",
-      "releases": 9
+      "releases": 9,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 4
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 3
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        },
+        {
+          "name": "Components",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-04-28",
-      "releases": 15
+      "releases": 15,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 8
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 5
+        },
+        {
+          "name": "Chronicle",
+          "releases": 2
+        }
+      ]
     },
     {
       "date": "2026-04-29",
-      "releases": 4
+      "releases": 4,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-04-30",
-      "releases": 4
+      "releases": 4,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 3
+        },
+        {
+          "name": "Arc",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-05-01",
-      "releases": 11
+      "releases": 11,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 6
+        },
+        {
+          "name": "cli",
+          "releases": 3
+        },
+        {
+          "name": "Arc",
+          "releases": 2
+        }
+      ]
     },
     {
       "date": "2026-05-02",
-      "releases": 8
+      "releases": 8,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 5
+        },
+        {
+          "name": "Arc",
+          "releases": 2
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-05-03",
-      "releases": 9
+      "releases": 9,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 5
+        },
+        {
+          "name": "Chronicle",
+          "releases": 3
+        },
+        {
+          "name": "AuthProxy",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-05-04",
-      "releases": 5
+      "releases": 5,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 2
+        },
+        {
+          "name": "cli",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-05-05",
-      "releases": 4
+      "releases": 4,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 2
+        },
+        {
+          "name": "Components",
+          "releases": 1
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-05-06",
-      "releases": 11
+      "releases": 11,
+      "repositories": [
+        {
+          "name": "cli",
+          "releases": 5
+        },
+        {
+          "name": "Arc",
+          "releases": 4
+        },
+        {
+          "name": "Chronicle",
+          "releases": 2
+        }
+      ]
     },
     {
       "date": "2026-05-07",
-      "releases": 10
+      "releases": 10,
+      "repositories": [
+        {
+          "name": "cli",
+          "releases": 5
+        },
+        {
+          "name": "Chronicle",
+          "releases": 4
+        },
+        {
+          "name": "Components",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-05-08",
-      "releases": 5
+      "releases": 5,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 2
+        },
+        {
+          "name": "Arc",
+          "releases": 1
+        },
+        {
+          "name": "Components",
+          "releases": 1
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-05-09",
-      "releases": 7
+      "releases": 7,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 5
+        },
+        {
+          "name": "Components",
+          "releases": 2
+        }
+      ]
     },
     {
       "date": "2026-05-10",
-      "releases": 2
+      "releases": 2,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-05-11",
-      "releases": 6
+      "releases": 6,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle.TypeScript",
+          "releases": 2
+        },
+        {
+          "name": "Arc",
+          "releases": 1
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-05-12",
-      "releases": 10
+      "releases": 10,
+      "repositories": [
+        {
+          "name": "Chronicle.Elixir",
+          "releases": 5
+        },
+        {
+          "name": "Chronicle",
+          "releases": 3
+        },
+        {
+          "name": "Arc",
+          "releases": 1
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-05-13",
-      "releases": 7
+      "releases": 7,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 4
+        },
+        {
+          "name": "Arc",
+          "releases": 2
+        },
+        {
+          "name": "AuthProxy",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-05-14",
-      "releases": 7
+      "releases": 7,
+      "repositories": [
+        {
+          "name": "Fundamentals",
+          "releases": 4
+        },
+        {
+          "name": "Arc",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-05-15",
-      "releases": 14
+      "releases": 14,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 8
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 5
+        },
+        {
+          "name": "Arc",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-05-16",
-      "releases": 10
+      "releases": 10,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 4
+        },
+        {
+          "name": "cli",
+          "releases": 3
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 3
+        }
+      ]
     },
     {
       "date": "2026-05-17",
-      "releases": 6
+      "releases": 6,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 3
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        },
+        {
+          "name": "cli",
+          "releases": 1
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-05-18",
-      "releases": 13
+      "releases": 13,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 8
+        },
+        {
+          "name": "Chronicle",
+          "releases": 4
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-05-19",
-      "releases": 12
+      "releases": 12,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 9
+        },
+        {
+          "name": "Chronicle",
+          "releases": 3
+        }
+      ]
     },
     {
       "date": "2026-05-20",
-      "releases": 12
+      "releases": 12,
+      "repositories": [
+        {
+          "name": "Narrator",
+          "releases": 6
+        },
+        {
+          "name": "Arc",
+          "releases": 3
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 3
+        }
+      ]
     },
     {
       "date": "2026-05-21",
-      "releases": 11
+      "releases": 11,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 10
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-05-22",
-      "releases": 18
+      "releases": 18,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 7
+        },
+        {
+          "name": "Narrator",
+          "releases": 7
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        },
+        {
+          "name": "cli",
+          "releases": 1
+        },
+        {
+          "name": "Components",
+          "releases": 1
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-05-23",
-      "releases": 6
+      "releases": 6,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 3
+        },
+        {
+          "name": "Chronicle",
+          "releases": 2
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-05-24",
-      "releases": 15
+      "releases": 15,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 11
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle.TypeScript",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-05-25",
-      "releases": 3
+      "releases": 3,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle.TypeScript",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-05-26",
-      "releases": 4
+      "releases": 4,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 3
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-05-27",
-      "releases": 4
+      "releases": 4,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 3
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-05-28",
-      "releases": 6
+      "releases": 6,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 6
+        }
+      ]
     },
     {
       "date": "2026-05-29",
-      "releases": 1
+      "releases": 1,
+      "repositories": [
+        {
+          "name": "Fundamentals",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-05-30",
-      "releases": 1
+      "releases": 1,
+      "repositories": [
+        {
+          "name": "Components",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-05-31",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2026-06-01",
-      "releases": 3
+      "releases": 3,
+      "repositories": [
+        {
+          "name": "AuthProxy",
+          "releases": 1
+        },
+        {
+          "name": "Components",
+          "releases": 1
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-06-02",
-      "releases": 4
+      "releases": 4,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 2
+        },
+        {
+          "name": "Arc",
+          "releases": 1
+        },
+        {
+          "name": "Architecture",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-06-03",
-      "releases": 11
+      "releases": 11,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 8
+        },
+        {
+          "name": "Components",
+          "releases": 3
+        }
+      ]
     },
     {
       "date": "2026-06-04",
-      "releases": 21
+      "releases": 21,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 10
+        },
+        {
+          "name": "Chronicle",
+          "releases": 4
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 4
+        },
+        {
+          "name": "Components",
+          "releases": 3
+        }
+      ]
     },
     {
       "date": "2026-06-05",
-      "releases": 19
+      "releases": 19,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 6
+        },
+        {
+          "name": "Chronicle.Elixir",
+          "releases": 5
+        },
+        {
+          "name": "Chronicle.Mcp",
+          "releases": 3
+        },
+        {
+          "name": "Chronicle.TypeScript",
+          "releases": 3
+        },
+        {
+          "name": "Chronicle",
+          "releases": 2
+        }
+      ]
     },
     {
       "date": "2026-06-06",
-      "releases": 1
+      "releases": 1,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-06-07",
-      "releases": 9
+      "releases": 9,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 5
+        },
+        {
+          "name": "Chronicle.Elixir",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle.TypeScript",
+          "releases": 1
+        },
+        {
+          "name": "cli",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-06-08",
-      "releases": 6
+      "releases": 6,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 2
+        },
+        {
+          "name": "Arc",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle.Elixir",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle.TypeScript",
+          "releases": 1
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-06-09",
-      "releases": 11
+      "releases": 11,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 7
+        },
+        {
+          "name": "Arc",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle.Elixir",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle.TypeScript",
+          "releases": 1
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-06-10",
-      "releases": 1
+      "releases": 1,
+      "repositories": [
+        {
+          "name": "cli",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-06-11",
-      "releases": 7
+      "releases": 7,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 3
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 3
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-06-12",
-      "releases": 7
+      "releases": 7,
+      "repositories": [
+        {
+          "name": "Components",
+          "releases": 3
+        },
+        {
+          "name": "Arc",
+          "releases": 1
+        },
+        {
+          "name": "Architecture",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle.Kotlin",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-06-13",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2026-06-14",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2026-06-15",
-      "releases": 2
+      "releases": 2,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 2
+        }
+      ]
     },
     {
       "date": "2026-06-16",
-      "releases": 7
+      "releases": 7,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 5
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        },
+        {
+          "name": "cli",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-06-17",
-      "releases": 5
+      "releases": 5,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 3
+        },
+        {
+          "name": "Chronicle",
+          "releases": 2
+        }
+      ]
     },
     {
       "date": "2026-06-18",
-      "releases": 3
+      "releases": 3,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 2
+        },
+        {
+          "name": "Arc",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-06-19",
-      "releases": 5
+      "releases": 5,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle",
+          "releases": 2
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-06-20",
-      "releases": 4
+      "releases": 4,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-06-21",
-      "releases": 5
+      "releases": 5,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 4
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-06-22",
-      "releases": 4
+      "releases": 4,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 4
+        }
+      ]
     },
     {
       "date": "2026-06-23",
-      "releases": 3
+      "releases": 3,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 2
+        },
+        {
+          "name": "Arc",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-06-24",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2026-06-25",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2026-06-26",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2026-06-27",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2026-06-28",
-      "releases": 2
+      "releases": 2,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-06-29",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2026-06-30",
-      "releases": 2
+      "releases": 2,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 2
+        }
+      ]
     },
     {
       "date": "2026-07-01",
-      "releases": 7
+      "releases": 7,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 4
+        },
+        {
+          "name": "Chronicle",
+          "releases": 3
+        }
+      ]
     },
     {
       "date": "2026-07-02",
-      "releases": 1
+      "releases": 1,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-07-03",
-      "releases": 2
+      "releases": 2,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 2
+        }
+      ]
     },
     {
       "date": "2026-07-04",
-      "releases": 3
+      "releases": 3,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 3
+        }
+      ]
     },
     {
       "date": "2026-07-05",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2026-07-06",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2026-07-07",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2026-07-08",
-      "releases": 6
+      "releases": 6,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 3
+        },
+        {
+          "name": "Chronicle",
+          "releases": 2
+        },
+        {
+          "name": "Components",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-07-09",
-      "releases": 11
+      "releases": 11,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 4
+        },
+        {
+          "name": "Chronicle",
+          "releases": 3
+        },
+        {
+          "name": "AuthProxy",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle.Elixir",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle.TypeScript",
+          "releases": 1
+        },
+        {
+          "name": "Specifications",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-07-10",
-      "releases": 9
+      "releases": 9,
+      "repositories": [
+        {
+          "name": "cli",
+          "releases": 3
+        },
+        {
+          "name": "Chronicle",
+          "releases": 2
+        },
+        {
+          "name": "Arc",
+          "releases": 1
+        },
+        {
+          "name": "AuthProxy",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle.Kotlin",
+          "releases": 1
+        },
+        {
+          "name": "Narrator",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-07-11",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2026-07-12",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2026-07-13",
-      "releases": 5
+      "releases": 5,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 2
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 2
+        },
+        {
+          "name": "Arc",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-07-14",
-      "releases": 11
+      "releases": 11,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 4
+        },
+        {
+          "name": "AuthProxy",
+          "releases": 3
+        },
+        {
+          "name": "Arc",
+          "releases": 2
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 2
+        }
+      ]
     },
     {
       "date": "2026-07-15",
-      "releases": 6
+      "releases": 6,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 2
+        },
+        {
+          "name": "Prologue",
+          "releases": 2
+        },
+        {
+          "name": "Stage",
+          "releases": 2
+        }
+      ]
     },
     {
       "date": "2026-07-16",
-      "releases": 3
+      "releases": 3,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 3
+        }
+      ]
     },
     {
       "date": "2026-07-17",
-      "releases": 1
+      "releases": 1,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-07-18",
-      "releases": 5
+      "releases": 5,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 4
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-07-19",
-      "releases": 9
+      "releases": 9,
+      "repositories": [
+        {
+          "name": "Screenplay",
+          "releases": 5
+        },
+        {
+          "name": "Arc",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle",
+          "releases": 2
+        }
+      ]
     },
     {
       "date": "2026-07-20",
-      "releases": 4
+      "releases": 4,
+      "repositories": [
+        {
+          "name": "Screenplay",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        },
+        {
+          "name": "cli",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-07-21",
-      "releases": 5
+      "releases": 5,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 5
+        }
+      ]
     },
     {
       "date": "2026-07-22",
-      "releases": 6
+      "releases": 6,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle.Elixir",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle.Kotlin",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle.TypeScript",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-07-23",
-      "releases": 22
+      "releases": 22,
+      "repositories": [
+        {
+          "name": "Screenplay",
+          "releases": 5
+        },
+        {
+          "name": "AuthProxy",
+          "releases": 4
+        },
+        {
+          "name": "Chronicle",
+          "releases": 4
+        },
+        {
+          "name": "Arc",
+          "releases": 3
+        },
+        {
+          "name": "Chronicle.Elixir",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle.Kotlin",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle.TypeScript",
+          "releases": 1
+        },
+        {
+          "name": "cli",
+          "releases": 1
+        },
+        {
+          "name": "Prologue",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-07-24",
-      "releases": 8
+      "releases": 8,
+      "repositories": [
+        {
+          "name": "release-action",
+          "releases": 3
+        },
+        {
+          "name": "Arc",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle",
+          "releases": 2
+        },
+        {
+          "name": "AuthProxy",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-07-25",
-      "releases": 2
+      "releases": 2,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-07-26",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2026-07-27",
-      "releases": 4
+      "releases": 4,
+      "repositories": [
+        {
+          "name": "Chronicle.Mcp",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        },
+        {
+          "name": "Components",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-07-28",
-      "releases": 12
+      "releases": 12,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 5
+        },
+        {
+          "name": "Chronicle",
+          "releases": 5
+        },
+        {
+          "name": "cli",
+          "releases": 1
+        },
+        {
+          "name": "Screenplay",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-07-29",
-      "releases": 10
+      "releases": 10,
+      "repositories": [
+        {
+          "name": "Screenplay",
+          "releases": 5
+        },
+        {
+          "name": "Arc",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle",
+          "releases": 2
+        },
+        {
+          "name": "cli",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-07-30",
-      "releases": 25
+      "releases": 25,
+      "repositories": [
+        {
+          "name": "Stage",
+          "releases": 7
+        },
+        {
+          "name": "Arc",
+          "releases": 6
+        },
+        {
+          "name": "cli",
+          "releases": 6
+        },
+        {
+          "name": "Chronicle",
+          "releases": 3
+        },
+        {
+          "name": "AuthProxy",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle.Mcp",
+          "releases": 1
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-07-31",
-      "releases": 6
+      "releases": 6,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 2
+        },
+        {
+          "name": "Arc",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle.Kotlin",
+          "releases": 1
+        },
+        {
+          "name": "cli",
+          "releases": 1
+        },
+        {
+          "name": "Stage",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-08-01",
-      "releases": 5
+      "releases": 5,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle",
+          "releases": 2
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-08-02",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2026-08-03",
-      "releases": 3
+      "releases": 3,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        },
+        {
+          "name": "Screenplay",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-08-04",
-      "releases": 0
+      "releases": 0,
+      "repositories": []
     },
     {
       "date": "2026-08-05",
-      "releases": 20
+      "releases": 20,
+      "repositories": [
+        {
+          "name": "AuthProxy",
+          "releases": 5
+        },
+        {
+          "name": "Chronicle",
+          "releases": 5
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 2
+        },
+        {
+          "name": "Arc",
+          "releases": 1
+        },
+        {
+          "name": "Architecture",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle.TypeScript",
+          "releases": 1
+        },
+        {
+          "name": "Components",
+          "releases": 1
+        },
+        {
+          "name": "Lens",
+          "releases": 1
+        },
+        {
+          "name": "Screenplay",
+          "releases": 1
+        },
+        {
+          "name": "Stage",
+          "releases": 1
+        },
+        {
+          "name": "Templates",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-08-06",
-      "releases": 16
+      "releases": 16,
+      "repositories": [
+        {
+          "name": "Chronicle.Kotlin",
+          "releases": 8
+        },
+        {
+          "name": "Chronicle",
+          "releases": 3
+        },
+        {
+          "name": "Prompter",
+          "releases": 3
+        },
+        {
+          "name": "Arc",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle.TypeScript",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-08-07",
-      "releases": 9
+      "releases": 9,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 3
+        },
+        {
+          "name": "Screenplay",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle.Elixir",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle.Kotlin",
+          "releases": 1
+        },
+        {
+          "name": "Components",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-08-08",
-      "releases": 1
+      "releases": 1,
+      "repositories": [
+        {
+          "name": "Components",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-08-09",
-      "releases": 3
+      "releases": 3,
+      "repositories": [
+        {
+          "name": "AuthProxy",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        },
+        {
+          "name": "Components",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-08-10",
-      "releases": 17
+      "releases": 17,
+      "repositories": [
+        {
+          "name": "AuthProxy",
+          "releases": 4
+        },
+        {
+          "name": "Arc",
+          "releases": 3
+        },
+        {
+          "name": "Chronicle",
+          "releases": 3
+        },
+        {
+          "name": "Stage",
+          "releases": 3
+        },
+        {
+          "name": "cli",
+          "releases": 2
+        },
+        {
+          "name": "Components",
+          "releases": 1
+        },
+        {
+          "name": "Prologue",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-08-11",
-      "releases": 30
+      "releases": 30,
+      "repositories": [
+        {
+          "name": "AuthProxy",
+          "releases": 9
+        },
+        {
+          "name": "Chronicle",
+          "releases": 8
+        },
+        {
+          "name": "Arc",
+          "releases": 6
+        },
+        {
+          "name": "Components",
+          "releases": 3
+        },
+        {
+          "name": "Stage",
+          "releases": 3
+        },
+        {
+          "name": "Chronicle.Kotlin",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-08-12",
-      "releases": 12
+      "releases": 12,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 9
+        },
+        {
+          "name": "Stage",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-08-13",
-      "releases": 20
+      "releases": 20,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 9
+        },
+        {
+          "name": "Arc",
+          "releases": 6
+        },
+        {
+          "name": "AuthProxy",
+          "releases": 2
+        },
+        {
+          "name": "cli",
+          "releases": 1
+        },
+        {
+          "name": "Components",
+          "releases": 1
+        },
+        {
+          "name": "Stage",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-08-14",
-      "releases": 12
+      "releases": 12,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 4
+        },
+        {
+          "name": "Synopsis",
+          "releases": 3
+        },
+        {
+          "name": "Arc",
+          "releases": 2
+        },
+        {
+          "name": "cli",
+          "releases": 2
+        },
+        {
+          "name": "Stage",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-08-15",
-      "releases": 27
+      "releases": 27,
+      "repositories": [
+        {
+          "name": "Screenplay",
+          "releases": 11
+        },
+        {
+          "name": "Scene",
+          "releases": 7
+        },
+        {
+          "name": "Arc",
+          "releases": 2
+        },
+        {
+          "name": "cli",
+          "releases": 2
+        },
+        {
+          "name": "Stage",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        },
+        {
+          "name": "Components",
+          "releases": 1
+        },
+        {
+          "name": "release-action",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-08-16",
-      "releases": 21
+      "releases": 21,
+      "repositories": [
+        {
+          "name": "Components",
+          "releases": 9
+        },
+        {
+          "name": "Arc",
+          "releases": 3
+        },
+        {
+          "name": "Scene",
+          "releases": 3
+        },
+        {
+          "name": "Screenplay",
+          "releases": 2
+        },
+        {
+          "name": "Stage",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-08-17",
-      "releases": 8
+      "releases": 8,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 5
+        },
+        {
+          "name": "cli",
+          "releases": 1
+        },
+        {
+          "name": "Components",
+          "releases": 1
+        },
+        {
+          "name": "Stage",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-08-18",
-      "releases": 20
+      "releases": 20,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 9
+        },
+        {
+          "name": "Stage",
+          "releases": 6
+        },
+        {
+          "name": "Arc",
+          "releases": 2
+        },
+        {
+          "name": "Screenplay",
+          "releases": 2
+        },
+        {
+          "name": "Prologue",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-08-19",
-      "releases": 5
+      "releases": 5,
+      "repositories": [
+        {
+          "name": "cli",
+          "releases": 2
+        },
+        {
+          "name": "Arc",
+          "releases": 1
+        },
+        {
+          "name": "Screenplay",
+          "releases": 1
+        },
+        {
+          "name": "Stage",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-08-20",
-      "releases": 5
+      "releases": 5,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 2
+        },
+        {
+          "name": "Arc",
+          "releases": 1
+        },
+        {
+          "name": "cli",
+          "releases": 1
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-08-21",
-      "releases": 7
+      "releases": 7,
+      "repositories": [
+        {
+          "name": "cli",
+          "releases": 2
+        },
+        {
+          "name": "Screenplay.CritterStack",
+          "releases": 2
+        },
+        {
+          "name": "Arc",
+          "releases": 1
+        },
+        {
+          "name": "Screenplay.Generation",
+          "releases": 1
+        },
+        {
+          "name": "Stage",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-08-22",
-      "releases": 34
+      "releases": 34,
+      "repositories": [
+        {
+          "name": "Screenplay.CritterStack",
+          "releases": 15
+        },
+        {
+          "name": "Screenplay.Generation",
+          "releases": 8
+        },
+        {
+          "name": "cli",
+          "releases": 5
+        },
+        {
+          "name": "Arc",
+          "releases": 2
+        },
+        {
+          "name": "AuthProxy",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        },
+        {
+          "name": "Prompter",
+          "releases": 1
+        },
+        {
+          "name": "Synopsis",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-08-23",
-      "releases": 19
+      "releases": 19,
+      "repositories": [
+        {
+          "name": "Screenplay.CritterStack",
+          "releases": 5
+        },
+        {
+          "name": "Chronicle",
+          "releases": 3
+        },
+        {
+          "name": "cli",
+          "releases": 3
+        },
+        {
+          "name": "Screenplay",
+          "releases": 2
+        },
+        {
+          "name": "Screenplay.Generation",
+          "releases": 2
+        },
+        {
+          "name": "Stage",
+          "releases": 2
+        },
+        {
+          "name": "Arc",
+          "releases": 1
+        },
+        {
+          "name": "Components",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-08-24",
-      "releases": 9
+      "releases": 9,
+      "repositories": [
+        {
+          "name": "Screenplay",
+          "releases": 3
+        },
+        {
+          "name": "cli",
+          "releases": 2
+        },
+        {
+          "name": "Stage",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        },
+        {
+          "name": "Screenplay.Generation",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-08-25",
-      "releases": 12
+      "releases": 12,
+      "repositories": [
+        {
+          "name": "Screenplay.Generation",
+          "releases": 5
+        },
+        {
+          "name": "Arc",
+          "releases": 2
+        },
+        {
+          "name": "Components",
+          "releases": 1
+        },
+        {
+          "name": "Prompter",
+          "releases": 1
+        },
+        {
+          "name": "Screenplay.CritterStack",
+          "releases": 1
+        },
+        {
+          "name": "Stage",
+          "releases": 1
+        },
+        {
+          "name": "Synopsis",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-08-26",
-      "releases": 7
+      "releases": 7,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 2
+        },
+        {
+          "name": "cli",
+          "releases": 2
+        },
+        {
+          "name": "Screenplay.Generation",
+          "releases": 2
+        },
+        {
+          "name": "Screenplay.CritterStack",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-08-27",
-      "releases": 8
+      "releases": 8,
+      "repositories": [
+        {
+          "name": "AI",
+          "releases": 2
+        },
+        {
+          "name": "Screenplay.Generation",
+          "releases": 2
+        },
+        {
+          "name": "AI.Distribution",
+          "releases": 1
+        },
+        {
+          "name": "Arc",
+          "releases": 1
+        },
+        {
+          "name": "Components",
+          "releases": 1
+        },
+        {
+          "name": "Screenplay.CritterStack",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-08-28",
-      "releases": 10
+      "releases": 10,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 3
+        },
+        {
+          "name": "AI.Distribution",
+          "releases": 1
+        },
+        {
+          "name": "Arc",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle.TypeScript",
+          "releases": 1
+        },
+        {
+          "name": "Components",
+          "releases": 1
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 1
+        },
+        {
+          "name": "Screenplay.Generation",
+          "releases": 1
+        },
+        {
+          "name": "Specifications",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-08-29",
-      "releases": 3
+      "releases": 3,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 2
+        },
+        {
+          "name": "Arc",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-08-30",
-      "releases": 17
+      "releases": 17,
+      "repositories": [
+        {
+          "name": "Screenplay",
+          "releases": 5
+        },
+        {
+          "name": "Arc",
+          "releases": 3
+        },
+        {
+          "name": "Chronicle",
+          "releases": 3
+        },
+        {
+          "name": "Stage",
+          "releases": 2
+        },
+        {
+          "name": "cli",
+          "releases": 1
+        },
+        {
+          "name": "Components",
+          "releases": 1
+        },
+        {
+          "name": "Screenplay.CritterStack",
+          "releases": 1
+        },
+        {
+          "name": "Screenplay.Generation",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-08-31",
-      "releases": 6
+      "releases": 6,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 3
+        },
+        {
+          "name": "cli",
+          "releases": 1
+        },
+        {
+          "name": "Components",
+          "releases": 1
+        },
+        {
+          "name": "Screenplay",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-09-01",
-      "releases": 14
+      "releases": 14,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 4
+        },
+        {
+          "name": "Chronicle",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle.Kotlin",
+          "releases": 2
+        },
+        {
+          "name": "AI.Distribution",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle.Elixir",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle.TypeScript",
+          "releases": 1
+        },
+        {
+          "name": "Components",
+          "releases": 1
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 1
+        },
+        {
+          "name": "Specifications",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-09-02",
-      "releases": 4
+      "releases": 4,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle.Kotlin",
+          "releases": 1
+        },
+        {
+          "name": "Scene",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-09-03",
-      "releases": 2
+      "releases": 2,
+      "repositories": [
+        {
+          "name": "AI.Distribution",
+          "releases": 1
+        },
+        {
+          "name": "Stage",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-09-04",
-      "releases": 3
+      "releases": 3,
+      "repositories": [
+        {
+          "name": "Scene",
+          "releases": 2
+        },
+        {
+          "name": "Screenplay",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-09-05",
-      "releases": 4
+      "releases": 4,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 3
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-09-06",
-      "releases": 23
+      "releases": 23,
+      "repositories": [
+        {
+          "name": "AI",
+          "releases": 8
+        },
+        {
+          "name": "Ante",
+          "releases": 6
+        },
+        {
+          "name": "Chronicle",
+          "releases": 6
+        },
+        {
+          "name": "AuthProxy",
+          "releases": 1
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 1
+        },
+        {
+          "name": "release-action",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-09-07",
-      "releases": 13
+      "releases": 13,
+      "repositories": [
+        {
+          "name": "Ante",
+          "releases": 6
+        },
+        {
+          "name": "Chronicle",
+          "releases": 2
+        },
+        {
+          "name": "Components",
+          "releases": 2
+        },
+        {
+          "name": "AI",
+          "releases": 1
+        },
+        {
+          "name": "Arc",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle.TypeScript",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-09-08",
-      "releases": 14
+      "releases": 14,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 4
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 4
+        },
+        {
+          "name": "Arc",
+          "releases": 2
+        },
+        {
+          "name": "AuthProxy",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle.Elixir",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle.Kotlin",
+          "releases": 1
+        },
+        {
+          "name": "Components",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-09-09",
-      "releases": 18
+      "releases": 18,
+      "repositories": [
+        {
+          "name": "Arc.Kotlin",
+          "releases": 10
+        },
+        {
+          "name": "Arc",
+          "releases": 3
+        },
+        {
+          "name": "Components",
+          "releases": 2
+        },
+        {
+          "name": "AI",
+          "releases": 1
+        },
+        {
+          "name": "AuthProxy",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-09-10",
-      "releases": 16
+      "releases": 16,
+      "repositories": [
+        {
+          "name": "Arc.Kotlin",
+          "releases": 4
+        },
+        {
+          "name": "AI",
+          "releases": 3
+        },
+        {
+          "name": "Chronicle",
+          "releases": 3
+        },
+        {
+          "name": "Narrator",
+          "releases": 3
+        },
+        {
+          "name": "Arc",
+          "releases": 1
+        },
+        {
+          "name": "cli",
+          "releases": 1
+        },
+        {
+          "name": "Stage",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-09-11",
-      "releases": 18
+      "releases": 18,
+      "repositories": [
+        {
+          "name": "cli",
+          "releases": 8
+        },
+        {
+          "name": "AI",
+          "releases": 7
+        },
+        {
+          "name": "Chronicle",
+          "releases": 3
+        }
+      ]
     },
     {
       "date": "2026-09-12",
-      "releases": 9
+      "releases": 9,
+      "repositories": [
+        {
+          "name": "AI",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        },
+        {
+          "name": "Components",
+          "releases": 1
+        },
+        {
+          "name": "Prompter",
+          "releases": 1
+        },
+        {
+          "name": "release-action",
+          "releases": 1
+        },
+        {
+          "name": "Specifications",
+          "releases": 1
+        },
+        {
+          "name": "Stage",
+          "releases": 1
+        },
+        {
+          "name": "Synopsis",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-09-13",
-      "releases": 9
+      "releases": 9,
+      "repositories": [
+        {
+          "name": "Stage",
+          "releases": 4
+        },
+        {
+          "name": "AI",
+          "releases": 2
+        },
+        {
+          "name": "Scene",
+          "releases": 2
+        },
+        {
+          "name": "Components",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-09-14",
-      "releases": 3
+      "releases": 3,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 1
+        },
+        {
+          "name": "Components",
+          "releases": 1
+        },
+        {
+          "name": "Templates",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-09-15",
-      "releases": 40
+      "releases": 40,
+      "repositories": [
+        {
+          "name": "AI",
+          "releases": 28
+        },
+        {
+          "name": "Components",
+          "releases": 5
+        },
+        {
+          "name": "Arc",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle.Elixir",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle.Kotlin",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle.TypeScript",
+          "releases": 1
+        },
+        {
+          "name": "cli",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-09-16",
-      "releases": 30
+      "releases": 30,
+      "repositories": [
+        {
+          "name": "AI",
+          "releases": 8
+        },
+        {
+          "name": "Arc.Kotlin",
+          "releases": 4
+        },
+        {
+          "name": "cli",
+          "releases": 4
+        },
+        {
+          "name": "Orleans",
+          "releases": 3
+        },
+        {
+          "name": "Arc",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle",
+          "releases": 2
+        },
+        {
+          "name": "Components",
+          "releases": 2
+        },
+        {
+          "name": "Scene",
+          "releases": 2
+        },
+        {
+          "name": "Screenplay",
+          "releases": 1
+        },
+        {
+          "name": "Stage",
+          "releases": 1
+        },
+        {
+          "name": "Templates",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-09-17",
-      "releases": 42
+      "releases": 42,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 7
+        },
+        {
+          "name": "cli",
+          "releases": 7
+        },
+        {
+          "name": "Orleans",
+          "releases": 6
+        },
+        {
+          "name": "AI",
+          "releases": 4
+        },
+        {
+          "name": "Chronicle.Kotlin",
+          "releases": 4
+        },
+        {
+          "name": "Chronicle.Elixir",
+          "releases": 3
+        },
+        {
+          "name": "Chronicle.TypeScript",
+          "releases": 3
+        },
+        {
+          "name": "Templates",
+          "releases": 3
+        },
+        {
+          "name": "Screenplay",
+          "releases": 2
+        },
+        {
+          "name": "Arc.Kotlin",
+          "releases": 1
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 1
+        },
+        {
+          "name": "Stage",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-09-18",
-      "releases": 14
+      "releases": 14,
+      "repositories": [
+        {
+          "name": "AI",
+          "releases": 2
+        },
+        {
+          "name": "Arc.Kotlin",
+          "releases": 2
+        },
+        {
+          "name": "Eventmodelers-Build-Kit-Java",
+          "releases": 2
+        },
+        {
+          "name": "Eventmodelers-Build-Kit-Kotlin",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle.Elixir",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle.Kotlin",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle.TypeScript",
+          "releases": 1
+        },
+        {
+          "name": "cli",
+          "releases": 1
+        },
+        {
+          "name": "Orleans",
+          "releases": 1
+        },
+        {
+          "name": "Templates",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-09-19",
-      "releases": 11
+      "releases": 11,
+      "repositories": [
+        {
+          "name": "Arc.Kotlin",
+          "releases": 3
+        },
+        {
+          "name": "Chronicle",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle.Kotlin",
+          "releases": 2
+        },
+        {
+          "name": "Stage",
+          "releases": 2
+        },
+        {
+          "name": "cli",
+          "releases": 1
+        },
+        {
+          "name": "Templates",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-09-20",
-      "releases": 5
+      "releases": 5,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 2
+        },
+        {
+          "name": "Orleans",
+          "releases": 2
+        },
+        {
+          "name": "Stage",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-09-21",
-      "releases": 13
+      "releases": 13,
+      "repositories": [
+        {
+          "name": "Components",
+          "releases": 5
+        },
+        {
+          "name": "Stage",
+          "releases": 3
+        },
+        {
+          "name": "Chronicle",
+          "releases": 2
+        },
+        {
+          "name": "AI",
+          "releases": 1
+        },
+        {
+          "name": "cli",
+          "releases": 1
+        },
+        {
+          "name": "Orleans",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-09-22",
-      "releases": 23
+      "releases": 23,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 7
+        },
+        {
+          "name": "Components",
+          "releases": 5
+        },
+        {
+          "name": "Arc",
+          "releases": 4
+        },
+        {
+          "name": "AI",
+          "releases": 3
+        },
+        {
+          "name": "cli",
+          "releases": 1
+        },
+        {
+          "name": "Scene",
+          "releases": 1
+        },
+        {
+          "name": "Screenplay",
+          "releases": 1
+        },
+        {
+          "name": "Stage",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-09-23",
-      "releases": 49
+      "releases": 49,
+      "repositories": [
+        {
+          "name": "AI",
+          "releases": 9
+        },
+        {
+          "name": "cli",
+          "releases": 8
+        },
+        {
+          "name": "Chronicle",
+          "releases": 7
+        },
+        {
+          "name": "Arc",
+          "releases": 4
+        },
+        {
+          "name": "Stage",
+          "releases": 4
+        },
+        {
+          "name": "Scene",
+          "releases": 3
+        },
+        {
+          "name": "Screenplay",
+          "releases": 3
+        },
+        {
+          "name": "Chronicle.TypeScript",
+          "releases": 2
+        },
+        {
+          "name": "Components",
+          "releases": 2
+        },
+        {
+          "name": "AuthProxy",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle.Elixir",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle.Kotlin",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle.Mcp",
+          "releases": 1
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 1
+        },
+        {
+          "name": "Prompter",
+          "releases": 1
+        },
+        {
+          "name": "release-action",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-09-24",
-      "releases": 78
+      "releases": 78,
+      "repositories": [
+        {
+          "name": "Arc.TypeScript",
+          "releases": 19
+        },
+        {
+          "name": "Stage",
+          "releases": 16
+        },
+        {
+          "name": "Screenplay",
+          "releases": 14
+        },
+        {
+          "name": "AI",
+          "releases": 7
+        },
+        {
+          "name": "Chronicle.TypeScript",
+          "releases": 6
+        },
+        {
+          "name": "Orleans",
+          "releases": 5
+        },
+        {
+          "name": "Chronicle",
+          "releases": 2
+        },
+        {
+          "name": "cli",
+          "releases": 2
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 2
+        },
+        {
+          "name": "Scene",
+          "releases": 2
+        },
+        {
+          "name": "Arc",
+          "releases": 1
+        },
+        {
+          "name": "Arc.Kotlin",
+          "releases": 1
+        },
+        {
+          "name": "Components",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-09-25",
-      "releases": 74
+      "releases": 74,
+      "repositories": [
+        {
+          "name": "Arc.TypeScript",
+          "releases": 20
+        },
+        {
+          "name": "Screenplay",
+          "releases": 10
+        },
+        {
+          "name": "AI",
+          "releases": 7
+        },
+        {
+          "name": "Chronicle.TypeScript",
+          "releases": 7
+        },
+        {
+          "name": "Stage",
+          "releases": 7
+        },
+        {
+          "name": "Chronicle",
+          "releases": 5
+        },
+        {
+          "name": "Orleans",
+          "releases": 5
+        },
+        {
+          "name": "Arc",
+          "releases": 4
+        },
+        {
+          "name": "cli",
+          "releases": 3
+        },
+        {
+          "name": "Templates",
+          "releases": 2
+        },
+        {
+          "name": "AuthProxy",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle.Elixir",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle.Kotlin",
+          "releases": 1
+        },
+        {
+          "name": "Components",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-09-26",
-      "releases": 64
+      "releases": 64,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 16
+        },
+        {
+          "name": "Arc",
+          "releases": 14
+        },
+        {
+          "name": "Chronicle.TypeScript",
+          "releases": 11
+        },
+        {
+          "name": "Arc.TypeScript",
+          "releases": 10
+        },
+        {
+          "name": "Components",
+          "releases": 4
+        },
+        {
+          "name": "Screenplay",
+          "releases": 3
+        },
+        {
+          "name": "AI",
+          "releases": 2
+        },
+        {
+          "name": "Stage",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle.Elixir",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle.Kotlin",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-09-27",
-      "releases": 21
+      "releases": 21,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 5
+        },
+        {
+          "name": "Arc.TypeScript",
+          "releases": 4
+        },
+        {
+          "name": "Components",
+          "releases": 3
+        },
+        {
+          "name": "Arc",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle.TypeScript",
+          "releases": 2
+        },
+        {
+          "name": "Screenplay",
+          "releases": 2
+        },
+        {
+          "name": "Ante",
+          "releases": 1
+        },
+        {
+          "name": "cli",
+          "releases": 1
+        },
+        {
+          "name": "Orleans",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-09-28",
-      "releases": 54
+      "releases": 54,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 16
+        },
+        {
+          "name": "Ante",
+          "releases": 11
+        },
+        {
+          "name": "Chronicle.TypeScript",
+          "releases": 5
+        },
+        {
+          "name": "Components",
+          "releases": 4
+        },
+        {
+          "name": "AI",
+          "releases": 3
+        },
+        {
+          "name": "Arc",
+          "releases": 3
+        },
+        {
+          "name": "Orleans",
+          "releases": 3
+        },
+        {
+          "name": "Chronicle.Elixir",
+          "releases": 2
+        },
+        {
+          "name": "Screenplay",
+          "releases": 2
+        },
+        {
+          "name": "Stage",
+          "releases": 2
+        },
+        {
+          "name": "Arc.TypeScript",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle.Kotlin",
+          "releases": 1
+        },
+        {
+          "name": "cli",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-09-29",
-      "releases": 55
+      "releases": 55,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 12
+        },
+        {
+          "name": "Ante",
+          "releases": 11
+        },
+        {
+          "name": "Arc.TypeScript",
+          "releases": 10
+        },
+        {
+          "name": "Chronicle.TypeScript",
+          "releases": 7
+        },
+        {
+          "name": "AI",
+          "releases": 4
+        },
+        {
+          "name": "Chronicle.Kotlin",
+          "releases": 4
+        },
+        {
+          "name": "Arc.Kotlin",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle",
+          "releases": 2
+        },
+        {
+          "name": "Components",
+          "releases": 2
+        },
+        {
+          "name": "Stage",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-09-30",
-      "releases": 21
+      "releases": 21,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 5
+        },
+        {
+          "name": "Ante",
+          "releases": 4
+        },
+        {
+          "name": "Arc",
+          "releases": 3
+        },
+        {
+          "name": "Stage",
+          "releases": 2
+        },
+        {
+          "name": "AI",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle.TypeScript",
+          "releases": 1
+        },
+        {
+          "name": "Components",
+          "releases": 1
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 1
+        },
+        {
+          "name": "Scene",
+          "releases": 1
+        },
+        {
+          "name": "Screenplay",
+          "releases": 1
+        },
+        {
+          "name": "Templates",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-10-01",
-      "releases": 64
+      "releases": 64,
+      "repositories": [
+        {
+          "name": "Arc",
+          "releases": 14
+        },
+        {
+          "name": "Chronicle",
+          "releases": 7
+        },
+        {
+          "name": "AI",
+          "releases": 6
+        },
+        {
+          "name": "Chronicle.TypeScript",
+          "releases": 6
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 6
+        },
+        {
+          "name": "Screenplay",
+          "releases": 6
+        },
+        {
+          "name": "AuthProxy",
+          "releases": 5
+        },
+        {
+          "name": "cli",
+          "releases": 5
+        },
+        {
+          "name": "Ante",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle.Kotlin",
+          "releases": 2
+        },
+        {
+          "name": "Components",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle.Elixir",
+          "releases": 1
+        },
+        {
+          "name": "release-action",
+          "releases": 1
+        },
+        {
+          "name": "Stage",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-10-02",
-      "releases": 73
+      "releases": 73,
+      "repositories": [
+        {
+          "name": "Chronicle.TypeScript",
+          "releases": 17
+        },
+        {
+          "name": "Chronicle",
+          "releases": 12
+        },
+        {
+          "name": "Screenplay",
+          "releases": 8
+        },
+        {
+          "name": "Arc.TypeScript",
+          "releases": 7
+        },
+        {
+          "name": "Arc",
+          "releases": 6
+        },
+        {
+          "name": "AI",
+          "releases": 4
+        },
+        {
+          "name": "AuthProxy",
+          "releases": 4
+        },
+        {
+          "name": "Orleans",
+          "releases": 4
+        },
+        {
+          "name": "cli",
+          "releases": 3
+        },
+        {
+          "name": "Components",
+          "releases": 3
+        },
+        {
+          "name": "Scene",
+          "releases": 3
+        },
+        {
+          "name": "Chronicle.Elixir",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle.Kotlin",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-10-03",
-      "releases": 35
+      "releases": 35,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 8
+        },
+        {
+          "name": "Screenplay",
+          "releases": 6
+        },
+        {
+          "name": "Arc",
+          "releases": 5
+        },
+        {
+          "name": "AI",
+          "releases": 3
+        },
+        {
+          "name": "Fundamentals.Go",
+          "releases": 3
+        },
+        {
+          "name": "Chronicle.Elixir",
+          "releases": 2
+        },
+        {
+          "name": "cli",
+          "releases": 2
+        },
+        {
+          "name": "Orleans",
+          "releases": 2
+        },
+        {
+          "name": "Scene",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle.Kotlin",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle.TypeScript",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-10-04",
-      "releases": 17
+      "releases": 17,
+      "repositories": [
+        {
+          "name": "Screenplay",
+          "releases": 7
+        },
+        {
+          "name": "Arc",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle",
+          "releases": 2
+        },
+        {
+          "name": "cli",
+          "releases": 2
+        },
+        {
+          "name": "Fundamentals.Go",
+          "releases": 2
+        },
+        {
+          "name": "AI",
+          "releases": 1
+        },
+        {
+          "name": "Stage",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-10-05",
-      "releases": 23
+      "releases": 23,
+      "repositories": [
+        {
+          "name": "Fundamentals",
+          "releases": 8
+        },
+        {
+          "name": "Screenplay",
+          "releases": 7
+        },
+        {
+          "name": "Chronicle",
+          "releases": 4
+        },
+        {
+          "name": "Arc",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle.Go",
+          "releases": 1
+        },
+        {
+          "name": "cli",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-10-06",
-      "releases": 59
+      "releases": 59,
+      "repositories": [
+        {
+          "name": "AI",
+          "releases": 14
+        },
+        {
+          "name": "Screenplay",
+          "releases": 8
+        },
+        {
+          "name": "Chronicle.Go",
+          "releases": 7
+        },
+        {
+          "name": "cli",
+          "releases": 7
+        },
+        {
+          "name": "Chronicle",
+          "releases": 5
+        },
+        {
+          "name": "AuthProxy",
+          "releases": 4
+        },
+        {
+          "name": "Arc",
+          "releases": 3
+        },
+        {
+          "name": "Stage",
+          "releases": 3
+        },
+        {
+          "name": "Components",
+          "releases": 2
+        },
+        {
+          "name": "Arc.Go",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle.Elixir",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle.TypeScript",
+          "releases": 1
+        },
+        {
+          "name": "Orleans",
+          "releases": 1
+        },
+        {
+          "name": "release-action",
+          "releases": 1
+        },
+        {
+          "name": "Screenplay.Generation",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-10-07",
-      "releases": 37
+      "releases": 37,
+      "repositories": [
+        {
+          "name": "Screenplay",
+          "releases": 17
+        },
+        {
+          "name": "Chronicle",
+          "releases": 5
+        },
+        {
+          "name": "cli",
+          "releases": 5
+        },
+        {
+          "name": "AI",
+          "releases": 4
+        },
+        {
+          "name": "Components",
+          "releases": 3
+        },
+        {
+          "name": "Arc",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle.Go",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-10-08",
-      "releases": 88
+      "releases": 88,
+      "repositories": [
+        {
+          "name": "Screenplay",
+          "releases": 34
+        },
+        {
+          "name": "Stage",
+          "releases": 22
+        },
+        {
+          "name": "Arc",
+          "releases": 11
+        },
+        {
+          "name": "cli",
+          "releases": 8
+        },
+        {
+          "name": "Chronicle",
+          "releases": 5
+        },
+        {
+          "name": "Scene",
+          "releases": 3
+        },
+        {
+          "name": "AI",
+          "releases": 2
+        },
+        {
+          "name": "Screenplay.CritterStack",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle.TypeScript",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-10-09",
-      "releases": 82
+      "releases": 82,
+      "repositories": [
+        {
+          "name": "Stage",
+          "releases": 23
+        },
+        {
+          "name": "Screenplay",
+          "releases": 21
+        },
+        {
+          "name": "Chronicle",
+          "releases": 12
+        },
+        {
+          "name": "AI",
+          "releases": 9
+        },
+        {
+          "name": "cli",
+          "releases": 7
+        },
+        {
+          "name": "Arc",
+          "releases": 4
+        },
+        {
+          "name": "Scene",
+          "releases": 3
+        },
+        {
+          "name": "Ante",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle.Mcp",
+          "releases": 1
+        },
+        {
+          "name": "Components",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-10-10",
-      "releases": 73
+      "releases": 73,
+      "repositories": [
+        {
+          "name": "Screenplay",
+          "releases": 15
+        },
+        {
+          "name": "Stage",
+          "releases": 12
+        },
+        {
+          "name": "cli",
+          "releases": 11
+        },
+        {
+          "name": "AI",
+          "releases": 9
+        },
+        {
+          "name": "Arc",
+          "releases": 9
+        },
+        {
+          "name": "Chronicle",
+          "releases": 6
+        },
+        {
+          "name": "Scene",
+          "releases": 4
+        },
+        {
+          "name": "Orleans",
+          "releases": 2
+        },
+        {
+          "name": "Ante",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle.Go",
+          "releases": 1
+        },
+        {
+          "name": "Components",
+          "releases": 1
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 1
+        },
+        {
+          "name": "Templates",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-10-11",
-      "releases": 80
+      "releases": 80,
+      "repositories": [
+        {
+          "name": "Stage",
+          "releases": 20
+        },
+        {
+          "name": "Screenplay",
+          "releases": 13
+        },
+        {
+          "name": "Chronicle",
+          "releases": 12
+        },
+        {
+          "name": "Arc",
+          "releases": 10
+        },
+        {
+          "name": "AI",
+          "releases": 9
+        },
+        {
+          "name": "cli",
+          "releases": 8
+        },
+        {
+          "name": "Scene",
+          "releases": 5
+        },
+        {
+          "name": "Orleans",
+          "releases": 2
+        },
+        {
+          "name": "Arc.Go",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-10-12",
-      "releases": 53
+      "releases": 53,
+      "repositories": [
+        {
+          "name": "AI",
+          "releases": 12
+        },
+        {
+          "name": "Arc",
+          "releases": 10
+        },
+        {
+          "name": "Screenplay",
+          "releases": 9
+        },
+        {
+          "name": "Stage",
+          "releases": 9
+        },
+        {
+          "name": "Chronicle",
+          "releases": 8
+        },
+        {
+          "name": "cli",
+          "releases": 2
+        },
+        {
+          "name": "Scene",
+          "releases": 2
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-10-13",
-      "releases": 92
+      "releases": 92,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 17
+        },
+        {
+          "name": "Stage",
+          "releases": 17
+        },
+        {
+          "name": "Screenplay",
+          "releases": 16
+        },
+        {
+          "name": "AI",
+          "releases": 14
+        },
+        {
+          "name": "Arc",
+          "releases": 13
+        },
+        {
+          "name": "cli",
+          "releases": 7
+        },
+        {
+          "name": "Chronicle.Elixir",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle.Kotlin",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle.TypeScript",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle.Go",
+          "releases": 1
+        },
+        {
+          "name": "Components",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-10-14",
-      "releases": 82
+      "releases": 82,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 18
+        },
+        {
+          "name": "AI",
+          "releases": 15
+        },
+        {
+          "name": "Arc",
+          "releases": 15
+        },
+        {
+          "name": "Stage",
+          "releases": 14
+        },
+        {
+          "name": "Screenplay",
+          "releases": 12
+        },
+        {
+          "name": "cli",
+          "releases": 5
+        },
+        {
+          "name": "Chronicle.Elixir",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle.TypeScript",
+          "releases": 1
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-10-15",
-      "releases": 76
+      "releases": 76,
+      "repositories": [
+        {
+          "name": "Scene",
+          "releases": 20
+        },
+        {
+          "name": "Stage",
+          "releases": 17
+        },
+        {
+          "name": "Screenplay",
+          "releases": 16
+        },
+        {
+          "name": "Arc",
+          "releases": 6
+        },
+        {
+          "name": "AI",
+          "releases": 4
+        },
+        {
+          "name": "Chronicle",
+          "releases": 4
+        },
+        {
+          "name": "Chronicle.Elixir",
+          "releases": 3
+        },
+        {
+          "name": "cli",
+          "releases": 2
+        },
+        {
+          "name": "Chronicle.Go",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle.Kotlin",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle.TypeScript",
+          "releases": 1
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-10-16",
-      "releases": 121
+      "releases": 121,
+      "repositories": [
+        {
+          "name": "Scene",
+          "releases": 26
+        },
+        {
+          "name": "Screenplay",
+          "releases": 23
+        },
+        {
+          "name": "Stage",
+          "releases": 22
+        },
+        {
+          "name": "Chronicle",
+          "releases": 12
+        },
+        {
+          "name": "AI",
+          "releases": 11
+        },
+        {
+          "name": "cli",
+          "releases": 8
+        },
+        {
+          "name": "Arc",
+          "releases": 6
+        },
+        {
+          "name": "Orleans",
+          "releases": 4
+        },
+        {
+          "name": "Cast",
+          "releases": 3
+        },
+        {
+          "name": "AuthProxy",
+          "releases": 2
+        },
+        {
+          "name": "Components",
+          "releases": 2
+        },
+        {
+          "name": "Fundamentals",
+          "releases": 1
+        },
+        {
+          "name": "Templates",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-10-17",
-      "releases": 96
+      "releases": 96,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 17
+        },
+        {
+          "name": "Screenplay",
+          "releases": 14
+        },
+        {
+          "name": "AI",
+          "releases": 13
+        },
+        {
+          "name": "Stage",
+          "releases": 13
+        },
+        {
+          "name": "Arc",
+          "releases": 12
+        },
+        {
+          "name": "Orleans",
+          "releases": 10
+        },
+        {
+          "name": "Scene",
+          "releases": 9
+        },
+        {
+          "name": "cli",
+          "releases": 5
+        },
+        {
+          "name": "Ante",
+          "releases": 1
+        },
+        {
+          "name": "AuthProxy",
+          "releases": 1
+        },
+        {
+          "name": "Chronicle.TypeScript",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-10-18",
-      "releases": 102
+      "releases": 102,
+      "repositories": [
+        {
+          "name": "Stage",
+          "releases": 23
+        },
+        {
+          "name": "Screenplay",
+          "releases": 22
+        },
+        {
+          "name": "Arc",
+          "releases": 15
+        },
+        {
+          "name": "Chronicle",
+          "releases": 14
+        },
+        {
+          "name": "AI",
+          "releases": 12
+        },
+        {
+          "name": "Orleans",
+          "releases": 7
+        },
+        {
+          "name": "cli",
+          "releases": 4
+        },
+        {
+          "name": "Scene",
+          "releases": 3
+        },
+        {
+          "name": "Components",
+          "releases": 2
+        }
+      ]
     },
     {
       "date": "2026-10-19",
-      "releases": 117
+      "releases": 117,
+      "repositories": [
+        {
+          "name": "Stage",
+          "releases": 29
+        },
+        {
+          "name": "Screenplay",
+          "releases": 15
+        },
+        {
+          "name": "AI",
+          "releases": 14
+        },
+        {
+          "name": "Arc",
+          "releases": 14
+        },
+        {
+          "name": "Chronicle",
+          "releases": 13
+        },
+        {
+          "name": "cli",
+          "releases": 10
+        },
+        {
+          "name": "Scene",
+          "releases": 7
+        },
+        {
+          "name": "Components",
+          "releases": 4
+        },
+        {
+          "name": "Ante",
+          "releases": 3
+        },
+        {
+          "name": "Orleans",
+          "releases": 3
+        },
+        {
+          "name": "Prologue",
+          "releases": 2
+        },
+        {
+          "name": "Cast",
+          "releases": 1
+        },
+        {
+          "name": "release-action",
+          "releases": 1
+        },
+        {
+          "name": "Specifications",
+          "releases": 1
+        }
+      ]
     },
     {
       "date": "2026-10-20",
-      "releases": 47
+      "releases": 57,
+      "repositories": [
+        {
+          "name": "Chronicle",
+          "releases": 14
+        },
+        {
+          "name": "Stage",
+          "releases": 13
+        },
+        {
+          "name": "cli",
+          "releases": 8
+        },
+        {
+          "name": "Scene",
+          "releases": 7
+        },
+        {
+          "name": "Arc",
+          "releases": 6
+        },
+        {
+          "name": "AI",
+          "releases": 5
+        },
+        {
+          "name": "Screenplay",
+          "releases": 3
+        },
+        {
+          "name": "Prologue",
+          "releases": 1
+        }
+      ]
     }
   ],
+  "releasesThisWeek": [
+    {
+      "name": "Stage",
+      "releases": 131
+    },
+    {
+      "name": "Screenplay",
+      "releases": 105
+    },
+    {
+      "name": "Chronicle",
+      "releases": 92
+    },
+    {
+      "name": "AI",
+      "releases": 74
+    },
+    {
+      "name": "Arc",
+      "releases": 74
+    }
+  ],
+  "deliveryLeadTime": {
+    "windowDays": 30,
+    "matchedReleases": 1873,
+    "mergeToRelease": {
+      "medianMinutes": 0.6,
+      "p90Minutes": 14
+    },
+    "openedToRelease": {
+      "medianMinutes": 29.5,
+      "p90Minutes": 319.9
+    }
+  },
   "weekly": [
     {
       "weekStart": "2025-10-20",
@@ -1837,9 +6825,9 @@
     },
     {
       "weekStart": "2026-10-19",
-      "releases": 164,
-      "mergedPullRequests": 326,
-      "issuesClosed": 394
+      "releases": 174,
+      "mergedPullRequests": 352,
+      "issuesClosed": 424
     }
   ],
   "monthly": [
@@ -1922,10 +6910,10 @@
     },
     {
       "month": "2026-10",
-      "releases": 1417,
-      "mergedPullRequests": 2173,
-      "issuesOpened": 2777,
-      "issuesClosed": 2345
+      "releases": 1427,
+      "mergedPullRequests": 2199,
+      "issuesOpened": 2807,
+      "issuesClosed": 2375
     }
   ],
   "repositories": [
@@ -1944,25 +6932,25 @@
     {
       "name": "Stage",
       "url": "https://github.com/Cratis/Stage",
-      "releasesLast30Days": 275,
-      "releasesLast365Days": 328,
+      "releasesLast30Days": 277,
+      "releasesLast365Days": 330,
       "latestRelease": {
-        "tag": "v4.188.6",
-        "url": "https://github.com/Cratis/Stage/releases/tag/v4.188.6",
-        "publishedAt": "2026-10-20T13:51:18Z",
+        "tag": "v4.189.1",
+        "url": "https://github.com/Cratis/Stage/releases/tag/v4.189.1",
+        "publishedAt": "2026-10-20T16:49:20Z",
         "kind": "patch"
       }
     },
     {
       "name": "Chronicle",
       "url": "https://github.com/Cratis/Chronicle",
-      "releasesLast30Days": 258,
-      "releasesLast365Days": 697,
+      "releasesLast30Days": 262,
+      "releasesLast365Days": 701,
       "latestRelease": {
-        "tag": "v19.101.1",
-        "url": "https://github.com/Cratis/Chronicle/releases/tag/v19.101.1",
-        "publishedAt": "2026-10-20T12:51:00Z",
-        "kind": "patch"
+        "tag": "v19.103.0",
+        "url": "https://github.com/Cratis/Chronicle/releases/tag/v19.103.0",
+        "publishedAt": "2026-10-20T16:52:59Z",
+        "kind": "minor"
       }
     },
     {
@@ -1992,24 +6980,24 @@
     {
       "name": "cli",
       "url": "https://github.com/Cratis/cli",
-      "releasesLast30Days": 126,
-      "releasesLast365Days": 213,
+      "releasesLast30Days": 127,
+      "releasesLast365Days": 214,
       "latestRelease": {
-        "tag": "v3.93.5",
-        "url": "https://github.com/Cratis/cli/releases/tag/v3.93.5",
-        "publishedAt": "2026-10-20T09:59:12Z",
+        "tag": "v3.93.6",
+        "url": "https://github.com/Cratis/cli/releases/tag/v3.93.6",
+        "publishedAt": "2026-10-20T14:47:50Z",
         "kind": "patch"
       }
     },
     {
       "name": "Scene",
       "url": "https://github.com/Cratis/Scene",
-      "releasesLast30Days": 98,
-      "releasesLast365Days": 115,
+      "releasesLast30Days": 101,
+      "releasesLast365Days": 118,
       "latestRelease": {
-        "tag": "v4.75.6",
-        "url": "https://github.com/Cratis/Scene/releases/tag/v4.75.6",
-        "publishedAt": "2026-10-20T12:25:33Z",
+        "tag": "v4.77.1",
+        "url": "https://github.com/Cratis/Scene/releases/tag/v4.77.1",
+        "publishedAt": "2026-10-20T16:48:32Z",
         "kind": "patch"
       }
     },
@@ -2394,14 +7382,14 @@
       {
         "id": "releases-all-time-1000",
         "label": "1,000 releases",
-        "reachedOn": "2026-03-13"
+        "reachedOn": "2026-03-16"
       }
     ],
     "next": [
       {
         "id": "releases-all-time-5000",
         "label": "5,000 releases",
-        "remaining": 722
+        "remaining": 716
       },
       {
         "id": "streak-100",
