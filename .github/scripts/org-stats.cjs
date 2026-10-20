@@ -40,7 +40,8 @@ function prepareReleases(repositories, now) {
             .map(release => {
                 const item = { repository: repository.name, repositoryUrl: repository.url, tag: release.tagName,
                     url: release.url, publishedAt: release.publishedAt, kind: release.isPrerelease ? 'prerelease' : classifyRelease(release.tagName, previous) };
-                previous = release.tagName;
+                // Compare stable releases with the previous stable release, so 2.0.0 after 2.0.0-rc.1 is major.
+                if (!release.isPrerelease) previous = release.tagName;
                 return item;
             });
     }).sort((a, b) => a.publishedAt.localeCompare(b.publishedAt) || a.repository.localeCompare(b.repository) || a.tag.localeCompare(b.tag));

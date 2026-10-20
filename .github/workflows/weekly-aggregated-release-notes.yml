@@ -2,7 +2,10 @@ name: Weekly Aggregated Release Notes
 
 on:
   schedule:
+    # 07:23 in Norway all year: 05:23 UTC in summer time, 06:23 UTC in winter time.
+    # Both runs are harmless; only the run that creates the digest file posts to Discord.
     - cron: '23 5 * * 1'
+    - cron: '23 6 * * 1'
   workflow_dispatch:
     inputs:
       days:
@@ -43,7 +46,13 @@ jobs:
             if (!Number.isInteger(days) || days < 1 || days > 365) throw new Error('DAYS must be an integer from 1 to 365');
             const now = new Date();
             const since = new Date(now.getTime() - days * 86400000).toISOString();
-            const { numbers } = await collectOrgStats({ github, org: context.repo.owner, now, digestSince: since });
+            // The digest must not depend on the statistics: without them it is published without that section.
+            let numbers = null;
+            try {
+              ({ numbers } = await collectOrgStats({ github, org: context.repo.owner, now, digestSince: since }));
+            } catch (error) {
+              core.warning(`Week in numbers unavailable: ${error.message}`);
+            }
             fs.writeFileSync(path.join(process.env.RUNNER_TEMP, 'weekly-numbers.json'), JSON.stringify(numbers));
             core.setOutput('since', since);
             core.setOutput('until', now.toISOString());
@@ -192,7 +201,7 @@ jobs:
             const summaryLines = [
               `# Release digest for week of ${startDate} to ${endDate}`,
               '',
-              renderWeekNumbers(numbers),
+              ...(numbers ? [renderWeekNumbers(numbers)] : []),
               '## Version movement',
               '',
               '| Repository | Previous version | Current version |',
@@ -224,10 +233,12 @@ jobs:
             fs.writeFileSync(path.join(process.env.GITHUB_WORKSPACE, 'weekly-release-summary.md'), summary);
 
       - name: Commit release digest to repository
+        id: commit
         env:
           FILENAME: ${{ steps.numbers.outputs.filename }}
         run: |
           mkdir -p release-digests
+          if [ -e "${FILENAME}" ]; then echo "created=false" >> "$GITHUB_OUTPUT"; else echo "created=true" >> "$GITHUB_OUTPUT"; fi
           cp weekly-release-summary.md "${FILENAME}"
 
           git config user.name "github-actions[bot]"
@@ -247,6 +258,7 @@ jobs:
           exit 1
 
       - name: Share weekly digest on Discord
+        if: steps.commit.outputs.created == 'true'
         uses: actions/github-script@v8
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
@@ -258,5 +270,9 @@ jobs:
             const { weeklyDiscord } = require(path.join(process.env.GITHUB_WORKSPACE, '.github/scripts/render-org-stats.cjs'));
             const { postDiscord } = require(path.join(process.env.GITHUB_WORKSPACE, '.github/scripts/publish-org-stats.cjs'));
             const numbers = JSON.parse(fs.readFileSync(path.join(process.env.RUNNER_TEMP, 'weekly-numbers.json'), 'utf8'));
+            if (!numbers) {
+              core.notice('Week in numbers unavailable; nothing to share on Discord.');
+              return;
+            }
             const url = `https://github.com/${context.repo.owner}/${context.repo.repo}/blob/main/${process.env.DIGEST_FILE}`;
             await postDiscord({ webhook: process.env.DISCORD_WEBHOOK_URL, payload: weeklyDiscord(numbers, url), notice: core.notice, warning: core.warning });

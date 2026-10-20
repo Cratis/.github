@@ -176,3 +176,22 @@ test('release queries bound cost, retain complete pagination and report phase pr
     assert.ok(logs.some(line => /releases: R6 page 1/.test(line)));
     assert.ok(logs.some(line => /releases: complete in/.test(line)));
 });
+
+test('a stable release is classified against the previous stable release, not an intervening prerelease', () => {
+    const at = hour => `2026-10-${hour}T12:00:00Z`;
+    const releases = [['v1.0.0', at(10), false], ['v2.0.0-rc.1', at(11), true], ['v2.0.0', at(12), false], ['v2.0.1', at(13), false]]
+        .map(([tagName, publishedAt, isPrerelease]) => ({ tagName, publishedAt, isPrerelease, isDraft: false, url: `https://github.com/Cratis/A/releases/tag/${tagName}` }));
+    const prepared = prepareReleases([{ name: 'A', url: 'https://github.com/Cratis/A', releases }], '2026-10-20T00:00:00Z');
+    assert.deepEqual(prepared.map(r => r.kind), ['initial', 'prerelease', 'major', 'patch']);
+});
+
+test('week in numbers names only the kinds that occurred, pluralises and welcomes first-time contributors', () => {
+    const text = renderWeekNumbers({ releases: 1, kinds: { major: 0, minor: 1, patch: 0, prerelease: 0 }, mergedPullRequests: 1, issuesClosed: 2,
+        busiestRepository: null, currentStreak: 1, firstTime: [{ login: 'octo', profileUrl: 'https://github.com/octo' }] });
+    assert.match(text, /\*\*1 release\*\*: 1 minor\./);
+    assert.match(text, /\*\*1 merged pull request\*\* and \*\*2 issues closed\*\*/);
+    assert.match(text, /\*\*1 day\*\*/);
+    assert.match(text, /Welcome to our first-time contributors: \[@octo\]\(https:\/\/github.com\/octo\)/);
+    assert.doesNotMatch(renderWeekNumbers({ releases: 0, kinds: { major: 0, minor: 0, patch: 0, prerelease: 0 }, mergedPullRequests: 0, issuesClosed: 0,
+        busiestRepository: null, currentStreak: 0, firstTime: [] }), /Welcome/);
+});

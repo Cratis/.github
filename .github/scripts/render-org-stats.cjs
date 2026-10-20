@@ -34,7 +34,7 @@ const kindsText = kinds => ['major', 'minor', 'patch', 'prerelease'].filter(kind
 function renderProfile(snapshot) {
     const r = snapshot.releases, kinds = r.last7DaysByKind;
     return ['<!-- org-stats:start -->',
-        `Last 7 days: **${r.last7Days.toLocaleString('en-US')} releases** (${(kinds.major + kinds.minor).toLocaleString('en-US')} of them major or minor), **${snapshot.mergedPullRequests.last7Days.toLocaleString('en-US')} merged pull requests**, **${snapshot.issues.closedLast7Days.toLocaleString('en-US')} issues closed** · **${r.streak.currentDays}-day** release streak.`, '',
+        `Last 7 days: **${plural(r.last7Days, 'release')}** (${(kinds.major + kinds.minor).toLocaleString('en-US')} of them major or minor), **${plural(snapshot.mergedPullRequests.last7Days, 'merged pull request')}**, **${plural(snapshot.issues.closedLast7Days, 'issue')} closed** · **${r.streak.currentDays}-day** release streak.`, '',
         '![Daily releases over the last 53 weeks](https://raw.githubusercontent.com/Cratis/.github/main/stats/release-calendar.svg)', '<!-- org-stats:end -->'].join('\n');
 }
 function updateProfile(readme, snapshot) {
@@ -50,7 +50,7 @@ function renderWeekNumbers(numbers) {
     const b = numbers.busiestRepository;
     return ['## Week in numbers', '',
         `- **${plural(numbers.releases, 'release')}**${numbers.releases ? `: ${kindsText(numbers.kinds)}` : ''}.`,
-        `- **${numbers.mergedPullRequests.toLocaleString('en-US')} merged pull requests** and **${numbers.issuesClosed.toLocaleString('en-US')} issues closed**.`,
+        `- **${plural(numbers.mergedPullRequests, 'merged pull request')}** and **${plural(numbers.issuesClosed, 'issue')} closed**.`,
         `- Busiest repository: ${b ? `[${markdown(b.name)}](${b.url}) (${b.releases} releases)` : 'none'}.`,
         `- Current daily release streak: **${plural(numbers.currentStreak, 'day')}**.`,
         ...(numbers.firstTime.length ? [`- Welcome to our first-time contributors: ${numbers.firstTime.map(c => `[@${markdown(c.login)}](${c.profileUrl})`).join(', ')}! 🎉`] : []), ''].join('\n');
