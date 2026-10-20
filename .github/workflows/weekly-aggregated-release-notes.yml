@@ -2,8 +2,7 @@ name: Weekly Aggregated Release Notes
 
 on:
   schedule:
-    - cron: '0 5 * * 1'
-    - cron: '0 6 * * 1'
+    - cron: '23 5 * * 1'
   workflow_dispatch:
     inputs:
       days:
@@ -12,21 +11,51 @@ on:
         default: '7'
         type: string
 
+concurrency:
+  group: weekly-release-digest-main
+  cancel-in-progress: false
+
 jobs:
   aggregate-release-notes:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     permissions:
       contents: write
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Collect week in numbers
+        id: numbers
+        uses: actions/github-script@v8
+        env:
+          DAYS: ${{ inputs.days || '7' }}
+        with:
+          github-token: ${{ github.token }}
+          script: |
+            const fs = require('node:fs');
+            const path = require('node:path');
+            const { collectOrgStats } = require(path.join(process.env.GITHUB_WORKSPACE, '.github/scripts/collect-org-stats.cjs'));
+            const days = Number(process.env.DAYS || '7');
+            if (!Number.isInteger(days) || days < 1 || days > 365) throw new Error('DAYS must be an integer from 1 to 365');
+            const now = new Date();
+            const since = new Date(now.getTime() - days * 86400000).toISOString();
+            const { numbers } = await collectOrgStats({ github, org: context.repo.owner, now, digestSince: since });
+            fs.writeFileSync(path.join(process.env.RUNNER_TEMP, 'weekly-numbers.json'), JSON.stringify(numbers));
+            core.setOutput('since', since);
+            core.setOutput('until', now.toISOString());
+            core.setOutput('filename', `release-digests/${since.slice(0, 10)}-to-${now.toISOString().slice(0, 10)}.md`);
 
       - name: Collect releases from organization repositories
         id: collect
         uses: actions/github-script@v8
         env:
           DAYS: ${{ inputs.days || '7' }}
+          SINCE: ${{ steps.numbers.outputs.since }}
+          UNTIL: ${{ steps.numbers.outputs.until }}
         with:
           # Public collection needs no organization-wide PAT access.
           github-token: ${{ github.token }}
@@ -36,10 +65,10 @@ jobs:
 
             const org = context.repo.owner;
             const days = Number(process.env.DAYS || '7');
-            const since = new Date(Date.now() - days * 24 * 60 * 60 * 1000);
+            const since = process.env.SINCE ? new Date(process.env.SINCE) : new Date(Date.now() - days * 24 * 60 * 60 * 1000);
 
             const { collectPublicReleases } = require(path.join(process.env.GITHUB_WORKSPACE, '.github/scripts/collect-public-releases.cjs'));
-            const { releases, versionMovements } = await collectPublicReleases({ github, org, since });
+            const { releases, versionMovements } = await collectPublicReleases({ github, org, since, until: process.env.UNTIL && new Date(process.env.UNTIL) });
 
             const workspace = process.env.GITHUB_WORKSPACE;
             fs.writeFileSync(path.join(workspace, 'weekly-releases.json'), JSON.stringify(releases, null, 2));
@@ -49,13 +78,14 @@ jobs:
             core.setOutput('since', since.toISOString());
 
       - name: Summarize releases by category
-        if: steps.collect.outputs.count != '0'
         id: summarize
         uses: actions/github-script@v8
         env:
           DAYS: ${{ inputs.days || '7' }}
+          SINCE: ${{ steps.numbers.outputs.since }}
+          UNTIL: ${{ steps.numbers.outputs.until }}
         with:
-          github-token: ${{ secrets.PAT_WORKFLOWS != '' && secrets.PAT_WORKFLOWS || github.token }}
+          github-token: ${{ github.token }}
           script: |
             const fs = require('fs');
             const path = require('path');
@@ -65,8 +95,8 @@ jobs:
             const versionMovementsPath = path.join(process.env.GITHUB_WORKSPACE, 'weekly-version-movements.json');
             const versionMovements = JSON.parse(fs.readFileSync(versionMovementsPath, 'utf8'));
             const days = Number(process.env.DAYS || '7');
-            const now = new Date();
-            const startDate = new Date(now.getTime() - days * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
+            const now = process.env.UNTIL ? new Date(process.env.UNTIL) : new Date();
+            const startDate = (process.env.SINCE || new Date(now.getTime() - days * 24 * 60 * 60 * 1000).toISOString()).slice(0, 10);
             const endDate = now.toISOString().slice(0, 10);
 
             const categories = ['Added', 'Changed', 'Fixed', 'Removed', 'Security', 'Deprecated'];
@@ -157,9 +187,12 @@ jobs:
               }
             }
 
+            const { renderWeekNumbers } = require(path.join(process.env.GITHUB_WORKSPACE, '.github/scripts/render-org-stats.cjs'));
+            const numbers = JSON.parse(fs.readFileSync(path.join(process.env.RUNNER_TEMP, 'weekly-numbers.json'), 'utf8'));
             const summaryLines = [
               `# Release digest for week of ${startDate} to ${endDate}`,
               '',
+              renderWeekNumbers(numbers),
               '## Version movement',
               '',
               '| Repository | Previous version | Current version |',
@@ -190,27 +223,40 @@ jobs:
 
             fs.writeFileSync(path.join(process.env.GITHUB_WORKSPACE, 'weekly-release-summary.md'), summary);
 
-      - name: Prepare fallback summary
-        if: steps.collect.outputs.count == '0'
-        run: |
-          cat <<'EOF' > weekly-release-summary.md
-          No releases were published in the last ${{ inputs.days || '7' }} days.
-          EOF
-
       - name: Commit release digest to repository
         env:
-          DAYS: ${{ inputs.days || '7' }}
+          FILENAME: ${{ steps.numbers.outputs.filename }}
         run: |
-          DAYS="${DAYS:-7}"
-          END_DATE=$(date -u +%Y-%m-%d)
-          START_DATE=$(date -u -d "${DAYS} days ago" +%Y-%m-%d)
-          FILENAME="release-digests/${START_DATE}-to-${END_DATE}.md"
-
           mkdir -p release-digests
           cp weekly-release-summary.md "${FILENAME}"
 
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add "${FILENAME}"
-          git commit -m "chore: add weekly release digest ${START_DATE} to ${END_DATE}"
-          git push
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "chore: add weekly release digest ${FILENAME}"
+          for attempt in 1 2 3; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            sleep "$((attempt * 2))"
+          done
+          exit 1
+
+      - name: Share weekly digest on Discord
+        uses: actions/github-script@v8
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          DIGEST_FILE: ${{ steps.numbers.outputs.filename }}
+        with:
+          script: |
+            const fs = require('node:fs');
+            const path = require('node:path');
+            const { weeklyDiscord } = require(path.join(process.env.GITHUB_WORKSPACE, '.github/scripts/render-org-stats.cjs'));
+            const { postDiscord } = require(path.join(process.env.GITHUB_WORKSPACE, '.github/scripts/publish-org-stats.cjs'));
+            const numbers = JSON.parse(fs.readFileSync(path.join(process.env.RUNNER_TEMP, 'weekly-numbers.json'), 'utf8'));
+            const url = `https://github.com/${context.repo.owner}/${context.repo.repo}/blob/main/${process.env.DIGEST_FILE}`;
+            await postDiscord({ webhook: process.env.DISCORD_WEBHOOK_URL, payload: weeklyDiscord(numbers, url), notice: core.notice, warning: core.warning });

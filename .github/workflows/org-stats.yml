@@ -1,0 +1,67 @@
+name: Organization activity stats
+
+on:
+  schedule:
+    - cron: '17 4 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: org-stats-main
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Collect public organization activity
+        uses: actions/github-script@v8
+        with:
+          github-token: ${{ github.token }}
+          script: |
+            const path = require('node:path');
+            const fs = require('node:fs');
+            const root = process.env.GITHUB_WORKSPACE;
+            const { collectOrgStats } = require(path.join(root, '.github/scripts/collect-org-stats.cjs'));
+            const { writeStats } = require(path.join(root, '.github/scripts/publish-org-stats.cjs'));
+            const { snapshot } = await collectOrgStats({ github, org: context.repo.owner });
+            const result = writeStats(root, snapshot);
+            fs.writeFileSync(path.join(process.env.RUNNER_TEMP, 'org-stats-discord.json'), JSON.stringify(result.discord));
+
+      - name: Commit changed stats
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add stats/org-stats.json stats/release-calendar.svg profile/README.md
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "chore: refresh organization activity stats"
+          for attempt in 1 2 3; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            sleep "$((attempt * 2))"
+          done
+          exit 1
+
+      - name: Celebrate new milestones on Discord
+        uses: actions/github-script@v8
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        with:
+          script: |
+            const path = require('node:path');
+            const fs = require('node:fs');
+            const { postDiscord } = require(path.join(process.env.GITHUB_WORKSPACE, '.github/scripts/publish-org-stats.cjs'));
+            const payload = JSON.parse(fs.readFileSync(path.join(process.env.RUNNER_TEMP, 'org-stats-discord.json'), 'utf8'));
+            await postDiscord({ webhook: process.env.DISCORD_WEBHOOK_URL, payload, notice: core.notice, warning: core.warning });

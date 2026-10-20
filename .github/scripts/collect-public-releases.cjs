@@ -9,7 +9,7 @@ function isPublic(repository) {
 // Collect only public releases using the repository-scoped workflow token. Listing
 // is not authorization: recheck current metadata before requesting release bodies.
 // Metadata/API failures propagate, stopping the workflow before summary/publication.
-async function collectPublicReleases({ github, org, since }) {
+async function collectPublicReleases({ github, org, since, until }) {
     const repositories = await github.paginate(github.rest.repos.listForOrg, {
         org,
         type: 'public',
@@ -29,7 +29,7 @@ async function collectPublicReleases({ github, org, since }) {
             per_page: 100
         });
         const publishedReleases = repositoryReleases
-            .filter(release => !release.draft && release.published_at)
+            .filter(release => !release.draft && release.published_at && (!until || new Date(release.published_at) < until))
             .sort((left, right) => new Date(right.published_at) - new Date(left.published_at));
         const weeklyReleases = publishedReleases.filter(release => new Date(release.published_at) >= since);
 

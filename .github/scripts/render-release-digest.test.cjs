@@ -187,7 +187,7 @@ test('fails clearly rather than rebasing outside the attributed repository root'
 
 test('the workflow uses the same deterministic final renderer (offline script harness)', async () => {
     const workflow = fs.readFileSync(path.join(__dirname, '../workflows/weekly-aggregated-release-notes.yml'), 'utf8');
-    const summaryStep = workflow.split('      - name: Summarize releases by category\n')[1].split('\n      - name: Prepare fallback summary')[0];
+    const summaryStep = workflow.split('      - name: Summarize releases by category\n')[1].split('\n      - name: Commit release digest')[0];
     const script = summaryStep.split('          script: |\n')[1].replace(/^ {12}/gm, '');
     const release = {
         repository: 'Arc', title: 'Release v20.47.0', url: 'https://github.com/Cratis/Arc/releases/tag/v20.47.0',
@@ -195,19 +195,22 @@ test('the workflow uses the same deterministic final renderer (offline script ha
     };
     const writes = [];
     const fakeFs = {
-        readFileSync: file => JSON.stringify(file.endsWith('weekly-releases.json') ? [release] : []),
+        readFileSync: file => JSON.stringify(file.endsWith('weekly-releases.json') ? [release] : file.endsWith('weekly-numbers.json') ? { releases: 1, kinds: { major: 0, minor: 1, patch: 0, prerelease: 0 }, mergedPullRequests: 2, issuesClosed: 1, currentStreak: 3, firstTime: [] } : []),
         writeFileSync: (file, text) => writes.push({ file, text })
     };
     const fakeRequire = name => {
         if (name === 'fs') return fakeFs;
         if (name === 'path') return path;
+        if (name === '/offline/.github/scripts/render-org-stats.cjs') return require('./render-org-stats.cjs');
         assert.equal(name, '/offline/.github/scripts/render-release-digest.cjs');
         return { renderReleaseDigest };
     };
     const AsyncFunction = Object.getPrototypeOf(async function () {}).constructor;
-    await new AsyncFunction('require', 'process', script)(fakeRequire, { env: { GITHUB_WORKSPACE: '/offline', DAYS: '7' } });
+    await new AsyncFunction('require', 'process', script)(fakeRequire, { env: { GITHUB_WORKSPACE: '/offline', RUNNER_TEMP: '/temp', DAYS: '7' } });
     assert.equal(writes.length, 1);
     assert.equal(writes[0].file, '/offline/weekly-release-summary.md');
+    assert.ok(writes[0].text.indexOf('## Week in numbers') < writes[0].text.indexOf('## Version movement'));
+    assert.match(writes[0].text, /1 releases.*0 major, 1 minor, 0 patch/);
     assert.match(writes[0].text, /## Added\n\n- \*\*Arc\*\*/);
     assert.match(writes[0].text, /Analyzer families `ARC\*` and `ARCCHR\*` for @contributor \(#2286\)\./);
     assert.ok(writes[0].text.includes('[Guide](https://github.com/Cratis/Arc/blob/v20.47.0/Documentation/guide.md?q=1#part) and `[code](./untouched.md)`.'));
