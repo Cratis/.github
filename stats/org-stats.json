@@ -1,0 +1,2413 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-20T14:06:44.128Z",
+  "organization": "Cratis",
+  "scope": "public, non-archived, non-fork repositories",
+  "repositoryCount": 52,
+  "releases": {
+    "last7Days": 641,
+    "last30Days": 1869,
+    "last90Days": 2616,
+    "last365Days": 3632,
+    "allTime": 4278,
+    "averagePerDayLast30Days": 62.3,
+    "last365DaysByKind": {
+      "major": 66,
+      "minor": 1647,
+      "patch": 1812,
+      "prerelease": 74
+    },
+    "last7DaysByKind": {
+      "major": 0,
+      "minor": 419,
+      "patch": 221,
+      "prerelease": 0
+    },
+    "busiestDay": {
+      "date": "2026-10-16",
+      "count": 121
+    },
+    "streak": {
+      "currentDays": 77,
+      "longestDays": 77,
+      "longestEndedOn": "2026-10-20"
+    }
+  },
+  "mergedPullRequests": {
+    "last7Days": 993,
+    "last30Days": 3142,
+    "last365Days": 7323,
+    "dependencyUpdatesLast7Days": 0
+  },
+  "issues": {
+    "openedLast7Days": 1211,
+    "closedLast7Days": 1169,
+    "closedLast30Days": 3176,
+    "closedLast365Days": 4758
+  },
+  "contributors": {
+    "activeLast30Days": 3,
+    "firstTime": [
+      {
+        "login": "rghvgrv",
+        "name": "Gaurav Ashish",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/71788323?u=04510ed65df048e3a4526188d6a860ebb977d908&v=4",
+        "profileUrl": "https://github.com/rghvgrv",
+        "firstMergedAt": "2026-09-25T20:45:37Z",
+        "repository": "Chronicle",
+        "pullRequestUrl": "https://github.com/Cratis/Chronicle/pull/4219",
+        "pullRequestTitle": "Name the correct folder for generated services in the wire protocol rule"
+      }
+    ]
+  },
+  "daily": [
+    {
+      "date": "2025-10-21",
+      "releases": 5
+    },
+    {
+      "date": "2025-10-22",
+      "releases": 1
+    },
+    {
+      "date": "2025-10-23",
+      "releases": 3
+    },
+    {
+      "date": "2025-10-24",
+      "releases": 1
+    },
+    {
+      "date": "2025-10-25",
+      "releases": 1
+    },
+    {
+      "date": "2025-10-26",
+      "releases": 5
+    },
+    {
+      "date": "2025-10-27",
+      "releases": 0
+    },
+    {
+      "date": "2025-10-28",
+      "releases": 5
+    },
+    {
+      "date": "2025-10-29",
+      "releases": 4
+    },
+    {
+      "date": "2025-10-30",
+      "releases": 1
+    },
+    {
+      "date": "2025-10-31",
+      "releases": 2
+    },
+    {
+      "date": "2025-11-01",
+      "releases": 3
+    },
+    {
+      "date": "2025-11-02",
+      "releases": 11
+    },
+    {
+      "date": "2025-11-03",
+      "releases": 2
+    },
+    {
+      "date": "2025-11-04",
+      "releases": 6
+    },
+    {
+      "date": "2025-11-05",
+      "releases": 1
+    },
+    {
+      "date": "2025-11-06",
+      "releases": 3
+    },
+    {
+      "date": "2025-11-07",
+      "releases": 5
+    },
+    {
+      "date": "2025-11-08",
+      "releases": 1
+    },
+    {
+      "date": "2025-11-09",
+      "releases": 2
+    },
+    {
+      "date": "2025-11-10",
+      "releases": 2
+    },
+    {
+      "date": "2025-11-11",
+      "releases": 1
+    },
+    {
+      "date": "2025-11-12",
+      "releases": 1
+    },
+    {
+      "date": "2025-11-13",
+      "releases": 2
+    },
+    {
+      "date": "2025-11-14",
+      "releases": 3
+    },
+    {
+      "date": "2025-11-15",
+      "releases": 2
+    },
+    {
+      "date": "2025-11-16",
+      "releases": 4
+    },
+    {
+      "date": "2025-11-17",
+      "releases": 0
+    },
+    {
+      "date": "2025-11-18",
+      "releases": 4
+    },
+    {
+      "date": "2025-11-19",
+      "releases": 4
+    },
+    {
+      "date": "2025-11-20",
+      "releases": 7
+    },
+    {
+      "date": "2025-11-21",
+      "releases": 5
+    },
+    {
+      "date": "2025-11-22",
+      "releases": 2
+    },
+    {
+      "date": "2025-11-23",
+      "releases": 7
+    },
+    {
+      "date": "2025-11-24",
+      "releases": 1
+    },
+    {
+      "date": "2025-11-25",
+      "releases": 5
+    },
+    {
+      "date": "2025-11-26",
+      "releases": 2
+    },
+    {
+      "date": "2025-11-27",
+      "releases": 0
+    },
+    {
+      "date": "2025-11-28",
+      "releases": 1
+    },
+    {
+      "date": "2025-11-29",
+      "releases": 5
+    },
+    {
+      "date": "2025-11-30",
+      "releases": 2
+    },
+    {
+      "date": "2025-12-01",
+      "releases": 0
+    },
+    {
+      "date": "2025-12-02",
+      "releases": 2
+    },
+    {
+      "date": "2025-12-03",
+      "releases": 3
+    },
+    {
+      "date": "2025-12-04",
+      "releases": 1
+    },
+    {
+      "date": "2025-12-05",
+      "releases": 1
+    },
+    {
+      "date": "2025-12-06",
+      "releases": 0
+    },
+    {
+      "date": "2025-12-07",
+      "releases": 0
+    },
+    {
+      "date": "2025-12-08",
+      "releases": 1
+    },
+    {
+      "date": "2025-12-09",
+      "releases": 2
+    },
+    {
+      "date": "2025-12-10",
+      "releases": 7
+    },
+    {
+      "date": "2025-12-11",
+      "releases": 2
+    },
+    {
+      "date": "2025-12-12",
+      "releases": 5
+    },
+    {
+      "date": "2025-12-13",
+      "releases": 6
+    },
+    {
+      "date": "2025-12-14",
+      "releases": 0
+    },
+    {
+      "date": "2025-12-15",
+      "releases": 0
+    },
+    {
+      "date": "2025-12-16",
+      "releases": 0
+    },
+    {
+      "date": "2025-12-17",
+      "releases": 0
+    },
+    {
+      "date": "2025-12-18",
+      "releases": 1
+    },
+    {
+      "date": "2025-12-19",
+      "releases": 1
+    },
+    {
+      "date": "2025-12-20",
+      "releases": 1
+    },
+    {
+      "date": "2025-12-21",
+      "releases": 0
+    },
+    {
+      "date": "2025-12-22",
+      "releases": 0
+    },
+    {
+      "date": "2025-12-23",
+      "releases": 3
+    },
+    {
+      "date": "2025-12-24",
+      "releases": 0
+    },
+    {
+      "date": "2025-12-25",
+      "releases": 4
+    },
+    {
+      "date": "2025-12-26",
+      "releases": 0
+    },
+    {
+      "date": "2025-12-27",
+      "releases": 0
+    },
+    {
+      "date": "2025-12-28",
+      "releases": 1
+    },
+    {
+      "date": "2025-12-29",
+      "releases": 2
+    },
+    {
+      "date": "2025-12-30",
+      "releases": 0
+    },
+    {
+      "date": "2025-12-31",
+      "releases": 0
+    },
+    {
+      "date": "2026-01-01",
+      "releases": 0
+    },
+    {
+      "date": "2026-01-02",
+      "releases": 3
+    },
+    {
+      "date": "2026-01-03",
+      "releases": 1
+    },
+    {
+      "date": "2026-01-04",
+      "releases": 1
+    },
+    {
+      "date": "2026-01-05",
+      "releases": 1
+    },
+    {
+      "date": "2026-01-06",
+      "releases": 11
+    },
+    {
+      "date": "2026-01-07",
+      "releases": 1
+    },
+    {
+      "date": "2026-01-08",
+      "releases": 4
+    },
+    {
+      "date": "2026-01-09",
+      "releases": 2
+    },
+    {
+      "date": "2026-01-10",
+      "releases": 0
+    },
+    {
+      "date": "2026-01-11",
+      "releases": 7
+    },
+    {
+      "date": "2026-01-12",
+      "releases": 2
+    },
+    {
+      "date": "2026-01-13",
+      "releases": 3
+    },
+    {
+      "date": "2026-01-14",
+      "releases": 0
+    },
+    {
+      "date": "2026-01-15",
+      "releases": 2
+    },
+    {
+      "date": "2026-01-16",
+      "releases": 0
+    },
+    {
+      "date": "2026-01-17",
+      "releases": 0
+    },
+    {
+      "date": "2026-01-18",
+      "releases": 0
+    },
+    {
+      "date": "2026-01-19",
+      "releases": 0
+    },
+    {
+      "date": "2026-01-20",
+      "releases": 3
+    },
+    {
+      "date": "2026-01-21",
+      "releases": 0
+    },
+    {
+      "date": "2026-01-22",
+      "releases": 2
+    },
+    {
+      "date": "2026-01-23",
+      "releases": 2
+    },
+    {
+      "date": "2026-01-24",
+      "releases": 0
+    },
+    {
+      "date": "2026-01-25",
+      "releases": 0
+    },
+    {
+      "date": "2026-01-26",
+      "releases": 0
+    },
+    {
+      "date": "2026-01-27",
+      "releases": 3
+    },
+    {
+      "date": "2026-01-28",
+      "releases": 1
+    },
+    {
+      "date": "2026-01-29",
+      "releases": 0
+    },
+    {
+      "date": "2026-01-30",
+      "releases": 0
+    },
+    {
+      "date": "2026-01-31",
+      "releases": 0
+    },
+    {
+      "date": "2026-02-01",
+      "releases": 0
+    },
+    {
+      "date": "2026-02-02",
+      "releases": 1
+    },
+    {
+      "date": "2026-02-03",
+      "releases": 1
+    },
+    {
+      "date": "2026-02-04",
+      "releases": 11
+    },
+    {
+      "date": "2026-02-05",
+      "releases": 2
+    },
+    {
+      "date": "2026-02-06",
+      "releases": 0
+    },
+    {
+      "date": "2026-02-07",
+      "releases": 1
+    },
+    {
+      "date": "2026-02-08",
+      "releases": 3
+    },
+    {
+      "date": "2026-02-09",
+      "releases": 1
+    },
+    {
+      "date": "2026-02-10",
+      "releases": 4
+    },
+    {
+      "date": "2026-02-11",
+      "releases": 0
+    },
+    {
+      "date": "2026-02-12",
+      "releases": 4
+    },
+    {
+      "date": "2026-02-13",
+      "releases": 3
+    },
+    {
+      "date": "2026-02-14",
+      "releases": 2
+    },
+    {
+      "date": "2026-02-15",
+      "releases": 0
+    },
+    {
+      "date": "2026-02-16",
+      "releases": 0
+    },
+    {
+      "date": "2026-02-17",
+      "releases": 1
+    },
+    {
+      "date": "2026-02-18",
+      "releases": 4
+    },
+    {
+      "date": "2026-02-19",
+      "releases": 10
+    },
+    {
+      "date": "2026-02-20",
+      "releases": 9
+    },
+    {
+      "date": "2026-02-21",
+      "releases": 1
+    },
+    {
+      "date": "2026-02-22",
+      "releases": 9
+    },
+    {
+      "date": "2026-02-23",
+      "releases": 4
+    },
+    {
+      "date": "2026-02-24",
+      "releases": 5
+    },
+    {
+      "date": "2026-02-25",
+      "releases": 5
+    },
+    {
+      "date": "2026-02-26",
+      "releases": 1
+    },
+    {
+      "date": "2026-02-27",
+      "releases": 5
+    },
+    {
+      "date": "2026-02-28",
+      "releases": 3
+    },
+    {
+      "date": "2026-03-01",
+      "releases": 3
+    },
+    {
+      "date": "2026-03-02",
+      "releases": 5
+    },
+    {
+      "date": "2026-03-03",
+      "releases": 2
+    },
+    {
+      "date": "2026-03-04",
+      "releases": 0
+    },
+    {
+      "date": "2026-03-05",
+      "releases": 0
+    },
+    {
+      "date": "2026-03-06",
+      "releases": 1
+    },
+    {
+      "date": "2026-03-07",
+      "releases": 5
+    },
+    {
+      "date": "2026-03-08",
+      "releases": 4
+    },
+    {
+      "date": "2026-03-09",
+      "releases": 4
+    },
+    {
+      "date": "2026-03-10",
+      "releases": 9
+    },
+    {
+      "date": "2026-03-11",
+      "releases": 2
+    },
+    {
+      "date": "2026-03-12",
+      "releases": 2
+    },
+    {
+      "date": "2026-03-13",
+      "releases": 13
+    },
+    {
+      "date": "2026-03-14",
+      "releases": 2
+    },
+    {
+      "date": "2026-03-15",
+      "releases": 1
+    },
+    {
+      "date": "2026-03-16",
+      "releases": 1
+    },
+    {
+      "date": "2026-03-17",
+      "releases": 3
+    },
+    {
+      "date": "2026-03-18",
+      "releases": 8
+    },
+    {
+      "date": "2026-03-19",
+      "releases": 3
+    },
+    {
+      "date": "2026-03-20",
+      "releases": 4
+    },
+    {
+      "date": "2026-03-21",
+      "releases": 0
+    },
+    {
+      "date": "2026-03-22",
+      "releases": 1
+    },
+    {
+      "date": "2026-03-23",
+      "releases": 2
+    },
+    {
+      "date": "2026-03-24",
+      "releases": 1
+    },
+    {
+      "date": "2026-03-25",
+      "releases": 1
+    },
+    {
+      "date": "2026-03-26",
+      "releases": 7
+    },
+    {
+      "date": "2026-03-27",
+      "releases": 8
+    },
+    {
+      "date": "2026-03-28",
+      "releases": 4
+    },
+    {
+      "date": "2026-03-29",
+      "releases": 0
+    },
+    {
+      "date": "2026-03-30",
+      "releases": 0
+    },
+    {
+      "date": "2026-03-31",
+      "releases": 0
+    },
+    {
+      "date": "2026-04-01",
+      "releases": 0
+    },
+    {
+      "date": "2026-04-02",
+      "releases": 0
+    },
+    {
+      "date": "2026-04-03",
+      "releases": 4
+    },
+    {
+      "date": "2026-04-04",
+      "releases": 4
+    },
+    {
+      "date": "2026-04-05",
+      "releases": 5
+    },
+    {
+      "date": "2026-04-06",
+      "releases": 1
+    },
+    {
+      "date": "2026-04-07",
+      "releases": 9
+    },
+    {
+      "date": "2026-04-08",
+      "releases": 1
+    },
+    {
+      "date": "2026-04-09",
+      "releases": 2
+    },
+    {
+      "date": "2026-04-10",
+      "releases": 7
+    },
+    {
+      "date": "2026-04-11",
+      "releases": 3
+    },
+    {
+      "date": "2026-04-12",
+      "releases": 13
+    },
+    {
+      "date": "2026-04-13",
+      "releases": 3
+    },
+    {
+      "date": "2026-04-14",
+      "releases": 5
+    },
+    {
+      "date": "2026-04-15",
+      "releases": 7
+    },
+    {
+      "date": "2026-04-16",
+      "releases": 5
+    },
+    {
+      "date": "2026-04-17",
+      "releases": 3
+    },
+    {
+      "date": "2026-04-18",
+      "releases": 6
+    },
+    {
+      "date": "2026-04-19",
+      "releases": 10
+    },
+    {
+      "date": "2026-04-20",
+      "releases": 9
+    },
+    {
+      "date": "2026-04-21",
+      "releases": 1
+    },
+    {
+      "date": "2026-04-22",
+      "releases": 4
+    },
+    {
+      "date": "2026-04-23",
+      "releases": 1
+    },
+    {
+      "date": "2026-04-24",
+      "releases": 2
+    },
+    {
+      "date": "2026-04-25",
+      "releases": 2
+    },
+    {
+      "date": "2026-04-26",
+      "releases": 3
+    },
+    {
+      "date": "2026-04-27",
+      "releases": 9
+    },
+    {
+      "date": "2026-04-28",
+      "releases": 15
+    },
+    {
+      "date": "2026-04-29",
+      "releases": 4
+    },
+    {
+      "date": "2026-04-30",
+      "releases": 4
+    },
+    {
+      "date": "2026-05-01",
+      "releases": 11
+    },
+    {
+      "date": "2026-05-02",
+      "releases": 8
+    },
+    {
+      "date": "2026-05-03",
+      "releases": 9
+    },
+    {
+      "date": "2026-05-04",
+      "releases": 5
+    },
+    {
+      "date": "2026-05-05",
+      "releases": 4
+    },
+    {
+      "date": "2026-05-06",
+      "releases": 11
+    },
+    {
+      "date": "2026-05-07",
+      "releases": 10
+    },
+    {
+      "date": "2026-05-08",
+      "releases": 5
+    },
+    {
+      "date": "2026-05-09",
+      "releases": 7
+    },
+    {
+      "date": "2026-05-10",
+      "releases": 2
+    },
+    {
+      "date": "2026-05-11",
+      "releases": 6
+    },
+    {
+      "date": "2026-05-12",
+      "releases": 10
+    },
+    {
+      "date": "2026-05-13",
+      "releases": 7
+    },
+    {
+      "date": "2026-05-14",
+      "releases": 7
+    },
+    {
+      "date": "2026-05-15",
+      "releases": 14
+    },
+    {
+      "date": "2026-05-16",
+      "releases": 10
+    },
+    {
+      "date": "2026-05-17",
+      "releases": 6
+    },
+    {
+      "date": "2026-05-18",
+      "releases": 13
+    },
+    {
+      "date": "2026-05-19",
+      "releases": 12
+    },
+    {
+      "date": "2026-05-20",
+      "releases": 12
+    },
+    {
+      "date": "2026-05-21",
+      "releases": 11
+    },
+    {
+      "date": "2026-05-22",
+      "releases": 18
+    },
+    {
+      "date": "2026-05-23",
+      "releases": 6
+    },
+    {
+      "date": "2026-05-24",
+      "releases": 15
+    },
+    {
+      "date": "2026-05-25",
+      "releases": 3
+    },
+    {
+      "date": "2026-05-26",
+      "releases": 4
+    },
+    {
+      "date": "2026-05-27",
+      "releases": 4
+    },
+    {
+      "date": "2026-05-28",
+      "releases": 6
+    },
+    {
+      "date": "2026-05-29",
+      "releases": 1
+    },
+    {
+      "date": "2026-05-30",
+      "releases": 1
+    },
+    {
+      "date": "2026-05-31",
+      "releases": 0
+    },
+    {
+      "date": "2026-06-01",
+      "releases": 3
+    },
+    {
+      "date": "2026-06-02",
+      "releases": 4
+    },
+    {
+      "date": "2026-06-03",
+      "releases": 11
+    },
+    {
+      "date": "2026-06-04",
+      "releases": 21
+    },
+    {
+      "date": "2026-06-05",
+      "releases": 19
+    },
+    {
+      "date": "2026-06-06",
+      "releases": 1
+    },
+    {
+      "date": "2026-06-07",
+      "releases": 9
+    },
+    {
+      "date": "2026-06-08",
+      "releases": 6
+    },
+    {
+      "date": "2026-06-09",
+      "releases": 11
+    },
+    {
+      "date": "2026-06-10",
+      "releases": 1
+    },
+    {
+      "date": "2026-06-11",
+      "releases": 7
+    },
+    {
+      "date": "2026-06-12",
+      "releases": 7
+    },
+    {
+      "date": "2026-06-13",
+      "releases": 0
+    },
+    {
+      "date": "2026-06-14",
+      "releases": 0
+    },
+    {
+      "date": "2026-06-15",
+      "releases": 2
+    },
+    {
+      "date": "2026-06-16",
+      "releases": 7
+    },
+    {
+      "date": "2026-06-17",
+      "releases": 5
+    },
+    {
+      "date": "2026-06-18",
+      "releases": 3
+    },
+    {
+      "date": "2026-06-19",
+      "releases": 5
+    },
+    {
+      "date": "2026-06-20",
+      "releases": 4
+    },
+    {
+      "date": "2026-06-21",
+      "releases": 5
+    },
+    {
+      "date": "2026-06-22",
+      "releases": 4
+    },
+    {
+      "date": "2026-06-23",
+      "releases": 3
+    },
+    {
+      "date": "2026-06-24",
+      "releases": 0
+    },
+    {
+      "date": "2026-06-25",
+      "releases": 0
+    },
+    {
+      "date": "2026-06-26",
+      "releases": 0
+    },
+    {
+      "date": "2026-06-27",
+      "releases": 0
+    },
+    {
+      "date": "2026-06-28",
+      "releases": 2
+    },
+    {
+      "date": "2026-06-29",
+      "releases": 0
+    },
+    {
+      "date": "2026-06-30",
+      "releases": 2
+    },
+    {
+      "date": "2026-07-01",
+      "releases": 7
+    },
+    {
+      "date": "2026-07-02",
+      "releases": 1
+    },
+    {
+      "date": "2026-07-03",
+      "releases": 2
+    },
+    {
+      "date": "2026-07-04",
+      "releases": 3
+    },
+    {
+      "date": "2026-07-05",
+      "releases": 0
+    },
+    {
+      "date": "2026-07-06",
+      "releases": 0
+    },
+    {
+      "date": "2026-07-07",
+      "releases": 0
+    },
+    {
+      "date": "2026-07-08",
+      "releases": 6
+    },
+    {
+      "date": "2026-07-09",
+      "releases": 11
+    },
+    {
+      "date": "2026-07-10",
+      "releases": 9
+    },
+    {
+      "date": "2026-07-11",
+      "releases": 0
+    },
+    {
+      "date": "2026-07-12",
+      "releases": 0
+    },
+    {
+      "date": "2026-07-13",
+      "releases": 5
+    },
+    {
+      "date": "2026-07-14",
+      "releases": 11
+    },
+    {
+      "date": "2026-07-15",
+      "releases": 6
+    },
+    {
+      "date": "2026-07-16",
+      "releases": 3
+    },
+    {
+      "date": "2026-07-17",
+      "releases": 1
+    },
+    {
+      "date": "2026-07-18",
+      "releases": 5
+    },
+    {
+      "date": "2026-07-19",
+      "releases": 9
+    },
+    {
+      "date": "2026-07-20",
+      "releases": 4
+    },
+    {
+      "date": "2026-07-21",
+      "releases": 5
+    },
+    {
+      "date": "2026-07-22",
+      "releases": 6
+    },
+    {
+      "date": "2026-07-23",
+      "releases": 22
+    },
+    {
+      "date": "2026-07-24",
+      "releases": 8
+    },
+    {
+      "date": "2026-07-25",
+      "releases": 2
+    },
+    {
+      "date": "2026-07-26",
+      "releases": 0
+    },
+    {
+      "date": "2026-07-27",
+      "releases": 4
+    },
+    {
+      "date": "2026-07-28",
+      "releases": 12
+    },
+    {
+      "date": "2026-07-29",
+      "releases": 10
+    },
+    {
+      "date": "2026-07-30",
+      "releases": 25
+    },
+    {
+      "date": "2026-07-31",
+      "releases": 6
+    },
+    {
+      "date": "2026-08-01",
+      "releases": 5
+    },
+    {
+      "date": "2026-08-02",
+      "releases": 0
+    },
+    {
+      "date": "2026-08-03",
+      "releases": 3
+    },
+    {
+      "date": "2026-08-04",
+      "releases": 0
+    },
+    {
+      "date": "2026-08-05",
+      "releases": 20
+    },
+    {
+      "date": "2026-08-06",
+      "releases": 16
+    },
+    {
+      "date": "2026-08-07",
+      "releases": 9
+    },
+    {
+      "date": "2026-08-08",
+      "releases": 1
+    },
+    {
+      "date": "2026-08-09",
+      "releases": 3
+    },
+    {
+      "date": "2026-08-10",
+      "releases": 17
+    },
+    {
+      "date": "2026-08-11",
+      "releases": 30
+    },
+    {
+      "date": "2026-08-12",
+      "releases": 12
+    },
+    {
+      "date": "2026-08-13",
+      "releases": 20
+    },
+    {
+      "date": "2026-08-14",
+      "releases": 12
+    },
+    {
+      "date": "2026-08-15",
+      "releases": 27
+    },
+    {
+      "date": "2026-08-16",
+      "releases": 21
+    },
+    {
+      "date": "2026-08-17",
+      "releases": 8
+    },
+    {
+      "date": "2026-08-18",
+      "releases": 20
+    },
+    {
+      "date": "2026-08-19",
+      "releases": 5
+    },
+    {
+      "date": "2026-08-20",
+      "releases": 5
+    },
+    {
+      "date": "2026-08-21",
+      "releases": 7
+    },
+    {
+      "date": "2026-08-22",
+      "releases": 34
+    },
+    {
+      "date": "2026-08-23",
+      "releases": 19
+    },
+    {
+      "date": "2026-08-24",
+      "releases": 9
+    },
+    {
+      "date": "2026-08-25",
+      "releases": 12
+    },
+    {
+      "date": "2026-08-26",
+      "releases": 7
+    },
+    {
+      "date": "2026-08-27",
+      "releases": 8
+    },
+    {
+      "date": "2026-08-28",
+      "releases": 10
+    },
+    {
+      "date": "2026-08-29",
+      "releases": 3
+    },
+    {
+      "date": "2026-08-30",
+      "releases": 17
+    },
+    {
+      "date": "2026-08-31",
+      "releases": 6
+    },
+    {
+      "date": "2026-09-01",
+      "releases": 14
+    },
+    {
+      "date": "2026-09-02",
+      "releases": 4
+    },
+    {
+      "date": "2026-09-03",
+      "releases": 2
+    },
+    {
+      "date": "2026-09-04",
+      "releases": 3
+    },
+    {
+      "date": "2026-09-05",
+      "releases": 4
+    },
+    {
+      "date": "2026-09-06",
+      "releases": 23
+    },
+    {
+      "date": "2026-09-07",
+      "releases": 13
+    },
+    {
+      "date": "2026-09-08",
+      "releases": 14
+    },
+    {
+      "date": "2026-09-09",
+      "releases": 18
+    },
+    {
+      "date": "2026-09-10",
+      "releases": 16
+    },
+    {
+      "date": "2026-09-11",
+      "releases": 18
+    },
+    {
+      "date": "2026-09-12",
+      "releases": 9
+    },
+    {
+      "date": "2026-09-13",
+      "releases": 9
+    },
+    {
+      "date": "2026-09-14",
+      "releases": 3
+    },
+    {
+      "date": "2026-09-15",
+      "releases": 40
+    },
+    {
+      "date": "2026-09-16",
+      "releases": 30
+    },
+    {
+      "date": "2026-09-17",
+      "releases": 42
+    },
+    {
+      "date": "2026-09-18",
+      "releases": 14
+    },
+    {
+      "date": "2026-09-19",
+      "releases": 11
+    },
+    {
+      "date": "2026-09-20",
+      "releases": 5
+    },
+    {
+      "date": "2026-09-21",
+      "releases": 13
+    },
+    {
+      "date": "2026-09-22",
+      "releases": 23
+    },
+    {
+      "date": "2026-09-23",
+      "releases": 49
+    },
+    {
+      "date": "2026-09-24",
+      "releases": 78
+    },
+    {
+      "date": "2026-09-25",
+      "releases": 74
+    },
+    {
+      "date": "2026-09-26",
+      "releases": 64
+    },
+    {
+      "date": "2026-09-27",
+      "releases": 21
+    },
+    {
+      "date": "2026-09-28",
+      "releases": 54
+    },
+    {
+      "date": "2026-09-29",
+      "releases": 55
+    },
+    {
+      "date": "2026-09-30",
+      "releases": 21
+    },
+    {
+      "date": "2026-10-01",
+      "releases": 64
+    },
+    {
+      "date": "2026-10-02",
+      "releases": 73
+    },
+    {
+      "date": "2026-10-03",
+      "releases": 35
+    },
+    {
+      "date": "2026-10-04",
+      "releases": 17
+    },
+    {
+      "date": "2026-10-05",
+      "releases": 23
+    },
+    {
+      "date": "2026-10-06",
+      "releases": 59
+    },
+    {
+      "date": "2026-10-07",
+      "releases": 37
+    },
+    {
+      "date": "2026-10-08",
+      "releases": 88
+    },
+    {
+      "date": "2026-10-09",
+      "releases": 82
+    },
+    {
+      "date": "2026-10-10",
+      "releases": 73
+    },
+    {
+      "date": "2026-10-11",
+      "releases": 80
+    },
+    {
+      "date": "2026-10-12",
+      "releases": 53
+    },
+    {
+      "date": "2026-10-13",
+      "releases": 92
+    },
+    {
+      "date": "2026-10-14",
+      "releases": 82
+    },
+    {
+      "date": "2026-10-15",
+      "releases": 76
+    },
+    {
+      "date": "2026-10-16",
+      "releases": 121
+    },
+    {
+      "date": "2026-10-17",
+      "releases": 96
+    },
+    {
+      "date": "2026-10-18",
+      "releases": 102
+    },
+    {
+      "date": "2026-10-19",
+      "releases": 117
+    },
+    {
+      "date": "2026-10-20",
+      "releases": 47
+    }
+  ],
+  "weekly": [
+    {
+      "weekStart": "2025-10-20",
+      "releases": 16,
+      "mergedPullRequests": 36,
+      "issuesClosed": 0
+    },
+    {
+      "weekStart": "2025-10-27",
+      "releases": 26,
+      "mergedPullRequests": 43,
+      "issuesClosed": 9
+    },
+    {
+      "weekStart": "2025-11-03",
+      "releases": 20,
+      "mergedPullRequests": 45,
+      "issuesClosed": 3
+    },
+    {
+      "weekStart": "2025-11-10",
+      "releases": 15,
+      "mergedPullRequests": 33,
+      "issuesClosed": 1
+    },
+    {
+      "weekStart": "2025-11-17",
+      "releases": 29,
+      "mergedPullRequests": 35,
+      "issuesClosed": 2
+    },
+    {
+      "weekStart": "2025-11-24",
+      "releases": 16,
+      "mergedPullRequests": 38,
+      "issuesClosed": 0
+    },
+    {
+      "weekStart": "2025-12-01",
+      "releases": 7,
+      "mergedPullRequests": 61,
+      "issuesClosed": 5
+    },
+    {
+      "weekStart": "2025-12-08",
+      "releases": 23,
+      "mergedPullRequests": 38,
+      "issuesClosed": 3
+    },
+    {
+      "weekStart": "2025-12-15",
+      "releases": 3,
+      "mergedPullRequests": 101,
+      "issuesClosed": 38
+    },
+    {
+      "weekStart": "2025-12-22",
+      "releases": 8,
+      "mergedPullRequests": 37,
+      "issuesClosed": 0
+    },
+    {
+      "weekStart": "2025-12-29",
+      "releases": 7,
+      "mergedPullRequests": 36,
+      "issuesClosed": 4
+    },
+    {
+      "weekStart": "2026-01-05",
+      "releases": 26,
+      "mergedPullRequests": 33,
+      "issuesClosed": 1
+    },
+    {
+      "weekStart": "2026-01-12",
+      "releases": 7,
+      "mergedPullRequests": 58,
+      "issuesClosed": 1
+    },
+    {
+      "weekStart": "2026-01-19",
+      "releases": 7,
+      "mergedPullRequests": 60,
+      "issuesClosed": 0
+    },
+    {
+      "weekStart": "2026-01-26",
+      "releases": 4,
+      "mergedPullRequests": 44,
+      "issuesClosed": 6
+    },
+    {
+      "weekStart": "2026-02-02",
+      "releases": 19,
+      "mergedPullRequests": 53,
+      "issuesClosed": 25
+    },
+    {
+      "weekStart": "2026-02-09",
+      "releases": 14,
+      "mergedPullRequests": 48,
+      "issuesClosed": 3
+    },
+    {
+      "weekStart": "2026-02-16",
+      "releases": 34,
+      "mergedPullRequests": 34,
+      "issuesClosed": 15
+    },
+    {
+      "weekStart": "2026-02-23",
+      "releases": 26,
+      "mergedPullRequests": 66,
+      "issuesClosed": 11
+    },
+    {
+      "weekStart": "2026-03-02",
+      "releases": 17,
+      "mergedPullRequests": 120,
+      "issuesClosed": 19
+    },
+    {
+      "weekStart": "2026-03-09",
+      "releases": 33,
+      "mergedPullRequests": 213,
+      "issuesClosed": 32
+    },
+    {
+      "weekStart": "2026-03-16",
+      "releases": 20,
+      "mergedPullRequests": 160,
+      "issuesClosed": 23
+    },
+    {
+      "weekStart": "2026-03-23",
+      "releases": 23,
+      "mergedPullRequests": 104,
+      "issuesClosed": 21
+    },
+    {
+      "weekStart": "2026-03-30",
+      "releases": 13,
+      "mergedPullRequests": 65,
+      "issuesClosed": 6
+    },
+    {
+      "weekStart": "2026-04-06",
+      "releases": 36,
+      "mergedPullRequests": 128,
+      "issuesClosed": 21
+    },
+    {
+      "weekStart": "2026-04-13",
+      "releases": 39,
+      "mergedPullRequests": 133,
+      "issuesClosed": 11
+    },
+    {
+      "weekStart": "2026-04-20",
+      "releases": 22,
+      "mergedPullRequests": 28,
+      "issuesClosed": 5
+    },
+    {
+      "weekStart": "2026-04-27",
+      "releases": 60,
+      "mergedPullRequests": 60,
+      "issuesClosed": 20
+    },
+    {
+      "weekStart": "2026-05-04",
+      "releases": 44,
+      "mergedPullRequests": 51,
+      "issuesClosed": 15
+    },
+    {
+      "weekStart": "2026-05-11",
+      "releases": 60,
+      "mergedPullRequests": 73,
+      "issuesClosed": 88
+    },
+    {
+      "weekStart": "2026-05-18",
+      "releases": 87,
+      "mergedPullRequests": 72,
+      "issuesClosed": 44
+    },
+    {
+      "weekStart": "2026-05-25",
+      "releases": 19,
+      "mergedPullRequests": 36,
+      "issuesClosed": 27
+    },
+    {
+      "weekStart": "2026-06-01",
+      "releases": 68,
+      "mergedPullRequests": 85,
+      "issuesClosed": 38
+    },
+    {
+      "weekStart": "2026-06-08",
+      "releases": 32,
+      "mergedPullRequests": 60,
+      "issuesClosed": 17
+    },
+    {
+      "weekStart": "2026-06-15",
+      "releases": 31,
+      "mergedPullRequests": 46,
+      "issuesClosed": 4
+    },
+    {
+      "weekStart": "2026-06-22",
+      "releases": 9,
+      "mergedPullRequests": 13,
+      "issuesClosed": 0
+    },
+    {
+      "weekStart": "2026-06-29",
+      "releases": 15,
+      "mergedPullRequests": 19,
+      "issuesClosed": 0
+    },
+    {
+      "weekStart": "2026-07-06",
+      "releases": 26,
+      "mergedPullRequests": 41,
+      "issuesClosed": 4
+    },
+    {
+      "weekStart": "2026-07-13",
+      "releases": 40,
+      "mergedPullRequests": 48,
+      "issuesClosed": 1
+    },
+    {
+      "weekStart": "2026-07-20",
+      "releases": 47,
+      "mergedPullRequests": 55,
+      "issuesClosed": 11
+    },
+    {
+      "weekStart": "2026-07-27",
+      "releases": 62,
+      "mergedPullRequests": 88,
+      "issuesClosed": 38
+    },
+    {
+      "weekStart": "2026-08-03",
+      "releases": 52,
+      "mergedPullRequests": 107,
+      "issuesClosed": 159
+    },
+    {
+      "weekStart": "2026-08-10",
+      "releases": 139,
+      "mergedPullRequests": 186,
+      "issuesClosed": 254
+    },
+    {
+      "weekStart": "2026-08-17",
+      "releases": 98,
+      "mergedPullRequests": 277,
+      "issuesClosed": 147
+    },
+    {
+      "weekStart": "2026-08-24",
+      "releases": 66,
+      "mergedPullRequests": 343,
+      "issuesClosed": 80
+    },
+    {
+      "weekStart": "2026-08-31",
+      "releases": 56,
+      "mergedPullRequests": 107,
+      "issuesClosed": 171
+    },
+    {
+      "weekStart": "2026-09-07",
+      "releases": 97,
+      "mergedPullRequests": 385,
+      "issuesClosed": 124
+    },
+    {
+      "weekStart": "2026-09-14",
+      "releases": 145,
+      "mergedPullRequests": 179,
+      "issuesClosed": 75
+    },
+    {
+      "weekStart": "2026-09-21",
+      "releases": 322,
+      "mergedPullRequests": 596,
+      "issuesClosed": 455
+    },
+    {
+      "weekStart": "2026-09-28",
+      "releases": 319,
+      "mergedPullRequests": 668,
+      "issuesClosed": 652
+    },
+    {
+      "weekStart": "2026-10-05",
+      "releases": 442,
+      "mergedPullRequests": 662,
+      "issuesClosed": 680
+    },
+    {
+      "weekStart": "2026-10-12",
+      "releases": 622,
+      "mergedPullRequests": 892,
+      "issuesClosed": 996
+    },
+    {
+      "weekStart": "2026-10-19",
+      "releases": 164,
+      "mergedPullRequests": 324,
+      "issuesClosed": 393
+    }
+  ],
+  "monthly": [
+    {
+      "month": "2025-11",
+      "releases": 94,
+      "mergedPullRequests": 168,
+      "issuesOpened": 19,
+      "issuesClosed": 15
+    },
+    {
+      "month": "2025-12",
+      "releases": 43,
+      "mergedPullRequests": 242,
+      "issuesOpened": 15,
+      "issuesClosed": 46
+    },
+    {
+      "month": "2026-01",
+      "releases": 49,
+      "mergedPullRequests": 202,
+      "issuesOpened": 19,
+      "issuesClosed": 6
+    },
+    {
+      "month": "2026-02",
+      "releases": 90,
+      "mergedPullRequests": 195,
+      "issuesOpened": 34,
+      "issuesClosed": 60
+    },
+    {
+      "month": "2026-03",
+      "releases": 96,
+      "mergedPullRequests": 636,
+      "issuesOpened": 55,
+      "issuesClosed": 95
+    },
+    {
+      "month": "2026-04",
+      "releases": 142,
+      "mergedPullRequests": 379,
+      "issuesOpened": 56,
+      "issuesClosed": 48
+    },
+    {
+      "month": "2026-05",
+      "releases": 238,
+      "mergedPullRequests": 258,
+      "issuesOpened": 141,
+      "issuesClosed": 189
+    },
+    {
+      "month": "2026-06",
+      "releases": 142,
+      "mergedPullRequests": 206,
+      "issuesOpened": 67,
+      "issuesClosed": 59
+    },
+    {
+      "month": "2026-07",
+      "releases": 183,
+      "mergedPullRequests": 242,
+      "issuesOpened": 83,
+      "issuesClosed": 54
+    },
+    {
+      "month": "2026-08",
+      "releases": 366,
+      "mergedPullRequests": 931,
+      "issuesOpened": 892,
+      "issuesClosed": 650
+    },
+    {
+      "month": "2026-09",
+      "releases": 744,
+      "mergedPullRequests": 1631,
+      "issuesOpened": 1332,
+      "issuesClosed": 1192
+    },
+    {
+      "month": "2026-10",
+      "releases": 1417,
+      "mergedPullRequests": 2171,
+      "issuesOpened": 2776,
+      "issuesClosed": 2344
+    }
+  ],
+  "repositories": [
+    {
+      "name": "Screenplay",
+      "url": "https://github.com/Cratis/Screenplay",
+      "releasesLast30Days": 308,
+      "releasesLast365Days": 361,
+      "latestRelease": {
+        "tag": "v4.237.0",
+        "url": "https://github.com/Cratis/Screenplay/releases/tag/v4.237.0",
+        "publishedAt": "2026-10-20T08:14:15Z",
+        "kind": "minor"
+      }
+    },
+    {
+      "name": "Stage",
+      "url": "https://github.com/Cratis/Stage",
+      "releasesLast30Days": 275,
+      "releasesLast365Days": 328,
+      "latestRelease": {
+        "tag": "v4.188.6",
+        "url": "https://github.com/Cratis/Stage/releases/tag/v4.188.6",
+        "publishedAt": "2026-10-20T13:51:18Z",
+        "kind": "patch"
+      }
+    },
+    {
+      "name": "Chronicle",
+      "url": "https://github.com/Cratis/Chronicle",
+      "releasesLast30Days": 258,
+      "releasesLast365Days": 697,
+      "latestRelease": {
+        "tag": "v19.101.1",
+        "url": "https://github.com/Cratis/Chronicle/releases/tag/v19.101.1",
+        "publishedAt": "2026-10-20T12:51:00Z",
+        "kind": "patch"
+      }
+    },
+    {
+      "name": "Arc",
+      "url": "https://github.com/Cratis/Arc",
+      "releasesLast30Days": 212,
+      "releasesLast365Days": 727,
+      "latestRelease": {
+        "tag": "v22.134.3",
+        "url": "https://github.com/Cratis/Arc/releases/tag/v22.134.3",
+        "publishedAt": "2026-10-20T14:02:22Z",
+        "kind": "patch"
+      }
+    },
+    {
+      "name": "AI",
+      "url": "https://github.com/Cratis/AI",
+      "releasesLast30Days": 198,
+      "releasesLast365Days": 266,
+      "latestRelease": {
+        "tag": "v7.98.0",
+        "url": "https://github.com/Cratis/AI/releases/tag/v7.98.0",
+        "publishedAt": "2026-10-20T12:23:40Z",
+        "kind": "minor"
+      }
+    },
+    {
+      "name": "cli",
+      "url": "https://github.com/Cratis/cli",
+      "releasesLast30Days": 126,
+      "releasesLast365Days": 213,
+      "latestRelease": {
+        "tag": "v3.93.5",
+        "url": "https://github.com/Cratis/cli/releases/tag/v3.93.5",
+        "publishedAt": "2026-10-20T09:59:12Z",
+        "kind": "patch"
+      }
+    },
+    {
+      "name": "Scene",
+      "url": "https://github.com/Cratis/Scene",
+      "releasesLast30Days": 98,
+      "releasesLast365Days": 115,
+      "latestRelease": {
+        "tag": "v4.75.6",
+        "url": "https://github.com/Cratis/Scene/releases/tag/v4.75.6",
+        "publishedAt": "2026-10-20T12:25:33Z",
+        "kind": "patch"
+      }
+    },
+    {
+      "name": "Chronicle.TypeScript",
+      "url": "https://github.com/Cratis/Chronicle.TypeScript",
+      "releasesLast30Days": 72,
+      "releasesLast365Days": 95,
+      "latestRelease": {
+        "tag": "v6.53.1",
+        "url": "https://github.com/Cratis/Chronicle.TypeScript/releases/tag/v6.53.1",
+        "publishedAt": "2026-10-17T14:22:38Z",
+        "kind": "patch"
+      }
+    },
+    {
+      "name": "Arc.TypeScript",
+      "url": "https://github.com/Cratis/Arc.TypeScript",
+      "releasesLast30Days": 71,
+      "releasesLast365Days": 71,
+      "latestRelease": {
+        "tag": "v0.57.2",
+        "url": "https://github.com/Cratis/Arc.TypeScript/releases/tag/v0.57.2",
+        "publishedAt": "2026-10-02T19:16:44Z",
+        "kind": "prerelease"
+      }
+    },
+    {
+      "name": "Orleans",
+      "url": "https://github.com/Cratis/Orleans",
+      "releasesLast30Days": 50,
+      "releasesLast365Days": 62,
+      "latestRelease": {
+        "tag": "v1.27.1",
+        "url": "https://github.com/Cratis/Orleans/releases/tag/v1.27.1",
+        "publishedAt": "2026-10-19T14:45:02Z",
+        "kind": "patch"
+      }
+    },
+    {
+      "name": "Components",
+      "url": "https://github.com/Cratis/Components",
+      "releasesLast30Days": 49,
+      "releasesLast365Days": 178,
+      "latestRelease": {
+        "tag": "v4.34.0",
+        "url": "https://github.com/Cratis/Components/releases/tag/v4.34.0",
+        "publishedAt": "2026-10-19T08:28:27Z",
+        "kind": "minor"
+      }
+    },
+    {
+      "name": "Ante",
+      "url": "https://github.com/Cratis/Ante",
+      "releasesLast30Days": 35,
+      "releasesLast365Days": 47,
+      "latestRelease": {
+        "tag": "v1.3.4",
+        "url": "https://github.com/Cratis/Ante/releases/tag/v1.3.4",
+        "publishedAt": "2026-10-19T22:23:32Z",
+        "kind": "patch"
+      }
+    },
+    {
+      "name": "Fundamentals",
+      "url": "https://github.com/Cratis/Fundamentals",
+      "releasesLast30Days": 23,
+      "releasesLast365Days": 108,
+      "latestRelease": {
+        "tag": "v7.25.1",
+        "url": "https://github.com/Cratis/Fundamentals/releases/tag/v7.25.1",
+        "publishedAt": "2026-10-16T21:05:18Z",
+        "kind": "patch"
+      }
+    },
+    {
+      "name": "AuthProxy",
+      "url": "https://github.com/Cratis/AuthProxy",
+      "releasesLast30Days": 18,
+      "releasesLast365Days": 82,
+      "latestRelease": {
+        "tag": "v2.31.2",
+        "url": "https://github.com/Cratis/AuthProxy/releases/tag/v2.31.2",
+        "publishedAt": "2026-10-17T21:17:15Z",
+        "kind": "patch"
+      }
+    },
+    {
+      "name": "Chronicle.Elixir",
+      "url": "https://github.com/Cratis/Chronicle.Elixir",
+      "releasesLast30Days": 16,
+      "releasesLast365Days": 43,
+      "latestRelease": {
+        "tag": "v3.14.2",
+        "url": "https://github.com/Cratis/Chronicle.Elixir/releases/tag/v3.14.2",
+        "publishedAt": "2026-10-15T10:09:46Z",
+        "kind": "patch"
+      }
+    },
+    {
+      "name": "Chronicle.Kotlin",
+      "url": "https://github.com/Cratis/Chronicle.Kotlin",
+      "releasesLast30Days": 15,
+      "releasesLast365Days": 42,
+      "latestRelease": {
+        "tag": "v6.15.0",
+        "url": "https://github.com/Cratis/Chronicle.Kotlin/releases/tag/v6.15.0",
+        "publishedAt": "2026-10-15T07:37:20Z",
+        "kind": "minor"
+      }
+    },
+    {
+      "name": "Chronicle.Go",
+      "url": "https://github.com/Cratis/Chronicle.Go",
+      "releasesLast30Days": 12,
+      "releasesLast365Days": 12,
+      "latestRelease": {
+        "tag": "v0.11.0",
+        "url": "https://github.com/Cratis/Chronicle.Go/releases/tag/v0.11.0",
+        "publishedAt": "2026-10-15T07:42:46Z",
+        "kind": "minor"
+      }
+    },
+    {
+      "name": "Fundamentals.Go",
+      "url": "https://github.com/Cratis/Fundamentals.Go",
+      "releasesLast30Days": 5,
+      "releasesLast365Days": 5,
+      "latestRelease": {
+        "tag": "v0.3.2",
+        "url": "https://github.com/Cratis/Fundamentals.Go/releases/tag/v0.3.2",
+        "publishedAt": "2026-10-04T15:04:22Z",
+        "kind": "patch"
+      }
+    },
+    {
+      "name": "Templates",
+      "url": "https://github.com/Cratis/Templates",
+      "releasesLast30Days": 5,
+      "releasesLast365Days": 20,
+      "latestRelease": {
+        "tag": "v1.8.0",
+        "url": "https://github.com/Cratis/Templates/releases/tag/v1.8.0",
+        "publishedAt": "2026-10-16T11:08:18Z",
+        "kind": "minor"
+      }
+    },
+    {
+      "name": "Cast",
+      "url": "https://github.com/Cratis/Cast",
+      "releasesLast30Days": 4,
+      "releasesLast365Days": 4,
+      "latestRelease": {
+        "tag": "v0.2.2",
+        "url": "https://github.com/Cratis/Cast/releases/tag/v0.2.2",
+        "publishedAt": "2026-10-19T23:02:59Z",
+        "kind": "patch"
+      }
+    },
+    {
+      "name": "release-action",
+      "url": "https://github.com/Cratis/release-action",
+      "releasesLast30Days": 4,
+      "releasesLast365Days": 10,
+      "latestRelease": {
+        "tag": "v1.4.3",
+        "url": "https://github.com/Cratis/release-action/releases/tag/v1.4.3",
+        "publishedAt": "2026-10-19T08:04:23Z",
+        "kind": "patch"
+      }
+    },
+    {
+      "name": "Arc.Kotlin",
+      "url": "https://github.com/Cratis/Arc.Kotlin",
+      "releasesLast30Days": 3,
+      "releasesLast365Days": 27,
+      "latestRelease": {
+        "tag": "v7.7.0",
+        "url": "https://github.com/Cratis/Arc.Kotlin/releases/tag/v7.7.0",
+        "publishedAt": "2026-09-29T22:37:37Z",
+        "kind": "minor"
+      }
+    },
+    {
+      "name": "Prologue",
+      "url": "https://github.com/Cratis/Prologue",
+      "releasesLast30Days": 3,
+      "releasesLast365Days": 8,
+      "latestRelease": {
+        "tag": "v2.0.3",
+        "url": "https://github.com/Cratis/Prologue/releases/tag/v2.0.3",
+        "publishedAt": "2026-10-20T06:12:42Z",
+        "kind": "patch"
+      }
+    },
+    {
+      "name": "Arc.Go",
+      "url": "https://github.com/Cratis/Arc.Go",
+      "releasesLast30Days": 2,
+      "releasesLast365Days": 2,
+      "latestRelease": {
+        "tag": "v0.1.1",
+        "url": "https://github.com/Cratis/Arc.Go/releases/tag/v0.1.1",
+        "publishedAt": "2026-10-11T00:15:09Z",
+        "kind": "patch"
+      }
+    },
+    {
+      "name": "Chronicle.Mcp",
+      "url": "https://github.com/Cratis/Chronicle.Mcp",
+      "releasesLast30Days": 2,
+      "releasesLast365Days": 8,
+      "latestRelease": {
+        "tag": "v2.0.0",
+        "url": "https://github.com/Cratis/Chronicle.Mcp/releases/tag/v2.0.0",
+        "publishedAt": "2026-10-09T22:12:11Z",
+        "kind": "major"
+      }
+    },
+    {
+      "name": "Screenplay.CritterStack",
+      "url": "https://github.com/Cratis/Screenplay.CritterStack",
+      "releasesLast30Days": 2,
+      "releasesLast365Days": 28,
+      "latestRelease": {
+        "tag": "v0.26.0",
+        "url": "https://github.com/Cratis/Screenplay.CritterStack/releases/tag/v0.26.0",
+        "publishedAt": "2026-10-08T06:06:16Z",
+        "kind": "minor"
+      }
+    },
+    {
+      "name": "Prompter",
+      "url": "https://github.com/Cratis/Prompter",
+      "releasesLast30Days": 1,
+      "releasesLast365Days": 7,
+      "latestRelease": {
+        "tag": "v0.2.4",
+        "url": "https://github.com/Cratis/Prompter/releases/tag/v0.2.4",
+        "publishedAt": "2026-09-23T20:00:43Z",
+        "kind": "patch"
+      }
+    },
+    {
+      "name": "Screenplay.Generation",
+      "url": "https://github.com/Cratis/Screenplay.Generation",
+      "releasesLast30Days": 1,
+      "releasesLast365Days": 24,
+      "latestRelease": {
+        "tag": "v0.18.1",
+        "url": "https://github.com/Cratis/Screenplay.Generation/releases/tag/v0.18.1",
+        "publishedAt": "2026-10-06T20:54:35Z",
+        "kind": "patch"
+      }
+    },
+    {
+      "name": "Specifications",
+      "url": "https://github.com/Cratis/Specifications",
+      "releasesLast30Days": 1,
+      "releasesLast365Days": 5,
+      "latestRelease": {
+        "tag": "v4.1.2",
+        "url": "https://github.com/Cratis/Specifications/releases/tag/v4.1.2",
+        "publishedAt": "2026-10-19T09:11:09Z",
+        "kind": "patch"
+      }
+    },
+    {
+      "name": "AI.Distribution",
+      "url": "https://github.com/Cratis/AI.Distribution",
+      "releasesLast30Days": 0,
+      "releasesLast365Days": 4,
+      "latestRelease": {
+        "tag": "v0.3.0",
+        "url": "https://github.com/Cratis/AI.Distribution/releases/tag/v0.3.0",
+        "publishedAt": "2026-09-03T10:24:16Z",
+        "kind": "minor"
+      }
+    },
+    {
+      "name": "Architecture",
+      "url": "https://github.com/Cratis/Architecture",
+      "releasesLast30Days": 0,
+      "releasesLast365Days": 3,
+      "latestRelease": {
+        "tag": "v1.0.2",
+        "url": "https://github.com/Cratis/Architecture/releases/tag/v1.0.2",
+        "publishedAt": "2026-08-05T15:36:52Z",
+        "kind": "patch"
+      }
+    },
+    {
+      "name": "Dockerfiles",
+      "url": "https://github.com/Cratis/Dockerfiles",
+      "releasesLast30Days": 0,
+      "releasesLast365Days": 2,
+      "latestRelease": {
+        "tag": "v8.0.9",
+        "url": "https://github.com/Cratis/Dockerfiles/releases/tag/v8.0.9",
+        "publishedAt": "2025-11-21T11:18:22Z",
+        "kind": "major"
+      }
+    },
+    {
+      "name": "Eventmodelers-Build-Kit-Java",
+      "url": "https://github.com/Cratis/Eventmodelers-Build-Kit-Java",
+      "releasesLast30Days": 0,
+      "releasesLast365Days": 2,
+      "latestRelease": {
+        "tag": "v1.0.0",
+        "url": "https://github.com/Cratis/Eventmodelers-Build-Kit-Java/releases/tag/v1.0.0",
+        "publishedAt": "2026-09-18T07:17:12Z",
+        "kind": "major"
+      }
+    },
+    {
+      "name": "Eventmodelers-Build-Kit-Kotlin",
+      "url": "https://github.com/Cratis/Eventmodelers-Build-Kit-Kotlin",
+      "releasesLast30Days": 0,
+      "releasesLast365Days": 2,
+      "latestRelease": {
+        "tag": "v1.0.0",
+        "url": "https://github.com/Cratis/Eventmodelers-Build-Kit-Kotlin/releases/tag/v1.0.0",
+        "publishedAt": "2026-09-18T07:17:22Z",
+        "kind": "major"
+      }
+    },
+    {
+      "name": "Lens",
+      "url": "https://github.com/Cratis/Lens",
+      "releasesLast30Days": 0,
+      "releasesLast365Days": 1,
+      "latestRelease": {
+        "tag": "v0.0.1",
+        "url": "https://github.com/Cratis/Lens/releases/tag/v0.0.1",
+        "publishedAt": "2026-08-05T15:20:18Z",
+        "kind": "initial"
+      }
+    },
+    {
+      "name": "Narrator",
+      "url": "https://github.com/Cratis/Narrator",
+      "releasesLast30Days": 0,
+      "releasesLast365Days": 17,
+      "latestRelease": {
+        "tag": "v3.0.2",
+        "url": "https://github.com/Cratis/Narrator/releases/tag/v3.0.2",
+        "publishedAt": "2026-09-10T17:25:30Z",
+        "kind": "patch"
+      }
+    },
+    {
+      "name": "Synopsis",
+      "url": "https://github.com/Cratis/Synopsis",
+      "releasesLast30Days": 0,
+      "releasesLast365Days": 6,
+      "latestRelease": {
+        "tag": "v1.1.3",
+        "url": "https://github.com/Cratis/Synopsis/releases/tag/v1.1.3",
+        "publishedAt": "2026-09-12T18:48:10Z",
+        "kind": "patch"
+      }
+    }
+  ],
+  "milestones": {
+    "reached": [
+      {
+        "id": "releases-all-time-2500",
+        "label": "2,500 releases",
+        "reachedOn": "2026-09-24"
+      },
+      {
+        "id": "streak-50",
+        "label": "50-day release streak",
+        "reachedOn": "2026-05-22"
+      },
+      {
+        "id": "streak-30",
+        "label": "30-day release streak",
+        "reachedOn": "2026-05-02"
+      },
+      {
+        "id": "releases-all-time-1000",
+        "label": "1,000 releases",
+        "reachedOn": "2026-03-13"
+      }
+    ],
+    "next": [
+      {
+        "id": "releases-all-time-5000",
+        "label": "5,000 releases",
+        "remaining": 722
+      },
+      {
+        "id": "streak-100",
+        "label": "100-day release streak",
+        "remaining": 23
+      }
+    ]
+  }
+}

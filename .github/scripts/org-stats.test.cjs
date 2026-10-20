@@ -96,7 +96,7 @@ test('week numbers and Discord include kinds, linked contributors, digest link a
     assert.match(renderWeekNumbers(numbers), /\[@octo\]\(https:\/\/github.com\/octo\)/);
     const payload = weeklyDiscord(numbers, 'https://github.com/Cratis/.github/blob/main/release-digests/week.md');
     assert.match(payload.embeds[0].url, /release-digests\/week.md$/);
-    assert.match(payload.embeds[0].description, /0 major, 1 minor, 1 patch/);
+    assert.match(payload.embeds[0].description, /1 minor, 1 patch/);
     assert.deepEqual(payload.allowed_mentions, { parse: [] });
     assert.equal(milestoneDiscord(snapshot, snapshot), null);
     const changed = structuredClone(snapshot);

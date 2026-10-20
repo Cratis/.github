@@ -18,7 +18,8 @@ function renderCalendar(snapshot) {
             const count = counts.get(day);
             // The JSON promises 365 days; at most six earlier grid cells have no data.
             if (count === undefined) continue;
-            const bucket = count ? Math.min(4, Math.ceil(count / max * 4)) : 0;
+            // Logarithmic buckets: a few very busy days must not flatten the rest of the year.
+            const bucket = count ? Math.max(1, Math.min(4, Math.ceil(Math.log1p(count) / Math.log1p(max) * 4))) : 0;
             lines.push(`<rect x="${week * 14}" y="${weekday * 14}" width="11" height="11" rx="2" fill="${colors[bucket]}"><title>${day}: ${count} releases</title></rect>`);
         }
     }
@@ -26,10 +27,14 @@ function renderCalendar(snapshot) {
     colors.forEach((color, i) => lines.push(`<rect x="${609 + i * 18}" y="113" width="11" height="11" rx="2" fill="${color}"/>`));
     return lines.join('\n') + '\n</svg>\n';
 }
+const plural = (count, word) => `${count.toLocaleString('en-US')} ${word}${count === 1 ? '' : 's'}`;
+// Name only the kinds that occurred, e.g. "442 minor, 235 patch".
+const kindsText = kinds => ['major', 'minor', 'patch', 'prerelease'].filter(kind => kinds[kind] > 0)
+    .map(kind => `${kinds[kind].toLocaleString('en-US')} ${kind}`).join(', ');
 function renderProfile(snapshot) {
     const r = snapshot.releases, kinds = r.last7DaysByKind;
     return ['<!-- org-stats:start -->',
-        `Last 7 days: **${r.last7Days.toLocaleString('en-US')} releases** (${kinds.major} major, ${kinds.minor} minor), **${snapshot.mergedPullRequests.last7Days.toLocaleString('en-US')} merged pull requests**, **${snapshot.issues.closedLast7Days.toLocaleString('en-US')} issues closed** · **${r.streak.currentDays}-day** release streak.`, '',
+        `Last 7 days: **${r.last7Days.toLocaleString('en-US')} releases** (${(kinds.major + kinds.minor).toLocaleString('en-US')} of them major or minor), **${snapshot.mergedPullRequests.last7Days.toLocaleString('en-US')} merged pull requests**, **${snapshot.issues.closedLast7Days.toLocaleString('en-US')} issues closed** · **${r.streak.currentDays}-day** release streak.`, '',
         '![Daily releases over the last 53 weeks](https://raw.githubusercontent.com/Cratis/.github/main/stats/release-calendar.svg)', '<!-- org-stats:end -->'].join('\n');
 }
 function updateProfile(readme, snapshot) {
@@ -44,11 +49,11 @@ const markdown = text => String(text).replace(/[\\`*_{}\[\]()<>#!|~]/g, '\\$&').
 function renderWeekNumbers(numbers) {
     const b = numbers.busiestRepository;
     return ['## Week in numbers', '',
-        `- **${numbers.releases.toLocaleString('en-US')} releases**: ${numbers.kinds.major} major, ${numbers.kinds.minor} minor, ${numbers.kinds.patch} patch, ${numbers.kinds.prerelease} prerelease.`,
+        `- **${plural(numbers.releases, 'release')}**${numbers.releases ? `: ${kindsText(numbers.kinds)}` : ''}.`,
         `- **${numbers.mergedPullRequests.toLocaleString('en-US')} merged pull requests** and **${numbers.issuesClosed.toLocaleString('en-US')} issues closed**.`,
         `- Busiest repository: ${b ? `[${markdown(b.name)}](${b.url}) (${b.releases} releases)` : 'none'}.`,
-        `- Current daily release streak: **${numbers.currentStreak} days**.`,
-        `- First-time contributors: ${numbers.firstTime.length ? numbers.firstTime.map(c => `[@${markdown(c.login)}](${c.profileUrl})`).join(', ') : 'none this week'}.`, ''].join('\n');
+        `- Current daily release streak: **${plural(numbers.currentStreak, 'day')}**.`,
+        ...(numbers.firstTime.length ? [`- Welcome to our first-time contributors: ${numbers.firstTime.map(c => `[@${markdown(c.login)}](${c.profileUrl})`).join(', ')}! 🎉`] : []), ''].join('\n');
 }
 function weeklyDiscord(numbers, digestUrl) {
     return { allowed_mentions: { parse: [] }, embeds: [{ title: 'Cratis · Week in numbers', url: digestUrl,

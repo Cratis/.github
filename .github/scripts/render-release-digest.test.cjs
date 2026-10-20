@@ -210,7 +210,7 @@ test('the workflow uses the same deterministic final renderer (offline script ha
     assert.equal(writes.length, 1);
     assert.equal(writes[0].file, '/offline/weekly-release-summary.md');
     assert.ok(writes[0].text.indexOf('## Week in numbers') < writes[0].text.indexOf('## Version movement'));
-    assert.match(writes[0].text, /1 releases.*0 major, 1 minor, 0 patch/);
+    assert.match(writes[0].text, /1 release\*\*: 1 minor\./);
     assert.match(writes[0].text, /## Added\n\n- \*\*Arc\*\*/);
     assert.match(writes[0].text, /Analyzer families `ARC\*` and `ARCCHR\*` for @contributor \(#2286\)\./);
     assert.ok(writes[0].text.includes('[Guide](https://github.com/Cratis/Arc/blob/v20.47.0/Documentation/guide.md?q=1#part) and `[code](./untouched.md)`.'));
