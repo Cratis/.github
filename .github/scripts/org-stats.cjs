@@ -170,4 +170,4 @@ function weekNumbers({ releases, counts, contributors, streak, since, until, pul
         ...(leadTime ? { deliveryLeadTime: leadTime } : {}),
         currentStreak: streak.currentDays, firstTime: contributors.filter(c => c.firstMergedAt >= since && c.firstMergedAt < until) };
 }
-module.exports = { DAY, scope, date, shift, monday, monthStart, isBot, classifyRelease, prepareReleases, streaks, kinds, repositoryReleases, deliveryLeadTime, milestones, windows, aggregate, weekNumbers };
+module.exports = { DAY, scope, date, shift, monday, monthStart, isBot, version, classifyRelease, prepareReleases, streaks, kinds, repositoryReleases, deliveryLeadTime, milestones, windows, aggregate, weekNumbers };
