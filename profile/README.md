@@ -5,9 +5,9 @@
 **At a glance**
 
 <!-- org-stats:start -->
-Last 7 days: **651 releases** (424 of them major or minor), **1,021 merged pull requests**, **1,200 issues closed** · **77-day** release streak.
+Last 7 days: **611 releases** (379 of them major or minor), **988 merged pull requests**, **1,153 issues closed** · **78-day** release streak.
 
-Most releases this week: [Stage](https://github.com/Cratis/Stage) 131 · [Screenplay](https://github.com/Cratis/Screenplay) 105 · [Chronicle](https://github.com/Cratis/Chronicle) 92
+Most releases this week: [Stage](https://github.com/Cratis/Stage) 128 · [Screenplay](https://github.com/Cratis/Screenplay) 98 · [Scene](https://github.com/Cratis/Scene) 78
 
 ![Daily releases over the last 53 weeks](https://raw.githubusercontent.com/Cratis/.github/main/stats/release-calendar.svg)
 <!-- org-stats:end -->

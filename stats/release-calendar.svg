@@ -1,7 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 742 136" role="img" aria-labelledby="title description">
 <title id="title">Cratis daily releases</title>
 <desc id="description">53 weeks of daily releases. Weeks start Monday. Darker green means more releases.</desc>
-<rect x="0" y="14" width="11" height="11" rx="2" fill="#45ac78"><title>2025-10-21: 5 releases — Arc 2, Chronicle 2, Fundamentals 1</title></rect>
 <rect x="0" y="28" width="11" height="11" rx="2" fill="#83cfa0"><title>2025-10-22: 1 releases — Arc 1</title></rect>
 <rect x="0" y="42" width="11" height="11" rx="2" fill="#45ac78"><title>2025-10-23: 3 releases — Arc 3</title></rect>
 <rect x="0" y="56" width="11" height="11" rx="2" fill="#83cfa0"><title>2025-10-24: 1 releases — Arc 1</title></rect>
@@ -365,7 +364,8 @@
 <rect x="714" y="70" width="11" height="11" rx="2" fill="#17623f"><title>2026-10-17: 96 releases — Chronicle 17, Screenplay 14, AI 13 and 8 more repositories</title></rect>
 <rect x="714" y="84" width="11" height="11" rx="2" fill="#17623f"><title>2026-10-18: 102 releases — Stage 23, Screenplay 22, Arc 15 and 6 more repositories</title></rect>
 <rect x="728" y="0" width="11" height="11" rx="2" fill="#17623f"><title>2026-10-19: 117 releases — Stage 29, Screenplay 15, AI 14 and 11 more repositories</title></rect>
-<rect x="728" y="14" width="11" height="11" rx="2" fill="#17623f"><title>2026-10-20: 57 releases — Chronicle 14, Stage 13, cli 8 and 5 more repositories</title></rect>
+<rect x="728" y="14" width="11" height="11" rx="2" fill="#17623f"><title>2026-10-20: 91 releases — Stage 23, Chronicle 15, Scene 11 and 20 more repositories</title></rect>
+<rect x="728" y="28" width="11" height="11" rx="2" fill="#45ac78"><title>2026-10-21: 8 releases — Screenplay 4, Scene 2, cli 1 and 1 more repositories</title></rect>
 <g font-family="system-ui, sans-serif" font-size="10" fill="#808080"><text x="0" y="123">Daily releases · UTC · Monday–Sunday</text><text x="577" y="123">Less</text><text x="708" y="123">More</text></g>
 <rect x="609" y="113" width="11" height="11" rx="2" fill="#88909633"/>
 <rect x="627" y="113" width="11" height="11" rx="2" fill="#83cfa0"/>
