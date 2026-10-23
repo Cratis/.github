@@ -24,20 +24,22 @@ observable changes from the diff, specs, linked issues/PRs, and authoritative
 product source at that revision. A PR description is published verbatim as
 release notes in a Cratis repository; follow its current template and the
 pull-request contract, and confirm that behavior before drafting. Do not turn
-an unreleased draft into a claim about shipped behavior.
+a draft into a claim about shipped behavior.
 
 For each change, ask: who uses this path, what happened before, what happens
 now, is action required, and how would they notice? Check changed defaults,
 serialization/schema/data migrations, runtime and dependency compatibility,
 deploy ordering, deprecations/removals, and upgrade/rollback limits. Report
-'not verified' rather than guessing about a supported configuration.
+what was not verified to the requester or in a PR comment; the published note
+states only verified facts and never says 'not verified'.
 
 Cratis products move together at their seams: the Chronicle kernel and its
 clients, Arc and Chronicle, Components and Arc. When a change touches a
-seam, state the pairings you verified (for example, which kernel versions a
-client release was tested against) and say which pairings are unverified.
-There is no central compatibility matrix to defer to, so the release note may
-be the only place a reader learns it. Where a measurement drove the change,
+seam, state supported pairings as facts the reader can act on ('Requires
+Chronicle kernel 19.25 or later'). Which pairings were tested, and against
+which branch or commit, is evidence for the PR comment. There is no central
+compatibility matrix to defer to, so the release note may be the only place
+a reader learns the supported pairings. Where a measurement drove the change,
 such as how many deployments hit a failure, give the number; never estimate
 one to add weight.
 
@@ -52,7 +54,9 @@ one to add weight.
   `(part of #n)` for anything that stays open (in repositories released by
   `cratis/release-action`, `(#n)` is what closes the issue), never `Closes`, `Fixes` or
   `Refs` before a number (also in bold or a link), and no issue reference
-  inside an HTML comment, which still closes the issue; and absolute
+  inside an HTML comment (release-action removes comments before publishing,
+  so the issue is silently not closed; a body that is only a comment counts as
+  empty and GitHub generates the notes); and absolute
   `https://` links only. Sections are in
   a fixed order (Added, Changed, Fixed, Removed, Security, Deprecated); within
   a section, put changes requiring action first, then new capabilities and
@@ -100,6 +104,7 @@ Only when asked to fix a release that violates the contract:
    `https://` URLs. Do not invent changes, versions or issue numbers.
 2. Publish the corrected text with `gh release edit TAG --notes-file FILE`,
    only when the request authorizes editing that release.
+   Read back the body with `gh release view TAG --json body` and compare it with the corrected text. If it differs, correct and repeat the authorized edit and readback, or report the blocker rather than claiming the repair succeeded.
 3. In a repository released by `cratis/release-action`, editing a release
    does not re-run release-action, so an issue that a `(#n)` would have
    closed stays open. For each one, confirm the release
@@ -126,8 +131,9 @@ Only when asked to fix a release that violates the contract:
    metadata, and explicit `**You do:**` actions.
    Check `sync-upgrade-paths.mjs` and an existing guide before changing that
    structure, then verify the generated picker as well as the page.
-4. Name the checks actually run and the combinations not checked. Do not
-   imply that a green docs build proved an upgrade safe.
+4. Name the checks actually run and the combinations not checked to the
+   requester or in a PR comment, never in the published note. Do not imply
+   that a green docs build proved an upgrade safe.
 
 The pattern is informed by [Wolverine's migration guide](https://wolverinefx.io/guide/migration.html)
 and [Marten's migration guide](https://martendb.io/migration-guide.html),
