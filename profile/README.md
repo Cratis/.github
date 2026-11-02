@@ -5,7 +5,7 @@
 **At a glance**
 
 <!-- org-stats:start -->
-Last 7 days: **167 releases** (92 of them major or minor), **222 merged pull requests**, **460 issues closed** · **89-day** release streak.
+Last 7 days: **167 releases** (92 with new features, 73 with fixes, no breaking changes), **222 merged pull requests**, **460 issues closed** · **89-day** release streak.
 
 Most releases this week: [cli](https://github.com/Cratis/cli) 25 · [Chronicle](https://github.com/Cratis/Chronicle) 18 · [Arc](https://github.com/Cratis/Arc) 17
 

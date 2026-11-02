@@ -86,6 +86,8 @@ test('profile keeps its top-three linked release leaders on one line and support
     const snapshot = aggregate(input(['Arc', 'Chronicle', 'Stage', 'Zulu'].map(name => repository(name, [publishedAt]))));
     const text = renderProfile(snapshot);
     assert.match(text, /release streak\.\n\nMost releases this week:/);
+    assert.match(text, /\*\*4 releases\*\* \(no breaking changes\)/);
+    assert.doesNotMatch(text, /major or minor/);
     assert.equal(text.split('\n').find(line => line.startsWith('Most releases')), 'Most releases this week: [Arc](https://github.com/Cratis/Arc) 1 · [Chronicle](https://github.com/Cratis/Chronicle) 1 · [Stage](https://github.com/Cratis/Stage) 1');
     delete snapshot.releasesThisWeek;
     assert.doesNotMatch(renderProfile(snapshot), /Most releases/);
