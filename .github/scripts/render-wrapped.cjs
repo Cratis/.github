@@ -4,7 +4,7 @@
 const { markdown, plural, kindsText, humanDuration } = require('./render-org-stats.cjs');
 const title = numbers => `Cratis Wrapped ${numbers.year}${numbers.partial ? ` (so far, until ${numbers.until.slice(0, 10)})` : ''}`;
 function headline(numbers) {
-    const split = kindsText(numbers.kinds);
+    const split = numbers.releases ? kindsText(numbers.kinds) : '';
     return [`- **${plural(numbers.releases, 'release')}**${split ? ` (${split})` : ''}.`,
         `- **${plural(numbers.mergedPullRequests, 'merged pull request')}** and **${plural(numbers.issuesClosed, 'issue')} closed**.`,
         `- **${numbers.repositoriesReleased.toLocaleString('en-US')} ${numbers.repositoriesReleased === 1 ? 'repository' : 'repositories'}** released.`].join('\n');

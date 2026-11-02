@@ -35,13 +35,22 @@ function renderCalendar(snapshot) {
     return lines.join('\n') + '\n</svg>\n';
 }
 const plural = (count, word) => `${count.toLocaleString('en-US')} ${word}${count === 1 ? '' : 's'}`;
-// Name only the kinds that occurred, e.g. "442 minor, 235 patch".
-const kindsText = kinds => ['major', 'minor', 'patch', 'prerelease'].filter(kind => kinds[kind] > 0)
-    .map(kind => `${kinds[kind].toLocaleString('en-US')} ${kind}`).join(', ');
+// Release kinds in plain words: minor = new features, patch = fixes, major = breaking changes. Name only the non-breaking
+// kinds that occurred, and always state the breaking count, so "major or minor" is never read as "breaking".
+// e.g. "92 with new features, 73 with fixes, no breaking changes".
+const kindsText = kinds => {
+    const count = kind => (kinds[kind] || 0).toLocaleString('en-US');
+    const parts = [];
+    if (kinds.minor > 0) parts.push(`${count('minor')} with new features`);
+    if (kinds.patch > 0) parts.push(`${count('patch')} with fixes`);
+    if (kinds.prerelease > 0) parts.push(`${count('prerelease')} ${kinds.prerelease === 1 ? 'preview' : 'previews'}`);
+    parts.push(kinds.major > 0 ? `${count('major')} with breaking changes` : 'no breaking changes');
+    return parts.join(', ');
+};
 function renderProfile(snapshot) {
     const r = snapshot.releases, kinds = r.last7DaysByKind;
     return ['<!-- org-stats:start -->',
-        `Last 7 days: **${plural(r.last7Days, 'release')}** (${(kinds.major + kinds.minor).toLocaleString('en-US')} of them major or minor), **${plural(snapshot.mergedPullRequests.last7Days, 'merged pull request')}**, **${plural(snapshot.issues.closedLast7Days, 'issue')} closed** · **${r.streak.currentDays}-day** release streak.`,
+        `Last 7 days: **${plural(r.last7Days, 'release')}**${r.last7Days ? ` (${kindsText(kinds)})` : ''}, **${plural(snapshot.mergedPullRequests.last7Days, 'merged pull request')}**, **${plural(snapshot.issues.closedLast7Days, 'issue')} closed** · **${r.streak.currentDays}-day** release streak.`,
         ...(snapshot.releasesThisWeek?.length ? ['', `Most releases this week: ${snapshot.releasesThisWeek.slice(0, 3).map(r => {
             const url = snapshot.repositories.find(repository => repository.name === r.name)?.url;
             return `${url ? `[${markdown(r.name)}](${url})` : markdown(r.name)} ${r.releases}`;

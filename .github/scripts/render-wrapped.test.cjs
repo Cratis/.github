@@ -25,7 +25,7 @@ test('empty rendering omits contributors and zero kinds, but retains all require
     assert.ok(rendered.startsWith('# Cratis Wrapped 2024\n'));
     for (const section of ['Month by month', 'Top repositories by releases', 'Biggest version jumps', 'Busiest day and longest release streak', 'Delivery lead time', 'Milestones reached']) assert.ok(rendered.includes(`## ${section}`));
     assert.ok(rendered.includes('**0 repositories** released.'));
-    assert.doesNotMatch(rendered, /First-time contributors|0 major|0 minor|0 patch|0 prerelease/);
+    assert.doesNotMatch(rendered, /First-time contributors|0 major|0 minor|0 patch|0 prerelease|breaking/);
     assert.ok(rendered.endsWith('\n'));
 });
 test('rendering escapes GitHub text and includes versions, durations, contributors and milestones', () => {
@@ -39,7 +39,7 @@ test('rendering escapes GitHub text and includes versions, durations, contributo
         milestones: [{ label: '1,000 releases*', reachedOn: '2026-01-02' }] };
     const rendered = renderWrapped(numbers);
     assert.ok(rendered.startsWith('# Cratis Wrapped 2026 (so far, until 2026-08-20)\n'));
-    assert.ok(rendered.includes('**1 release** (1 major)'));
+    assert.ok(rendered.includes('**1 release** (1 with breaking changes)'));
     assert.ok(rendered.includes('**1 repository** released.'));
     assert.ok(rendered.includes('[A\\*\\[B\\]\\| ](https://github.com/Cratis/A) v1\\_\\* → v2\\|'));
     assert.ok(rendered.includes('median **10 minutes**, 90th percentile **2 hours**'));

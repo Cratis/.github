@@ -96,7 +96,7 @@ test('week numbers and Discord include kinds, linked contributors, digest link a
     assert.match(renderWeekNumbers(numbers), /\[@octo\]\(https:\/\/github.com\/octo\)/);
     const payload = weeklyDiscord(numbers, 'https://github.com/Cratis/.github/blob/main/release-digests/week.md');
     assert.match(payload.embeds[0].url, /release-digests\/week.md$/);
-    assert.match(payload.embeds[0].description, /1 minor, 1 patch/);
+    assert.match(payload.embeds[0].description, /1 with new features, 1 with fixes, 1 preview, no breaking changes/);
     assert.deepEqual(payload.allowed_mentions, { parse: [] });
     assert.equal(milestoneDiscord(snapshot, snapshot), null);
     const changed = structuredClone(snapshot);
@@ -188,7 +188,9 @@ test('a stable release is classified against the previous stable release, not an
 test('week in numbers names only the kinds that occurred, pluralises and welcomes first-time contributors', () => {
     const text = renderWeekNumbers({ releases: 1, kinds: { major: 0, minor: 1, patch: 0, prerelease: 0 }, mergedPullRequests: 1, issuesClosed: 2,
         busiestRepository: null, currentStreak: 1, firstTime: [{ login: 'octo', profileUrl: 'https://github.com/octo' }] });
-    assert.match(text, /\*\*1 release\*\*: 1 minor\./);
+    assert.match(text, /\*\*1 release\*\*: 1 with new features, no breaking changes\./);
+    assert.match(renderWeekNumbers({ releases: 2, kinds: { major: 2, minor: 0, patch: 0, prerelease: 0 }, mergedPullRequests: 0, issuesClosed: 0,
+        busiestRepository: null, currentStreak: 0, firstTime: [] }), /\*\*2 releases\*\*: 2 with breaking changes\./);
     assert.match(text, /\*\*1 merged pull request\*\* and \*\*2 issues closed\*\*/);
     assert.match(text, /\*\*1 day\*\*/);
     assert.match(text, /Welcome to our first-time contributors: \[@octo\]\(https:\/\/github.com\/octo\)/);
