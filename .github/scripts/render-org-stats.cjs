@@ -47,10 +47,29 @@ const kindsText = kinds => {
     parts.push(kinds.major > 0 ? `${count('major')} with breaking changes` : 'no breaking changes');
     return parts.join(', ');
 };
+const longDate = day => new Date(`${day}T00:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+// Yearly totals, then lead time and the busiest day; each part only when the snapshot has it (older snapshots lack some).
+function profileHighlights(snapshot) {
+    const r = snapshot.releases, lines = [];
+    const year = [Number.isFinite(r.last365Days) && `**${plural(r.last365Days, 'release')}**`,
+        Number.isFinite(snapshot.mergedPullRequests?.last365Days) && `**${plural(snapshot.mergedPullRequests.last365Days, 'merged pull request')}**`,
+        Number.isFinite(snapshot.issues?.closedLast365Days) && `**${plural(snapshot.issues.closedLast365Days, 'issue')} closed**`].filter(Boolean);
+    if (year.length) {
+        const list = year.length > 1 ? `${year.slice(0, -1).join(', ')} and ${year[year.length - 1]}` : year[0];
+        const across = snapshot.repositoryCount ? ` across **${plural(snapshot.repositoryCount, 'public repository').replace(/repositorys$/, 'repositories')}**` : '';
+        lines.push(`Last 365 days: ${list}${across}.`);
+    }
+    const opened = snapshot.deliveryLeadTime?.openedToRelease, busiest = r.busiestDay;
+    const facts = [opened && `From pull request opened to released: median **${humanDuration(opened.medianMinutes)}** (90% within ${humanDuration(opened.p90Minutes)})`,
+        busiest?.date && busiest.count > 0 && `Busiest day on record: **${plural(busiest.count, 'release')}** on ${longDate(busiest.date)}`].filter(Boolean);
+    if (facts.length) lines.push(`${facts.join(' · ')}.`);
+    return lines;
+}
 function renderProfile(snapshot) {
-    const r = snapshot.releases, kinds = r.last7DaysByKind;
+    const r = snapshot.releases, kinds = r.last7DaysByKind, highlights = profileHighlights(snapshot);
     return ['<!-- org-stats:start -->',
         `Last 7 days: **${plural(r.last7Days, 'release')}**${r.last7Days ? ` (${kindsText(kinds)})` : ''}, **${plural(snapshot.mergedPullRequests.last7Days, 'merged pull request')}**, **${plural(snapshot.issues.closedLast7Days, 'issue')} closed** · **${r.streak.currentDays}-day** release streak.`,
+        ...highlights.flatMap(line => ['', line]),
         ...(snapshot.releasesThisWeek?.length ? ['', `Most releases this week: ${snapshot.releasesThisWeek.slice(0, 3).map(r => {
             const url = snapshot.repositories.find(repository => repository.name === r.name)?.url;
             return `${url ? `[${markdown(r.name)}](${url})` : markdown(r.name)} ${r.releases}`;

@@ -85,7 +85,8 @@ test('calendar titles show the top three, remaining count and XML-escaped reposi
 test('profile keeps its top-three linked release leaders on one line and supports older snapshots', () => {
     const snapshot = aggregate(input(['Arc', 'Chronicle', 'Stage', 'Zulu'].map(name => repository(name, [publishedAt]))));
     const text = renderProfile(snapshot);
-    assert.match(text, /release streak\.\n\nMost releases this week:/);
+    assert.match(text, /release streak\.\n\nLast 365 days: \*\*4 releases\*\*, \*\*0 merged pull requests\*\* and \*\*0 issues closed\*\* across \*\*4 public repositories\*\*\.\n\n/);
+    assert.match(text, /Busiest day on record: \*\*4 releases\*\* on 20 October 2026\.\n\nMost releases this week:/);
     assert.match(text, /\*\*4 releases\*\* \(no breaking changes\)/);
     assert.doesNotMatch(text, /major or minor/);
     assert.equal(text.split('\n').find(line => line.startsWith('Most releases')), 'Most releases this week: [Arc](https://github.com/Cratis/Arc) 1 · [Chronicle](https://github.com/Cratis/Chronicle) 1 · [Stage](https://github.com/Cratis/Stage) 1');
@@ -93,6 +94,16 @@ test('profile keeps its top-three linked release leaders on one line and support
     assert.doesNotMatch(renderProfile(snapshot), /Most releases/);
     snapshot.releasesThisWeek = [];
     assert.doesNotMatch(renderProfile(snapshot), /Most releases/);
+});
+test('profile highlights show lead time and busiest day, and skip what older snapshots lack', () => {
+    const snapshot = aggregate(input([repository('Arc', [publishedAt])]));
+    snapshot.deliveryLeadTime = { windowDays: 30, matchedReleases: 1, mergeToRelease: { medianMinutes: 0.7, p90Minutes: 15.2 }, openedToRelease: { medianMinutes: 27.5, p90Minutes: 284 } };
+    assert.match(renderProfile(snapshot), /From pull request opened to released: median \*\*27 minutes\*\* \(90% within 4 hours\) · Busiest day on record: \*\*1 release\*\* on 20 October 2026\./);
+    assert.match(renderProfile(snapshot), /across \*\*1 public repository\*\*/);
+    delete snapshot.deliveryLeadTime; delete snapshot.releases.busiestDay; delete snapshot.mergedPullRequests.last365Days; delete snapshot.issues.closedLast365Days; delete snapshot.repositoryCount;
+    const text = renderProfile(snapshot);
+    assert.match(text, /Last 365 days: \*\*1 release\*\*\.\n/);
+    assert.doesNotMatch(text, /From pull request|Busiest day|across/);
 });
 test('human durations use minutes, hours and days with singular and sub-minute handling', () => {
     for (const [minutes, expected] of [[0.1, '< 1 minute'], [1, '1 minute'], [2.1, '2 minutes'], [59, '59 minutes'], [60, '1 hour'], [120, '2 hours'], [1440, '1 day'], [2880, '2 days']]) {
