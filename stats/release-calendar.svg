@@ -1,7 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 742 136" role="img" aria-labelledby="title description">
 <title id="title">Cratis daily releases</title>
 <desc id="description">53 weeks of daily releases. Weeks start Monday. Darker green means more releases.</desc>
-<rect x="0" y="14" width="11" height="11" rx="2" fill="#45ac78"><title>2025-11-04: 6 releases — Chronicle 6</title></rect>
 <rect x="0" y="28" width="11" height="11" rx="2" fill="#83cfa0"><title>2025-11-05: 1 releases — Arc 1</title></rect>
 <rect x="0" y="42" width="11" height="11" rx="2" fill="#45ac78"><title>2025-11-06: 3 releases — Chronicle 2, Arc 1</title></rect>
 <rect x="0" y="56" width="11" height="11" rx="2" fill="#45ac78"><title>2025-11-07: 5 releases — Chronicle 5</title></rect>
@@ -318,10 +317,10 @@
 <rect x="630" y="0" width="11" height="11" rx="2" fill="#45ac78"><title>2026-09-14: 3 releases — Arc 1, Components 1, Templates 1</title></rect>
 <rect x="630" y="14" width="11" height="11" rx="2" fill="#17623f"><title>2026-09-15: 40 releases — AI 28, Components 5, Arc 2 and 5 more repositories</title></rect>
 <rect x="630" y="28" width="11" height="11" rx="2" fill="#248557"><title>2026-09-16: 30 releases — AI 8, Arc.Kotlin 4, cli 4 and 8 more repositories</title></rect>
-<rect x="630" y="42" width="11" height="11" rx="2" fill="#17623f"><title>2026-09-17: 42 releases — Chronicle 7, cli 7, Orleans 6 and 9 more repositories</title></rect>
+<rect x="630" y="42" width="11" height="11" rx="2" fill="#17623f"><title>2026-09-17: 42 releases — Chronicle 7, cli 7, Choreography 6 and 9 more repositories</title></rect>
 <rect x="630" y="56" width="11" height="11" rx="2" fill="#248557"><title>2026-09-18: 14 releases — AI 2, Arc.Kotlin 2, Eventmodelers-Build-Kit-Java 2 and 7 more repositories</title></rect>
 <rect x="630" y="70" width="11" height="11" rx="2" fill="#248557"><title>2026-09-19: 11 releases — Arc.Kotlin 3, Chronicle 2, Chronicle.Kotlin 2 and 3 more repositories</title></rect>
-<rect x="630" y="84" width="11" height="11" rx="2" fill="#45ac78"><title>2026-09-20: 5 releases — Chronicle 2, Orleans 2, Stage 1</title></rect>
+<rect x="630" y="84" width="11" height="11" rx="2" fill="#45ac78"><title>2026-09-20: 5 releases — Choreography 2, Chronicle 2, Stage 1</title></rect>
 <rect x="644" y="0" width="11" height="11" rx="2" fill="#248557"><title>2026-09-21: 13 releases — Components 5, Stage 3, Chronicle 2 and 3 more repositories</title></rect>
 <rect x="644" y="14" width="11" height="11" rx="2" fill="#248557"><title>2026-09-22: 23 releases — Chronicle 7, Components 5, Arc 4 and 5 more repositories</title></rect>
 <rect x="644" y="28" width="11" height="11" rx="2" fill="#17623f"><title>2026-09-23: 49 releases — AI 9, cli 8, Chronicle 7 and 13 more repositories</title></rect>
@@ -355,7 +354,7 @@
 <rect x="700" y="28" width="11" height="11" rx="2" fill="#248557"><title>2026-10-21: 33 releases — Stage 8, Scene 7, Screenplay 7 and 6 more repositories</title></rect>
 <rect x="700" y="42" width="11" height="11" rx="2" fill="#248557"><title>2026-10-22: 22 releases — Chronicle 10, Arc 3, Stage 3 and 5 more repositories</title></rect>
 <rect x="700" y="56" width="11" height="11" rx="2" fill="#248557"><title>2026-10-23: 26 releases — AI 6, Specifications 5, Arc 4 and 7 more repositories</title></rect>
-<rect x="700" y="70" width="11" height="11" rx="2" fill="#17623f"><title>2026-10-24: 52 releases — AI 7, Orleans 6, Fundamentals.Kotlin 5 and 16 more repositories</title></rect>
+<rect x="700" y="70" width="11" height="11" rx="2" fill="#17623f"><title>2026-10-24: 52 releases — AI 7, Choreography 6, Fundamentals.Kotlin 5 and 16 more repositories</title></rect>
 <rect x="700" y="84" width="11" height="11" rx="2" fill="#17623f"><title>2026-10-25: 60 releases — AI 18, Arc 6, Screenplay 6 and 9 more repositories</title></rect>
 <rect x="714" y="0" width="11" height="11" rx="2" fill="#248557"><title>2026-10-26: 20 releases — cli 6, Screenplay 5, Scene 3 and 4 more repositories</title></rect>
 <rect x="714" y="14" width="11" height="11" rx="2" fill="#248557"><title>2026-10-27: 18 releases — cli 4, Stage.Axon 4, Arc 3 and 5 more repositories</title></rect>
@@ -365,7 +364,8 @@
 <rect x="714" y="70" width="11" height="11" rx="2" fill="#17623f"><title>2026-10-31: 36 releases — Prompter 10, Showrunner 9, Chronicle 5 and 7 more repositories</title></rect>
 <rect x="714" y="84" width="11" height="11" rx="2" fill="#17623f"><title>2026-11-01: 46 releases — Arc 7, Prompter 7, cli 6 and 11 more repositories</title></rect>
 <rect x="728" y="0" width="11" height="11" rx="2" fill="#248557"><title>2026-11-02: 28 releases — Arc 6, Prompter 5, Stage 3 and 11 more repositories</title></rect>
-<rect x="728" y="14" width="11" height="11" rx="2" fill="#248557"><title>2026-11-03: 19 releases — Prompter 6, Components 3, AI 2 and 5 more repositories</title></rect>
+<rect x="728" y="14" width="11" height="11" rx="2" fill="#17623f"><title>2026-11-03: 42 releases — Chronicle 8, Prompter 6, Arc 4 and 10 more repositories</title></rect>
+<rect x="728" y="28" width="11" height="11" rx="2" fill="#17623f"><title>2026-11-04: 37 releases — AI 5, Prompter 5, Arc 4 and 15 more repositories</title></rect>
 <g font-family="system-ui, sans-serif" font-size="10" fill="#808080"><text x="0" y="123">Daily releases · UTC · Monday–Sunday</text><text x="577" y="123">Less</text><text x="708" y="123">More</text></g>
 <rect x="609" y="113" width="11" height="11" rx="2" fill="#88909633"/>
 <rect x="627" y="113" width="11" height="11" rx="2" fill="#83cfa0"/>
