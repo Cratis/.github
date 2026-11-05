@@ -1,0 +1,4 @@
+# Private repositories excluded from public release digests.
+Studio
+Stagehand
+Infrastructure

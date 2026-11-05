@@ -3,8 +3,9 @@
 
 const fs = require('node:fs');
 const assert = require('node:assert/strict');
+const path = require('node:path');
 
-// This is a formatting/link-context pass, not a release-body parser. Both the
+// This is a formatting/link-context/privacy pass, not a release-body parser. Both the
 // workflow's summary and stored digests use it; no clock or API is used.
 // Offline: node .github/scripts/render-release-digest.cjs --write release-digests/*.md
 // Verify:  node .github/scripts/render-release-digest.cjs --check release-digests/*.md
@@ -136,14 +137,92 @@ function quoteAnalyzerFamilies(text, rebaseLinks = true) {
     return { text: result, headingLines };
 }
 
-// Normalize heading boundaries, bare analyzer literals and attributed link hrefs.
-// Tables and all other text/facts/code (including heading anchors) remain intact.
-// Href equality is intentionally replaced by source-repository/tag equivalence.
-function renderReleaseDigest(markdown) {
+function loadPrivateRepositories(file) {
+    return fs.readFileSync(file, 'utf8').split(/\r?\n/)
+        .map(line => line.split('#', 1)[0].trim()).filter(Boolean);
+}
+
+function privateUrl(url, privateRepositories) {
+    const target = new URL(url.replace(/[.,;:!?]+$/, ''), 'https://github.com');
+    const [owner, repository] = target.pathname.slice(1).split('/');
+    return owner.toLowerCase() === 'cratis' && privateRepositories.has(repository?.toLowerCase());
+}
+
+function removePrivateReferences(line, privateRepositories) {
+    const githubUrl = String.raw`(?:https?:)?\/\/github\.com\/[^\s<>()\x60"'\]]+(?:\([^\s<>()\x60]*\)[^\s<>()\x60"'\]]*)*`;
+    const markdownLink = new RegExp(String.raw`!?\[([^\]\n]*)\]\(\s*<?(${githubUrl})>?(?:[ \t]+["'][^\n]*?["'])?\s*\)`, 'gi');
+    const autolinkOrUrl = new RegExp(String.raw`<(${githubUrl})>|(${githubUrl})`, 'gi');
+    const sanitized = line
+        .replace(markdownLink, (link, text, url) => privateUrl(url, privateRepositories) ? text : link)
+        .replace(autolinkOrUrl, (link, autolink, url) => privateUrl(autolink || url, privateRepositories) ? (url?.match(/[.,;:!?]+$/)?.[0] || '') : link)
+        .replace(/`?Cratis\/([\w.-]+)#\d+\b`?/gi, (reference, repository) => privateRepositories.has(repository.toLowerCase()) ? '' : reference);
+    if (sanitized === line) return line;
+    return sanitized.replace(/[ \t]*\([ \t,;]*\)/g, '').replace(/(\S)[ \t]{2,}(?=\S)/g, '$1 ').replace(/[ \t]+([,.;:!?])/g, '$1').trimEnd();
+}
+
+function dropEmptyPrivateTables(lines, output) {
+    for (let index = 0; index < lines.length - 1; index++) {
+        if (!/^\|/.test(lines[index]) || !/^\|[ \t]*:?-+/.test(lines[index + 1])) continue;
+        let end = index + 2;
+        while (end < lines.length && /^\|/.test(lines[end])) end++;
+        if (end > index + 2 && output.slice(index + 2, end).every(line => line === null)) {
+            output[index] = null;
+            output[index + 1] = null;
+        }
+        index = end - 1;
+    }
+}
+
+function dropEmptyPrivateSections(lines, output) {
+    // Work backwards so parents also lose headings for now-empty subsections.
+    for (let index = lines.length - 1; index >= 0; index--) {
+        const heading = lines[index].match(/^(#{1,6})[ \t]+/);
+        if (!heading) continue;
+        let end = index + 1;
+        for (; end < lines.length; end++) {
+            const next = lines[end].match(/^(#{1,6})[ \t]+/);
+            if (next && next[1].length <= heading[1].length) break;
+        }
+        if (lines.slice(index + 1, end).some(line => line.trim()) && !output.slice(index + 1, end).some(line => line?.trim())) output[index] = null;
+    }
+}
+
+function removePrivateContent(lines, privateRepositories) {
+    const privateNames = new Set(Array.from(privateRepositories, name => name.toLowerCase()));
+    if (!privateNames.size) return lines;
+    let removingBullet = false;
+    let afterBlank = false;
+    const output = lines.map(line => {
+        const subject = line.match(/^- \*\*([\w.-]+)\*\* \(/);
+        if (/^(?:[-+*][ \t]+|\d+[.)][ \t]+|#{1,6}[ \t]+|\|)/.test(line) || (afterBlank && /^\S/.test(line))) removingBullet = false;
+        if (subject && privateNames.has(subject[1].toLowerCase())) removingBullet = true;
+        afterBlank = !line.trim();
+        if (removingBullet && line.trim()) return null;
+        const row = line.match(/^\|[ \t]*(?:\[([\w.-]+)\]\([^)]*\)|([\w.-]+))[ \t]*\|/);
+        if (row && privateNames.has((row[1] || row[2]).toLowerCase())) return null;
+        return removePrivateReferences(line, privateNames);
+    });
+    dropEmptyPrivateTables(lines, output);
+    dropEmptyPrivateSections(lines, output);
+    const retained = [];
+    let removed = false;
+    for (const line of output) {
+        if (line === null) removed = true;
+        else if (!(removed && !line.trim() && retained.at(-1) === '')) {
+            retained.push(line);
+            if (line.trim()) removed = false;
+        }
+    }
+    return retained;
+}
+
+// Exclude explicitly private content when a list is supplied, then normalize
+// heading boundaries, analyzer literals and attributed hrefs. Other facts stay intact.
+function renderReleaseDigest(markdown, { privateRepositories = [] } = {}) {
     const newline = markdown.includes('\r\n') ? '\r\n' : '\n';
     assert(!markdown.replace(/\r\n/g, '').includes('\r'), 'Unsupported line endings');
     assert(newline !== '\r\n' || !markdown.replace(/\r\n/g, '').includes('\n'), 'Mixed line endings');
-    const lines = markdown.split(newline);
+    const lines = removePrivateContent(markdown.split(newline), privateRepositories);
     const output = [];
     let fence = null;
     let paragraph = [];
@@ -208,10 +287,11 @@ function main(args) {
     const [mode, ...files] = args;
     assert(['--check', '--write'].includes(mode) && files.length,
         'Usage: node .github/scripts/render-release-digest.cjs --check|--write FILE...');
+    const privateRepositories = loadPrivateRepositories(path.join(__dirname, '../../release-digests/private-repositories.txt'));
     const rendered = files.map(file => {
         const before = fs.readFileSync(file, 'utf8');
-        const after = renderReleaseDigest(before);
-        assert.equal(renderReleaseDigest(after), after, `Non-idempotent formatting: ${file}`);
+        const after = renderReleaseDigest(before, { privateRepositories });
+        assert.equal(renderReleaseDigest(after, { privateRepositories }), after, `Non-idempotent formatting: ${file}`);
         return { file, before, after };
     });
     const changed = rendered.filter(({ before, after }) => before !== after);
@@ -224,5 +304,5 @@ function main(args) {
     console.log(`${files.length} digests checked; ${changed.length} ${mode === '--write' ? 'rendered' : 'need rendering'}.`);
 }
 
-module.exports = { renderReleaseDigest };
+module.exports = { renderReleaseDigest, loadPrivateRepositories };
 if (require.main === module) main(process.argv.slice(2));
