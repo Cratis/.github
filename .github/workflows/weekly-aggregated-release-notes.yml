@@ -227,8 +227,9 @@ jobs:
             }
 
             // Share the final renderer with offline historical digest regeneration.
-            const { renderReleaseDigest } = require(path.join(process.env.GITHUB_WORKSPACE, '.github/scripts/render-release-digest.cjs'));
-            const summary = renderReleaseDigest(summaryLines.join('\n'));
+            const { renderReleaseDigest, loadPrivateRepositories } = require(path.join(process.env.GITHUB_WORKSPACE, '.github/scripts/render-release-digest.cjs'));
+            const privateRepositories = loadPrivateRepositories(path.join(process.env.GITHUB_WORKSPACE, 'release-digests/private-repositories.txt'));
+            const summary = renderReleaseDigest(summaryLines.join('\n'), { privateRepositories });
 
             fs.writeFileSync(path.join(process.env.GITHUB_WORKSPACE, 'weekly-release-summary.md'), summary);
 
