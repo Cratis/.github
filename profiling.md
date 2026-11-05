@@ -1,3 +1,7 @@
+---
+title: Profiling
+description: Profile a Cratis .NET application with your IDE or dotnet-trace, collect a Speedscope trace and open the resulting JSON file to inspect performance.
+---
 # Profiling
 
 If you have an IDE like Visual Studio or Jetbrains Rider, you can use the built in profiler of these.

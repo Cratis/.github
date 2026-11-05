@@ -1,3 +1,7 @@
+---
+title: C# coding standards
+description: Follow Cratis C# coding standards for asynchronous APIs, readable fluent interfaces, immutable data and domain concepts that preserve explicit meaning.
+---
 # C# coding standards
 
 ## Async
