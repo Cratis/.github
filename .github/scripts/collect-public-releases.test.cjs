@@ -19,7 +19,7 @@ function release(tag, publishedAt, extra = {}) {
 }
 
 // An unexpected endpoint or release request fails instead of reaching a network.
-function mockGithub(repositories, metadata = {}, releaseData = {}) {
+function mockGithub(repositories, metadata = {}, releaseData = {}, organization = org) {
     const calls = [];
     const listForOrg = Symbol('listForOrg');
     const listReleases = Symbol('listReleases');
@@ -28,7 +28,7 @@ function mockGithub(repositories, metadata = {}, releaseData = {}) {
             listForOrg, listReleases,
             get: async options => {
                 calls.push(['metadata', options.repo]);
-                assert.deepEqual(options, { owner: org, repo: options.repo });
+                assert.deepEqual(options, { owner: organization, repo: options.repo });
                 const data = Object.hasOwn(metadata, options.repo) ? metadata[options.repo] : repositories.find(repo => repo.name === options.repo);
                 if (data instanceof Error) throw data;
                 return { data };
@@ -36,12 +36,12 @@ function mockGithub(repositories, metadata = {}, releaseData = {}) {
         } },
         paginate: async (endpoint, options) => {
             if (endpoint === listForOrg) {
-                assert.deepEqual(options, { org, type: 'public', per_page: 100 });
+                assert.deepEqual(options, { org: organization, type: 'public', per_page: 100 });
                 calls.push(['list']);
                 return repositories;
             }
             assert.equal(endpoint, listReleases);
-            assert.deepEqual(options, { owner: org, repo: options.repo, per_page: 100 });
+            assert.deepEqual(options, { owner: organization, repo: options.repo, per_page: 100 });
             calls.push(['releases', options.repo]);
             assert.ok(Object.hasOwn(releaseData, options.repo), 'Forbidden or unexpected release fetch');
             if (releaseData[options.repo] instanceof Error) throw releaseData[options.repo];
@@ -110,6 +110,47 @@ test('a comment at the end of a line does not join it to the next line', async (
     });
     const result = await collectPublicReleases({ ...mock, org, since });
     assert.deepEqual(result.releases[0].body.split('\n').map(line => line.trim()), ['## Added', '', '- one', '- two', '', '## Fixed', '', '- three']);
+});
+
+for (const [name, body, expected] of [
+    ['private markdown link', 'See [deployment](https://github.com/ExampleOrg/Studio/blob/main/deploy.yml).', 'See deployment.'],
+    ['public markdown link', 'See [issues](https://github.com/ExampleOrg/StudioIssues/issues/12).', 'See [issues](https://github.com/ExampleOrg/StudioIssues/issues/12).'],
+    ['unknown repository', 'See [notes](https://github.com/ExampleOrg/Unknown/releases).', 'See notes.'],
+    ['rechecked private repository', 'See [notes](https://github.com/ExampleOrg/ChangedWidget/releases).', 'See notes.'],
+    ['bare URL', 'See https://github.com/ExampleOrg/Studio/issues/12 for details.', 'See an internal resource for details.'],
+    ['bare URL punctuation', 'See https://github.com/ExampleOrg/Studio.', 'See an internal resource.'],
+    ['public bare URL punctuation', 'See https://github.com/ExampleOrg/StudioIssues.', 'See https://github.com/ExampleOrg/StudioIssues.'],
+    ['multiple parenthesized references', 'Fixed (ExampleOrg/Studio#12, ExampleOrg/Unknown#34).', 'Fixed.'],
+    ['autolink', 'See <https://github.com/ExampleOrg/Studio/issues/12>.', 'See an internal resource.'],
+    ['plain references and empty parentheses', 'Fixed (ExampleOrg/Studio#12) with  ExampleOrg/Unknown#34 tests.', 'Fixed with tests.'],
+    ['code reference and punctuation', 'Fixed (`ExampleOrg/Studio#12`). Next ExampleOrg/Studio#13, done.', 'Fixed. Next, done.'],
+    ['case-insensitive references', 'See [notes](https://github.com/exampleorg/studio/releases) (exampleorg/STUDIO#12).', 'See notes.'],
+    ['titled link and parentheses in URL', 'See [notes](<https://github.com/ExampleOrg/Studio/blob/main/file(test).md> "Details").', 'See notes.'],
+    ['public and external references', 'ExampleOrg/StudioIssues#12 OtherOrg/Studio#12 https://github.com/OtherOrg/Studio', 'ExampleOrg/StudioIssues#12 OtherOrg/Studio#12 https://github.com/OtherOrg/Studio'],
+    ['public bare and autolink URLs', 'https://github.com/ExampleOrg/StudioIssues/issues/12 <https://github.com/ExampleOrg/StudioIssues>', 'https://github.com/ExampleOrg/StudioIssues/issues/12 <https://github.com/ExampleOrg/StudioIssues>'],
+    ['line structure', '- Fixed (ExampleOrg/Studio#12)\n\n  - See [notes](https://github.com/ExampleOrg/Studio).', '- Fixed\n\n  - See notes.'],
+    ['sanitization before truncation', 'x'.repeat(2990) + '[notes](https://github.com/ExampleOrg/Unknown/releases)', 'x'.repeat(2990) + 'notes']
+]) {
+    test(`sanitizes release bodies: ${name}`, async () => {
+        const mock = mockGithub([
+            repository('OpenWidget'), repository('Studio', { visibility: 'private', private: true }),
+            repository('ChangedWidget'), repository('StudioIssues')
+        ], { ChangedWidget: repository('ChangedWidget', { visibility: 'private', private: true }) }, {
+            OpenWidget: [release('v1', '2026-01-09T00:00:00Z', { body })], StudioIssues: []
+        });
+        const result = await collectPublicReleases({ ...mock, org, since });
+        assert.equal(result.releases[0].body, expected);
+        assert.deepEqual(result.versionMovements.map(item => item.repository), ['OpenWidget']);
+        assert.deepEqual(mock.calls, [['list'], ['metadata', 'OpenWidget'], ['releases', 'OpenWidget'], ['metadata', 'ChangedWidget'], ['metadata', 'StudioIssues'], ['releases', 'StudioIssues']]);
+    });
+}
+
+test('sanitizes Cratis references without a hardcoded private repository list', async () => {
+    const mock = mockGithub([repository('OpenWidget')], {}, {
+        OpenWidget: [release('v1', '2026-01-09T00:00:00Z', { body: 'Fixed (Cratis/Studio#12) with [details](https://github.com/Cratis/Stagehand/issues/1).' })]
+    }, 'Cratis');
+    const result = await collectPublicReleases({ ...mock, org: 'Cratis', since });
+    assert.equal(result.releases[0].body, 'Fixed with details.');
 });
 
 // Execute the actual collection step, including its production helper and output writes.
