@@ -1,3 +1,7 @@
+---
+title: Building
+description: Build and test Cratis projects with the required .NET, Node.js and Docker tools, using solution-level commands for C# and package scripts for JavaScript.
+---
 # Building
 
 All Cratis projects follow the same structure and way of building.
