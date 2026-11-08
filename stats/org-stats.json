@@ -1,26 +1,26 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-07T11:04:46.979Z",
+  "generatedAt": "2026-11-08T11:17:16.698Z",
   "organization": "Cratis",
   "scope": "public, non-archived, non-fork repositories",
   "repositoryCount": 58,
   "releases": {
-    "last7Days": 279,
-    "last30Days": 1696,
-    "last90Days": 3145,
-    "last365Days": 4248,
-    "allTime": 4817,
-    "averagePerDayLast30Days": 56.5,
+    "last7Days": 271,
+    "last30Days": 1652,
+    "last90Days": 3166,
+    "last365Days": 4285,
+    "allTime": 4836,
+    "averagePerDayLast30Days": 55.1,
     "last365DaysByKind": {
-      "major": 74,
-      "minor": 1989,
-      "patch": 2069,
+      "major": 76,
+      "minor": 2013,
+      "patch": 2080,
       "prerelease": 74
     },
     "last7DaysByKind": {
-      "major": 6,
-      "minor": 154,
-      "patch": 113,
+      "major": 7,
+      "minor": 148,
+      "patch": 110,
       "prerelease": 0
     },
     "busiestDay": {
@@ -28,22 +28,22 @@
       "count": 121
     },
     "streak": {
-      "currentDays": 95,
-      "longestDays": 95,
-      "longestEndedOn": "2026-11-07"
+      "currentDays": 96,
+      "longestDays": 96,
+      "longestEndedOn": "2026-11-08"
     }
   },
   "mergedPullRequests": {
-    "last7Days": 445,
-    "last30Days": 2652,
-    "last365Days": 8325,
+    "last7Days": 424,
+    "last30Days": 2597,
+    "last365Days": 8358,
     "dependencyUpdatesLast7Days": 7
   },
   "issues": {
-    "openedLast7Days": 721,
-    "closedLast7Days": 575,
-    "closedLast30Days": 3348,
-    "closedLast365Days": 6425
+    "openedLast7Days": 598,
+    "closedLast7Days": 503,
+    "closedLast30Days": 3323,
+    "closedLast365Days": 6447
   },
   "contributors": {
     "activeLast30Days": 2,
@@ -61,16 +61,6 @@
     ]
   },
   "daily": [
-    {
-      "date": "2025-11-08",
-      "releases": 1,
-      "repositories": [
-        {
-          "name": "Chronicle",
-          "releases": 1
-        }
-      ]
-    },
     {
       "date": "2025-11-09",
       "releases": 2,
@@ -7248,22 +7238,30 @@
     },
     {
       "date": "2026-11-07",
-      "releases": 16,
+      "releases": 36,
       "repositories": [
         {
-          "name": "DirectPublic",
-          "releases": 4
+          "name": "Arc",
+          "releases": 9
         },
         {
           "name": "Chronicle",
-          "releases": 3
+          "releases": 9
+        },
+        {
+          "name": "DirectPublic",
+          "releases": 7
         },
         {
           "name": "Stage",
-          "releases": 3
+          "releases": 4
         },
         {
-          "name": "Arc",
+          "name": "cli",
+          "releases": 2
+        },
+        {
+          "name": "Screenplay",
           "releases": 2
         },
         {
@@ -7275,11 +7273,41 @@
           "releases": 1
         },
         {
-          "name": "cli",
+          "name": "Scene",
+          "releases": 1
+        }
+      ]
+    },
+    {
+      "date": "2026-11-08",
+      "releases": 18,
+      "repositories": [
+        {
+          "name": "AuthProxy",
+          "releases": 6
+        },
+        {
+          "name": "Chronicle",
+          "releases": 4
+        },
+        {
+          "name": "Arc",
+          "releases": 2
+        },
+        {
+          "name": "DirectPublic",
+          "releases": 2
+        },
+        {
+          "name": "Showrunner",
+          "releases": 2
+        },
+        {
+          "name": "AI",
           "releases": 1
         },
         {
-          "name": "Screenplay",
+          "name": "Screenplay.Generation",
           "releases": 1
         }
       ]
@@ -7288,35 +7316,35 @@
   "releasesThisWeek": [
     {
       "name": "Chronicle",
-      "releases": 39
+      "releases": 46
     },
     {
       "name": "Arc",
-      "releases": 32
+      "releases": 34
     },
     {
       "name": "DirectPublic",
-      "releases": 27
-    },
-    {
-      "name": "Prompter",
-      "releases": 27
+      "releases": 32
     },
     {
       "name": "AI",
-      "releases": 24
+      "releases": 21
+    },
+    {
+      "name": "Prompter",
+      "releases": 20
     }
   ],
   "deliveryLeadTime": {
     "windowDays": 30,
-    "matchedReleases": 1664,
+    "matchedReleases": 1615,
     "mergeToRelease": {
       "medianMinutes": 0.9,
-      "p90Minutes": 18.5
+      "p90Minutes": 19
     },
     "openedToRelease": {
-      "medianMinutes": 29.2,
-      "p90Minutes": 298.9
+      "medianMinutes": 30.3,
+      "p90Minutes": 301.3
     }
   },
   "weekly": [
@@ -7634,9 +7662,9 @@
     },
     {
       "weekStart": "2026-11-02",
-      "releases": 233,
-      "mergedPullRequests": 390,
-      "issuesClosed": 481
+      "releases": 271,
+      "mergedPullRequests": 424,
+      "issuesClosed": 503
     }
   ],
   "monthly": [
@@ -7719,95 +7747,95 @@
     },
     {
       "month": "2026-11",
-      "releases": 279,
-      "mergedPullRequests": 445,
-      "issuesOpened": 721,
-      "issuesClosed": 575
+      "releases": 317,
+      "mergedPullRequests": 479,
+      "issuesOpened": 742,
+      "issuesClosed": 597
     }
   ],
   "repositories": [
     {
       "name": "Stage",
       "url": "https://github.com/Cratis/Stage",
-      "releasesLast30Days": 275,
-      "releasesLast365Days": 393,
+      "releasesLast30Days": 253,
+      "releasesLast365Days": 394,
       "latestRelease": {
-        "tag": "v4.226.0",
-        "url": "https://github.com/Cratis/Stage/releases/tag/v4.226.0",
-        "publishedAt": "2026-11-07T10:41:17Z",
-        "kind": "minor"
-      }
-    },
-    {
-      "name": "Screenplay",
-      "url": "https://github.com/Cratis/Screenplay",
-      "releasesLast30Days": 228,
-      "releasesLast365Days": 410,
-      "latestRelease": {
-        "tag": "v5.11.0",
-        "url": "https://github.com/Cratis/Screenplay/releases/tag/v5.11.0",
-        "publishedAt": "2026-11-07T08:20:54Z",
+        "tag": "v4.227.0",
+        "url": "https://github.com/Cratis/Stage/releases/tag/v4.227.0",
+        "publishedAt": "2026-11-07T12:10:59Z",
         "kind": "minor"
       }
     },
     {
       "name": "Chronicle",
       "url": "https://github.com/Cratis/Chronicle",
-      "releasesLast30Days": 219,
-      "releasesLast365Days": 748,
+      "releasesLast30Days": 217,
+      "releasesLast365Days": 757,
       "latestRelease": {
-        "tag": "v19.136.0",
-        "url": "https://github.com/Cratis/Chronicle/releases/tag/v19.136.0",
-        "publishedAt": "2026-11-07T10:45:02Z",
+        "tag": "v19.142.1",
+        "url": "https://github.com/Cratis/Chronicle/releases/tag/v19.142.1",
+        "publishedAt": "2026-11-08T07:24:35Z",
+        "kind": "patch"
+      }
+    },
+    {
+      "name": "Screenplay",
+      "url": "https://github.com/Cratis/Screenplay",
+      "releasesLast30Days": 208,
+      "releasesLast365Days": 411,
+      "latestRelease": {
+        "tag": "v6.0.0",
+        "url": "https://github.com/Cratis/Screenplay/releases/tag/v6.0.0",
+        "publishedAt": "2026-11-07T21:31:53Z",
+        "kind": "major"
+      }
+    },
+    {
+      "name": "Arc",
+      "url": "https://github.com/Cratis/Arc",
+      "releasesLast30Days": 193,
+      "releasesLast365Days": 771,
+      "latestRelease": {
+        "tag": "v22.176.0",
+        "url": "https://github.com/Cratis/Arc/releases/tag/v22.176.0",
+        "publishedAt": "2026-11-08T06:18:28Z",
         "kind": "minor"
       }
     },
     {
       "name": "AI",
       "url": "https://github.com/Cratis/AI",
-      "releasesLast30Days": 192,
-      "releasesLast365Days": 331,
+      "releasesLast30Days": 184,
+      "releasesLast365Days": 332,
       "latestRelease": {
-        "tag": "v7.138.0",
-        "url": "https://github.com/Cratis/AI/releases/tag/v7.138.0",
-        "publishedAt": "2026-11-07T08:38:17Z",
-        "kind": "minor"
-      }
-    },
-    {
-      "name": "Arc",
-      "url": "https://github.com/Cratis/Arc",
-      "releasesLast30Days": 188,
-      "releasesLast365Days": 762,
-      "latestRelease": {
-        "tag": "v22.171.1",
-        "url": "https://github.com/Cratis/Arc/releases/tag/v22.171.1",
-        "publishedAt": "2026-11-07T10:52:19Z",
+        "tag": "v7.138.1",
+        "url": "https://github.com/Cratis/AI/releases/tag/v7.138.1",
+        "publishedAt": "2026-11-08T01:22:22Z",
         "kind": "patch"
       }
     },
     {
       "name": "cli",
       "url": "https://github.com/Cratis/cli",
-      "releasesLast30Days": 125,
-      "releasesLast365Days": 262,
+      "releasesLast30Days": 119,
+      "releasesLast365Days": 263,
       "latestRelease": {
-        "tag": "v3.122.0",
-        "url": "https://github.com/Cratis/cli/releases/tag/v3.122.0",
-        "publishedAt": "2026-11-07T10:41:27Z",
+        "tag": "v3.123.0",
+        "url": "https://github.com/Cratis/cli/releases/tag/v3.123.0",
+        "publishedAt": "2026-11-07T11:16:15Z",
         "kind": "minor"
       }
     },
     {
       "name": "Scene",
       "url": "https://github.com/Cratis/Scene",
-      "releasesLast30Days": 108,
-      "releasesLast365Days": 140,
+      "releasesLast30Days": 106,
+      "releasesLast365Days": 141,
       "latestRelease": {
-        "tag": "v4.88.0",
-        "url": "https://github.com/Cratis/Scene/releases/tag/v4.88.0",
-        "publishedAt": "2026-11-04T03:48:50Z",
-        "kind": "minor"
+        "tag": "v5.0.0",
+        "url": "https://github.com/Cratis/Scene/releases/tag/v5.0.0",
+        "publishedAt": "2026-11-07T21:31:25Z",
+        "kind": "major"
       }
     },
     {
@@ -7819,6 +7847,18 @@
         "tag": "v2.3.0",
         "url": "https://github.com/Cratis/Choreography/releases/tag/v2.3.0",
         "publishedAt": "2026-11-05T13:18:20Z",
+        "kind": "minor"
+      }
+    },
+    {
+      "name": "AuthProxy",
+      "url": "https://github.com/Cratis/AuthProxy",
+      "releasesLast30Days": 38,
+      "releasesLast365Days": 117,
+      "latestRelease": {
+        "tag": "v2.52.0",
+        "url": "https://github.com/Cratis/AuthProxy/releases/tag/v2.52.0",
+        "publishedAt": "2026-11-08T07:39:01Z",
         "kind": "minor"
       }
     },
@@ -7835,33 +7875,21 @@
       }
     },
     {
-      "name": "AuthProxy",
-      "url": "https://github.com/Cratis/AuthProxy",
-      "releasesLast30Days": 32,
-      "releasesLast365Days": 111,
-      "latestRelease": {
-        "tag": "v2.48.0",
-        "url": "https://github.com/Cratis/AuthProxy/releases/tag/v2.48.0",
-        "publishedAt": "2026-11-07T01:38:36Z",
-        "kind": "minor"
-      }
-    },
-    {
       "name": "DirectPublic",
       "url": "https://github.com/Cratis/DirectPublic",
-      "releasesLast30Days": 27,
-      "releasesLast365Days": 27,
+      "releasesLast30Days": 32,
+      "releasesLast365Days": 32,
       "latestRelease": {
-        "tag": "v3.40.5",
-        "url": "https://github.com/Cratis/DirectPublic/releases/tag/v3.40.5",
-        "publishedAt": "2026-11-07T08:48:35Z",
-        "kind": "patch"
+        "tag": "v3.45.0",
+        "url": "https://github.com/Cratis/DirectPublic/releases/tag/v3.45.0",
+        "publishedAt": "2026-11-08T05:12:40Z",
+        "kind": "minor"
       }
     },
     {
       "name": "Components",
       "url": "https://github.com/Cratis/Components",
-      "releasesLast30Days": 26,
+      "releasesLast30Days": 25,
       "releasesLast365Days": 193,
       "latestRelease": {
         "tag": "v4.40.0",
@@ -7883,26 +7911,26 @@
       }
     },
     {
+      "name": "Showrunner",
+      "url": "https://github.com/Cratis/Showrunner",
+      "releasesLast30Days": 20,
+      "releasesLast365Days": 20,
+      "latestRelease": {
+        "tag": "v1.17.1",
+        "url": "https://github.com/Cratis/Showrunner/releases/tag/v1.17.1",
+        "publishedAt": "2026-11-08T05:54:12Z",
+        "kind": "patch"
+      }
+    },
+    {
       "name": "Ante",
       "url": "https://github.com/Cratis/Ante",
-      "releasesLast30Days": 18,
+      "releasesLast30Days": 17,
       "releasesLast365Days": 59,
       "latestRelease": {
         "tag": "v1.9.0",
         "url": "https://github.com/Cratis/Ante/releases/tag/v1.9.0",
         "publishedAt": "2026-11-06T04:16:45Z",
-        "kind": "minor"
-      }
-    },
-    {
-      "name": "Showrunner",
-      "url": "https://github.com/Cratis/Showrunner",
-      "releasesLast30Days": 18,
-      "releasesLast365Days": 18,
-      "latestRelease": {
-        "tag": "v1.16.0",
-        "url": "https://github.com/Cratis/Showrunner/releases/tag/v1.16.0",
-        "publishedAt": "2026-11-06T04:16:56Z",
         "kind": "minor"
       }
     },
@@ -8051,6 +8079,18 @@
       }
     },
     {
+      "name": "Screenplay.Generation",
+      "url": "https://github.com/Cratis/Screenplay.Generation",
+      "releasesLast30Days": 3,
+      "releasesLast365Days": 27,
+      "latestRelease": {
+        "tag": "v0.20.0",
+        "url": "https://github.com/Cratis/Screenplay.Generation/releases/tag/v0.20.0",
+        "publishedAt": "2026-11-08T05:34:38Z",
+        "kind": "minor"
+      }
+    },
+    {
       "name": "Arc.Elixir",
       "url": "https://github.com/Cratis/Arc.Elixir",
       "releasesLast30Days": 2,
@@ -8075,30 +8115,6 @@
       }
     },
     {
-      "name": "Chronicle.Mcp",
-      "url": "https://github.com/Cratis/Chronicle.Mcp",
-      "releasesLast30Days": 2,
-      "releasesLast365Days": 9,
-      "latestRelease": {
-        "tag": "v2.1.0",
-        "url": "https://github.com/Cratis/Chronicle.Mcp/releases/tag/v2.1.0",
-        "publishedAt": "2026-11-04T03:35:49Z",
-        "kind": "minor"
-      }
-    },
-    {
-      "name": "Screenplay.Generation",
-      "url": "https://github.com/Cratis/Screenplay.Generation",
-      "releasesLast30Days": 2,
-      "releasesLast365Days": 26,
-      "latestRelease": {
-        "tag": "v0.19.0",
-        "url": "https://github.com/Cratis/Screenplay.Generation/releases/tag/v0.19.0",
-        "publishedAt": "2026-11-02T11:01:29Z",
-        "kind": "minor"
-      }
-    },
-    {
       "name": "Arc.TypeScript",
       "url": "https://github.com/Cratis/Arc.TypeScript",
       "releasesLast30Days": 1,
@@ -8120,6 +8136,18 @@
         "url": "https://github.com/Cratis/Architecture/releases/tag/v1.0.3",
         "publishedAt": "2026-10-20T21:59:58Z",
         "kind": "patch"
+      }
+    },
+    {
+      "name": "Chronicle.Mcp",
+      "url": "https://github.com/Cratis/Chronicle.Mcp",
+      "releasesLast30Days": 1,
+      "releasesLast365Days": 9,
+      "latestRelease": {
+        "tag": "v2.1.0",
+        "url": "https://github.com/Cratis/Chronicle.Mcp/releases/tag/v2.1.0",
+        "publishedAt": "2026-11-04T03:35:49Z",
+        "kind": "minor"
       }
     },
     {
@@ -8260,7 +8288,7 @@
       {
         "id": "releases-all-time-2500",
         "label": "2,500 releases",
-        "reachedOn": "2026-09-25"
+        "reachedOn": "2026-09-26"
       },
       {
         "id": "streak-50",
@@ -8275,19 +8303,19 @@
       {
         "id": "releases-all-time-1000",
         "label": "1,000 releases",
-        "reachedOn": "2026-04-20"
+        "reachedOn": "2026-04-26"
       }
     ],
     "next": [
       {
         "id": "releases-all-time-5000",
         "label": "5,000 releases",
-        "remaining": 183
+        "remaining": 164
       },
       {
         "id": "streak-100",
         "label": "100-day release streak",
-        "remaining": 5
+        "remaining": 4
       }
     ]
   }
