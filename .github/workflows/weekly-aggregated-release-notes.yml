@@ -6,6 +6,13 @@ on:
     # Both runs are harmless; only the run that creates the digest file posts to Discord.
     - cron: '23 5 * * 1'
     - cron: '23 6 * * 1'
+    # GitHub delays scheduled runs by hours under load and sometimes drops them (the 05:23/06:23 slots produced nothing
+    # on 2026-11-09). These later slots catch the week up without anyone starting it by hand: a run that finds the
+    # digest already committed and unchanged adds no commit, posts nothing to Discord and triggers no build.
+    - cron: '23 8 * * 1'
+    - cron: '23 10 * * 1'
+    - cron: '23 12 * * 1'
+    - cron: '23 14 * * 1'
   workflow_dispatch:
     inputs:
       days:
@@ -24,6 +31,7 @@ jobs:
     timeout-minutes: 30
     permissions:
       contents: write
+      actions: write
 
     steps:
       - name: Checkout repository
@@ -252,12 +260,21 @@ jobs:
           for attempt in 1 2 3; do
             git pull --rebase origin main
             if git push origin HEAD:main; then
+              echo "pushed=true" >> "$GITHUB_OUTPUT"
               exit 0
             fi
             sleep "$((attempt * 2))"
           done
           exit 1
 
+      # A push made with the workflow's own token does not start other workflows, so the documentation build never
+      # saw a bot-committed digest. Asking for it explicitly (workflow_dispatch is exempt from that rule) puts the
+      # digest on the site without anyone pushing something else.
+      - name: Build the documentation site with the new digest
+        if: steps.commit.outputs.pushed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run documentation.yml --ref main
       - name: Share weekly digest on Discord
         if: steps.commit.outputs.created == 'true'
         uses: actions/github-script@v8
