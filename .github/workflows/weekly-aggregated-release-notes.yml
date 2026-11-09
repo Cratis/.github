@@ -28,10 +28,11 @@ concurrency:
 jobs:
   aggregate-release-notes:
     runs-on: ubuntu-latest
+    outputs:
+      pushed: ${{ steps.commit.outputs.pushed }}
     timeout-minutes: 30
     permissions:
       contents: write
-      actions: write
 
     steps:
       - name: Checkout repository
@@ -267,14 +268,6 @@ jobs:
           done
           exit 1
 
-      # A push made with the workflow's own token does not start other workflows, so the documentation build never
-      # saw a bot-committed digest. Asking for it explicitly (workflow_dispatch is exempt from that rule) puts the
-      # digest on the site without anyone pushing something else.
-      - name: Build the documentation site with the new digest
-        if: steps.commit.outputs.pushed == 'true'
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: gh workflow run documentation.yml --ref main
       - name: Share weekly digest on Discord
         if: steps.commit.outputs.created == 'true'
         uses: actions/github-script@v8
@@ -294,3 +287,14 @@ jobs:
             }
             const url = `https://github.com/${context.repo.owner}/${context.repo.repo}/blob/main/${process.env.DIGEST_FILE}`;
             await postDiscord({ webhook: process.env.DISCORD_WEBHOOK_URL, payload: weeklyDiscord(numbers, url), notice: core.notice, warning: core.warning });
+  # A push made with the workflow's own token starts no other workflow, so documentation.yml never saw a digest this
+  # workflow committed. Like every other repository, this one asks for the documentation build itself, through the
+  # organization-wide dispatcher.
+  trigger-documentation-build:
+    needs: aggregate-release-notes
+    if: needs.aggregate-release-notes.outputs.pushed == 'true'
+    permissions:
+      contents: read
+    uses: Cratis/Workflows/.github/workflows/trigger-documentation-build.yml@main
+    secrets:
+      PAT_DOCUMENTATION: ${{ secrets.PAT_DOCUMENTATION }}
