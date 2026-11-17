@@ -5,13 +5,13 @@
 **At a glance**
 
 <!-- org-stats:start -->
-Last 7 days: **410 releases** (222 with new features, 184 with fixes, 4 with breaking changes), **612 merged pull requests**, **632 issues closed** · **104-day** release streak.
+Last 7 days: **377 releases** (200 with new features, 172 with fixes, 4 with breaking changes), **552 merged pull requests**, **552 issues closed** · **105-day** release streak.
 
-Last 365 days: **4,769 releases**, **9,056 merged pull requests** and **7,231 issues closed** across **61 public repositories**.
+Last 365 days: **4,815 releases**, **9,087 merged pull requests** and **7,251 issues closed** across **61 public repositories**.
 
-From pull request opened to released: median **32 minutes** (90% within 6 hours) · Busiest day on record: **121 releases** on 16 October 2026.
+From pull request opened to released: median **28 minutes** (90% within 6 hours) · Busiest day on record: **121 releases** on 16 October 2026.
 
-Most releases this week: [DirectPublic](https://github.com/Cratis/DirectPublic) 66 · [AI](https://github.com/Cratis/AI) 62 · [Chronicle](https://github.com/Cratis/Chronicle) 41
+Most releases this week: [DirectPublic](https://github.com/Cratis/DirectPublic) 73 · [AI](https://github.com/Cratis/AI) 53 · [Chronicle](https://github.com/Cratis/Chronicle) 42
 
 ![Daily releases over the last 53 weeks](https://raw.githubusercontent.com/Cratis/.github/main/stats/release-calendar.svg)
 <!-- org-stats:end -->
