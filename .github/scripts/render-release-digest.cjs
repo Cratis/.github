@@ -11,7 +11,7 @@ const path = require('node:path');
 // Verify:  node .github/scripts/render-release-digest.cjs --check release-digests/*.md
 
 // Find an inline destination's end without interpreting or rewriting its URL.
-function destinationEnd(text, start) {
+function destinationEnd(text, start, fallback = text.length) {
     let depth = 1;
     for (let index = start; index < text.length; index++) {
         if (text[index] === '\\') {
@@ -23,7 +23,53 @@ function destinationEnd(text, start) {
         }
     }
     // An ambiguous destination is left untouched, never guessed at.
-    return text.length;
+    return fallback;
+}
+
+// Only incoming release-note bullets pass through this boundary. Historical formatting is unchanged.
+function sanitizeReleaseBullet(text) {
+    const brackets = /\\.|\[|\]\(?/g;
+    const labels = [];
+    for (let token; (token = brackets.exec(text));) {
+        if (token[0] === '[') {
+            labels.push(token.index);
+        } else if (token[0][0] === ']') {
+            const label = labels.pop();
+            if (token[0] !== '](') continue;
+            const start = brackets.lastIndex;
+            const destination = text.slice(start);
+            const scheme = destination.match(/^[\x00-\x20]*<?([a-z\x00-\x20]+)\\?:/i)?.[1];
+            if (!/^(?:javascript|data|vbscript)$/i.test(scheme?.replace(/[\x00-\x20]/g, '') ?? '')) continue;
+
+            const angle = destination.match(/^[ \t]*<[^<>]*>/);
+            const end = destinationEnd(text, start + (angle?.[0].length ?? 0), -1);
+            if (label === undefined || end < 0) {
+                text = text.slice(0, start - 1) + '\\' + text.slice(start - 1);
+                brackets.lastIndex++;
+            } else {
+                const image = text[label - 1] === '!' && text[label - 2] !== '\\';
+                text = text.slice(0, image ? label - 1 : label) + text.slice(label + 1, token.index) + text.slice(end);
+                // Removing markup may expose another link boundary; reconsider the whole bullet.
+                brackets.lastIndex = 0;
+                labels.length = 0;
+            }
+        }
+    }
+    // Escape ampersands first so Markdown cannot decode source entities into URL syntax.
+    // Code spans already render their content as text, so they keep it verbatim (`List<T>`).
+    const escape = part => part.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+    let result = '';
+    let last = 0;
+    const runs = [...text.matchAll(/\\.|`+/g)].filter(run => run[0][0] === '`');
+    for (let open = 0; open < runs.length; open++) {
+        const close = runs.findIndex((run, index) => index > open && run[0].length === runs[open][0].length);
+        if (close < 0) continue;
+        const end = runs[close].index + runs[close][0].length;
+        result += escape(text.slice(last, runs[open].index)) + text.slice(runs[open].index, end);
+        last = end;
+        open = close;
+    }
+    return result + escape(text.slice(last));
 }
 
 // Only the workflow's explicit, same-line attribution supplies repository context.
@@ -304,5 +350,5 @@ function main(args) {
     console.log(`${files.length} digests checked; ${changed.length} ${mode === '--write' ? 'rendered' : 'need rendering'}.`);
 }
 
-module.exports = { renderReleaseDigest, loadPrivateRepositories };
+module.exports = { renderReleaseDigest, loadPrivateRepositories, sanitizeReleaseBullet };
 if (require.main === module) main(process.argv.slice(2));

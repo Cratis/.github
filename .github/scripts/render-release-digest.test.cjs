@@ -5,7 +5,7 @@ const { test } = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
-const { renderReleaseDigest, loadPrivateRepositories } = require('./render-release-digest.cjs');
+const { renderReleaseDigest, loadPrivateRepositories, sanitizeReleaseBullet } = require('./render-release-digest.cjs');
 
 // All fixtures are in memory: no network, clock-dependent assertions or publication.
 const examples = [
@@ -270,13 +270,28 @@ test('fails clearly rather than rebasing outside the attributed repository root'
     assert.throws(() => renderReleaseDigest(ante + '[a](../x.md)\n'), /Release link escapes repository root/);
 });
 
+for (const [input, expected] of [
+    ['<script></script>', '&lt;script&gt;&lt;/script&gt;'],
+    ['<img onerror="">', '&lt;img onerror=""&gt;'],
+    ['[Script](javascript:example(1))', 'Script'],
+    ['[Data](<DATA:text/plain,example>)', 'Data'],
+    ['[Legacy](vbscript:example)', 'Legacy'],
+    ['**Example:** a < b & [guide](https://example.com/guide)', '**Example:** a &lt; b &amp; [guide](https://example.com/guide)'],
+    ['Use `List<T>` and ``a ` <b>`` but not <i>', 'Use `List<T>` and ``a ` <b>`` but not &lt;i&gt;'],
+    ['\\`<b>` and `<i>', '\\`&lt;b&gt;` and `&lt;i&gt;']
+]) {
+    test(`sanitizes a release-note bullet: ${input}`, () => {
+        assert.equal(sanitizeReleaseBullet(input), expected);
+    });
+}
+
 test('the workflow uses the same deterministic final renderer (offline script harness)', async () => {
     const workflow = fs.readFileSync(path.join(__dirname, '../workflows/weekly-aggregated-release-notes.yml'), 'utf8');
     const summaryStep = workflow.split('      - name: Summarize releases by category\n')[1].split('\n      - name: Commit release digest')[0];
     const script = summaryStep.split('          script: |\n')[1].replace(/^ {12}/gm, '');
     const release = {
         repository: 'Arc', title: 'Release v20.47.0', url: 'https://github.com/Cratis/Arc/releases/tag/v20.47.0',
-        body: '## Added\n- Analyzer families ARC* and ARCCHR* for @contributor (#2286). [Guide](./Documentation/guide.md?q=1#part) and `[code](./untouched.md)`. [Internal guide](https://github.com/Cratis/Infrastructure/blob/main/guide.md) (Cratis/Studio#12).\n## Fixed\n- None'
+        body: '## Added\n- Analyzer families ARC* and ARCCHR* for @contributor (#2286). [Guide](./Documentation/guide.md?q=1#part) and `[code](./untouched.md)`. [Internal guide](https://github.com/Cratis/Infrastructure/blob/main/guide.md) (Cratis/Studio#12).\n- a < b\n## Fixed\n- None'
     };
     const privateRelease = { repository: 'Studio', title: 'Release v1', url: 'https://github.com/Cratis/Studio/releases/tag/v1', body: '## Added\n- Private feature' };
     const movements = [release, privateRelease].map(item => ({
@@ -295,6 +310,7 @@ test('the workflow uses the same deterministic final renderer (offline script ha
         assert.equal(name, '/offline/.github/scripts/render-release-digest.cjs');
         return {
             renderReleaseDigest,
+            sanitizeReleaseBullet,
             loadPrivateRepositories: file => {
                 assert.equal(file, '/offline/release-digests/private-repositories.txt');
                 return loadPrivateRepositories(path.join(__dirname, '../../release-digests/private-repositories.txt'));
@@ -311,6 +327,7 @@ test('the workflow uses the same deterministic final renderer (offline script ha
     assert.match(writes[0].text, /Analyzer families `ARC\*` and `ARCCHR\*` for @contributor \(#2286\)\./);
     assert.ok(writes[0].text.includes('[Guide](https://github.com/Cratis/Arc/blob/v20.47.0/Documentation/guide.md?q=1#part) and `[code](./untouched.md)`.'));
     assert.match(writes[0].text, /Internal guide\./);
+    assert.match(writes[0].text, /: a &lt; b\n/);
     assert.doesNotMatch(writes[0].text, /Cratis\/(?:Studio|Infrastructure)|\*\*Studio\*\*|Private feature/);
     assert.match(writes[0].text, /## Fixed\n\n- No updates/);
     assert.equal(renderReleaseDigest(writes[0].text), writes[0].text);
