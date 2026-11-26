@@ -81,7 +81,11 @@ function renderReleaseBulletMarkup(text) {
 }
 
 // Only incoming release-note bullets pass through this boundary. Historical formatting is unchanged.
-function sanitizeReleaseBullet(text) {
+function sanitizeReleaseBullet(text, { privateRepositories = [] } = {}) {
+    const privateNames = new Set(Array.from(privateRepositories, name => name.toLowerCase()));
+    // Check source URLs before escaping turns adjacent punctuation into URL text.
+    if (privateNames.size) text = tidyRedactedText(text, redactPrivateReferences(text, privateNames, { rawBullet: true }));
+
     const brackets = /\\.|\[|\]\(?/g;
     const labels = [];
     for (let token; (token = brackets.exec(text));) {
@@ -234,14 +238,25 @@ function privateUrl(url, privateRepositories) {
     return owner.toLowerCase() === 'cratis' && privateRepositories.has(repository?.toLowerCase());
 }
 
-function redactPrivateReferences(line, privateRepositories) {
+function redactPrivateReferences(line, privateRepositories, { rawBullet = false } = {}) {
     const githubUrl = String.raw`(?:https?:)?\/\/github\.com\/[^\s<>()\x60"'\]]+(?:\([^\s<>()\x60]*\)[^\s<>()\x60"'\]]*)*`;
     const markdownLink = new RegExp(String.raw`!?\[([^\]\n]*)\]\(\s*<?(${githubUrl})>?(?:[ \t]+["'][^\n]*?["'])?\s*\)`, 'gi');
     const autolinkOrUrl = new RegExp(String.raw`<(${githubUrl})>|(${githubUrl})`, 'gi');
+    // Named angle entities already in the source affect lookup only; never decode them into markup.
+    const urlForLookup = url => rawBullet ? url.split(/&(?:lt|gt);/i, 1)[0] : url;
     return line
-        .replace(markdownLink, (link, text, url) => privateUrl(url, privateRepositories) ? text : link)
-        .replace(autolinkOrUrl, (link, autolink, url) => privateUrl(autolink || url, privateRepositories) ? (url?.match(/[.,;:!?]+$/)?.[0] || '') : link)
+        .replace(markdownLink, (link, text, url) => privateUrl(urlForLookup(url), privateRepositories) ? text : link)
+        .replace(autolinkOrUrl, (link, autolink, bareUrl) => {
+            const url = urlForLookup(autolink || bareUrl);
+            if (!privateUrl(url, privateRepositories)) return link;
+            return bareUrl ? (url.match(/[.,;:!?]+$/)?.[0] || '') + bareUrl.slice(url.length) : '';
+        })
         .replace(/`?Cratis\/([\w.-]+)#\d+\b`?/gi, (reference, repository) => privateRepositories.has(repository.toLowerCase()) ? '' : reference);
+}
+
+function tidyRedactedText(original, sanitized) {
+    if (sanitized === original) return original;
+    return sanitized.replace(/[ \t]*\([ \t,;]*\)/g, '').replace(/(\S)[ \t]{2,}(?=\S)/g, '$1 ').replace(/[ \t]+([,.;:!?])/g, '$1').trimEnd();
 }
 
 function removePrivateReferences(line, privateRepositories) {
@@ -251,11 +266,10 @@ function removePrivateReferences(line, privateRepositories) {
         const decoded = content.replace(/&(?:([a-z]+)|#(\d+));/g, (_, name, decimal) =>
             name ? entities[name] : String.fromCharCode(Number(decimal)));
         const redacted = redactPrivateReferences(decoded, privateRepositories);
-        return redacted === decoded ? span : `<code>${escapeReleaseCode(redacted)}</code>`;
+        if (redacted === decoded) return span;
+        return redacted.trim() ? `<code>${escapeReleaseCode(redacted)}</code>` : '';
     });
-    const sanitized = redactPrivateReferences(withRedactedCode, privateRepositories);
-    if (sanitized === line) return line;
-    return sanitized.replace(/[ \t]*\([ \t,;]*\)/g, '').replace(/(\S)[ \t]{2,}(?=\S)/g, '$1 ').replace(/[ \t]+([,.;:!?])/g, '$1').trimEnd();
+    return tidyRedactedText(line, redactPrivateReferences(withRedactedCode, privateRepositories));
 }
 
 function dropEmptyPrivateTables(lines, output) {
