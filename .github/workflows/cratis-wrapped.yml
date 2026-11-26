@@ -29,13 +29,13 @@ jobs:
       contents: write
     steps:
       - name: Checkout main
-        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: main
 
       - name: Collect yearly activity
         id: collect
-        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         env:
           WRAPPED_YEAR: ${{ inputs.year }}
         with:
@@ -56,7 +56,7 @@ jobs:
             fs.writeFileSync(path.join(process.env.RUNNER_TEMP, 'wrapped-discord.json'), JSON.stringify(wrappedDiscord(numbers, url)));
 
       - name: Upload recap
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: cratis-wrapped
           path: ${{ steps.collect.outputs.file }}
@@ -84,7 +84,7 @@ jobs:
 
       - name: Post recap to Discord
         if: github.event_name == 'schedule' || inputs.publish
-        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         with:
