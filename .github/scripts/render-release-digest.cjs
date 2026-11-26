@@ -26,6 +26,60 @@ function destinationEnd(text, start, fallback = text.length) {
     return fallback;
 }
 
+const releaseCodeSpan = /<code>((?:[^&<>\\`*_\[\]~\r\n]|&(?:amp|lt|gt|#(?:42|91|92|93|95|96|126));)*)<\/code>/g;
+const leadingReleaseCodeSpan = new RegExp(`^${releaseCodeSpan.source}`);
+
+function escapeReleaseHtml(text) {
+    return text.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+}
+
+function escapeReleaseCode(text) {
+    // Inline HTML tags do not turn off Markdown parsing between them.
+    return escapeReleaseHtml(text).replace(/[\\`*_\[\]~]/g, char => `&#${char.charCodeAt(0)};`);
+}
+
+function renderReleaseBulletMarkup(text) {
+    const autolink = /<(?:https?:\/\/|mailto:)[^\s<>\x00-\x1f\x7f]+>/iy;
+    const runs = /`+/g;
+    const lastRun = new Map();
+    for (const run of text.matchAll(runs)) lastRun.set(run[0].length, run.index);
+
+    // A mis-detected span can only affect appearance: all source angles are escaped
+    // except for allowlisted autolinks. The only other raw tags are our own code tags.
+    let result = '';
+    let start = 0;
+    for (let index = 0; index < text.length;) {
+        if (text[index] === '\\') {
+            index += 2;
+        } else if (text[index] === '`') {
+            runs.lastIndex = index;
+            const delimiter = runs.exec(text)[0];
+            const contentStart = runs.lastIndex;
+            if (lastRun.get(delimiter.length) > index) {
+                // Inside a span, backslashes are literal; only a full equal run closes it.
+                let close;
+                do { close = runs.exec(text); } while (close[0] !== delimiter);
+                const content = text.slice(contentStart, close.index).replace(/\r\n?|\n/g, ' ');
+                const trimmed = content.startsWith(' ') && content.endsWith(' ') && /[^ ]/.test(content)
+                    ? content.slice(1, -1) : content;
+                result += escapeReleaseHtml(text.slice(start, index)) + `<code>${escapeReleaseCode(trimmed)}</code>`;
+                start = runs.lastIndex;
+            }
+            index = runs.lastIndex;
+        } else {
+            autolink.lastIndex = index;
+            if (text[index] === '<' && autolink.test(text)) {
+                // Keep the angle boundary for the digest's private-repository redaction.
+                result += escapeReleaseHtml(text.slice(start, index)) + text.slice(index, autolink.lastIndex);
+                index = start = autolink.lastIndex;
+            } else {
+                index++;
+            }
+        }
+    }
+    return result + escapeReleaseHtml(text.slice(start));
+}
+
 // Only incoming release-note bullets pass through this boundary. Historical formatting is unchanged.
 function sanitizeReleaseBullet(text) {
     const brackets = /\\.|\[|\]\(?/g;
@@ -55,28 +109,12 @@ function sanitizeReleaseBullet(text) {
             }
         }
     }
-    // Escape ampersands first so Markdown cannot decode source entities into URL syntax.
-    // Code spans already render their content as text, so they keep it verbatim (`List<T>`).
-    const escape = part => part.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
-    let result = '';
-    let last = 0;
-    const runs = [...text.matchAll(/\\.|`+/g)].filter(run => run[0][0] === '`');
-    for (let open = 0; open < runs.length; open++) {
-        const close = runs.findIndex((run, index) => index > open && run[0].length === runs[open][0].length);
-        if (close < 0) continue;
-        const end = runs[close].index + runs[close][0].length;
-        result += escape(text.slice(last, runs[open].index)) + text.slice(runs[open].index, end);
-        last = end;
-        open = close;
-    }
-    return result + escape(text.slice(last));
+    return renderReleaseBulletMarkup(text);
 }
 
 // Only the workflow's explicit, same-line attribution supplies repository context.
 // Never infer it from a version table, neighboring bullet, link label or current tag.
 function releaseBase(text, index) {
-    // Raw HTML code containers are outside this deliberately small Markdown subset.
-    if (/<\/?(?:code|pre|script|style|textarea)\b/i.test(text)) return null;
     const start = text.lastIndexOf('\n', index - 1) + 1;
     const attribution = text.slice(start).match(/^- \*\*([\w.-]+)\*\* \(\[(?:\\.|[^\[\]\\\r\n])+\]\(https:\/\/github\.com\/([\w-]+)\/([\w.-]+)\/releases\/tag\/([^\s?#()[\]\\<>]+)\)\): /);
     if (!attribution || index < start + attribution[0].length || attribution[1].toLowerCase() !== attribution[3].toLowerCase()) return null;
@@ -119,6 +157,8 @@ function rebaseDestination(destination, base) {
 // Existing code, escapes, autolinks, HTML and bare URLs are copied verbatim.
 // Link/reference labels stay intact; ambiguous destinations are never guessed at.
 function quoteAnalyzerFamilies(text, rebaseLinks = true) {
+    // Only the exact escaped inline form is exempt from the HTML container guard.
+    rebaseLinks &&= !/<\/?(?:code|pre|script|style|textarea)\b/i.test(text.replace(releaseCodeSpan, ''));
     let result = '';
     const headingLines = new Set();
     for (let index = 0; index < text.length;) {
@@ -167,7 +207,7 @@ function quoteAnalyzerFamilies(text, rebaseLinks = true) {
         } else if (rest.startsWith('](')) {
             length = destinationEnd(text, index + 2) - index;
         } else {
-            const protectedText = rest.match(/^(?:<[^>]*>|(?:[a-z][a-z\d+.-]*:\/\/|mailto:|www\.)[^\s<>]+)/i);
+            const protectedText = rest.match(leadingReleaseCodeSpan) ?? rest.match(/^(?:<[^>]*>|(?:[a-z][a-z\d+.-]*:\/\/|mailto:|www\.)[^\s<>]+)/i);
             const literal = rest.match(/^ARC(?:CHR)?\*(?![\w*])/);
             if (protectedText) {
                 length = protectedText[0].length;
@@ -194,14 +234,26 @@ function privateUrl(url, privateRepositories) {
     return owner.toLowerCase() === 'cratis' && privateRepositories.has(repository?.toLowerCase());
 }
 
-function removePrivateReferences(line, privateRepositories) {
+function redactPrivateReferences(line, privateRepositories) {
     const githubUrl = String.raw`(?:https?:)?\/\/github\.com\/[^\s<>()\x60"'\]]+(?:\([^\s<>()\x60]*\)[^\s<>()\x60"'\]]*)*`;
     const markdownLink = new RegExp(String.raw`!?\[([^\]\n]*)\]\(\s*<?(${githubUrl})>?(?:[ \t]+["'][^\n]*?["'])?\s*\)`, 'gi');
     const autolinkOrUrl = new RegExp(String.raw`<(${githubUrl})>|(${githubUrl})`, 'gi');
-    const sanitized = line
+    return line
         .replace(markdownLink, (link, text, url) => privateUrl(url, privateRepositories) ? text : link)
         .replace(autolinkOrUrl, (link, autolink, url) => privateUrl(autolink || url, privateRepositories) ? (url?.match(/[.,;:!?]+$/)?.[0] || '') : link)
         .replace(/`?Cratis\/([\w.-]+)#\d+\b`?/gi, (reference, repository) => privateRepositories.has(repository.toLowerCase()) ? '' : reference);
+}
+
+function removePrivateReferences(line, privateRepositories) {
+    const entities = { amp: '&', lt: '<', gt: '>' };
+    const withRedactedCode = line.replace(releaseCodeSpan, (span, content) => {
+        // Recover original URL boundaries inside generated code, then re-escape before emitting.
+        const decoded = content.replace(/&(?:([a-z]+)|#(\d+));/g, (_, name, decimal) =>
+            name ? entities[name] : String.fromCharCode(Number(decimal)));
+        const redacted = redactPrivateReferences(decoded, privateRepositories);
+        return redacted === decoded ? span : `<code>${escapeReleaseCode(redacted)}</code>`;
+    });
+    const sanitized = redactPrivateReferences(withRedactedCode, privateRepositories);
     if (sanitized === line) return line;
     return sanitized.replace(/[ \t]*\([ \t,;]*\)/g, '').replace(/(\S)[ \t]{2,}(?=\S)/g, '$1 ').replace(/[ \t]+([,.;:!?])/g, '$1').trimEnd();
 }
