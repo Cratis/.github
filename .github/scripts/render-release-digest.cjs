@@ -11,7 +11,7 @@ const path = require('node:path');
 // Verify:  node .github/scripts/render-release-digest.cjs --check release-digests/*.md
 
 // Find an inline destination's end without interpreting or rewriting its URL.
-function destinationEnd(text, start) {
+function destinationEnd(text, start, fallback = text.length) {
     let depth = 1;
     for (let index = start; index < text.length; index++) {
         if (text[index] === '\\') {
@@ -23,14 +23,102 @@ function destinationEnd(text, start) {
         }
     }
     // An ambiguous destination is left untouched, never guessed at.
-    return text.length;
+    return fallback;
+}
+
+const releaseCodeSpan = /<code>((?:[^&<>\\`*_\[\]~\r\n]|&(?:amp|lt|gt|#(?:42|91|92|93|95|96|126));)*)<\/code>/g;
+const leadingReleaseCodeSpan = new RegExp(`^${releaseCodeSpan.source}`);
+
+function escapeReleaseHtml(text) {
+    return text.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+}
+
+function escapeReleaseCode(text) {
+    // Inline HTML tags do not turn off Markdown parsing between them.
+    return escapeReleaseHtml(text).replace(/[\\`*_\[\]~]/g, char => `&#${char.charCodeAt(0)};`);
+}
+
+function renderReleaseBulletMarkup(text) {
+    const autolink = /<(?:https?:\/\/|mailto:)[^\s<>\x00-\x1f\x7f]+>/iy;
+    const runs = /`+/g;
+    const lastRun = new Map();
+    for (const run of text.matchAll(runs)) lastRun.set(run[0].length, run.index);
+
+    // A mis-detected span can only affect appearance: all source angles are escaped
+    // except for allowlisted autolinks. The only other raw tags are our own code tags.
+    let result = '';
+    let start = 0;
+    for (let index = 0; index < text.length;) {
+        if (text[index] === '\\') {
+            index += 2;
+        } else if (text[index] === '`') {
+            runs.lastIndex = index;
+            const delimiter = runs.exec(text)[0];
+            const contentStart = runs.lastIndex;
+            if (lastRun.get(delimiter.length) > index) {
+                // Inside a span, backslashes are literal; only a full equal run closes it.
+                let close;
+                do { close = runs.exec(text); } while (close[0] !== delimiter);
+                const content = text.slice(contentStart, close.index).replace(/\r\n?|\n/g, ' ');
+                const trimmed = content.startsWith(' ') && content.endsWith(' ') && /[^ ]/.test(content)
+                    ? content.slice(1, -1) : content;
+                result += escapeReleaseHtml(text.slice(start, index)) + `<code>${escapeReleaseCode(trimmed)}</code>`;
+                start = runs.lastIndex;
+            }
+            index = runs.lastIndex;
+        } else {
+            autolink.lastIndex = index;
+            if (text[index] === '<' && autolink.test(text)) {
+                // Keep the angle boundary for the digest's private-repository redaction.
+                result += escapeReleaseHtml(text.slice(start, index)) + text.slice(index, autolink.lastIndex);
+                index = start = autolink.lastIndex;
+            } else {
+                index++;
+            }
+        }
+    }
+    return result + escapeReleaseHtml(text.slice(start));
+}
+
+// Only incoming release-note bullets pass through this boundary. Historical formatting is unchanged.
+function sanitizeReleaseBullet(text, { privateRepositories = [] } = {}) {
+    const privateNames = new Set(Array.from(privateRepositories, name => name.toLowerCase()));
+    // Check source URLs before escaping turns adjacent punctuation into URL text.
+    if (privateNames.size) text = tidyRedactedText(text, redactPrivateReferences(text, privateNames, { rawBullet: true }));
+
+    const brackets = /\\.|\[|\]\(?/g;
+    const labels = [];
+    for (let token; (token = brackets.exec(text));) {
+        if (token[0] === '[') {
+            labels.push(token.index);
+        } else if (token[0][0] === ']') {
+            const label = labels.pop();
+            if (token[0] !== '](') continue;
+            const start = brackets.lastIndex;
+            const destination = text.slice(start);
+            const scheme = destination.match(/^[\x00-\x20]*<?([a-z\x00-\x20]+)\\?:/i)?.[1];
+            if (!/^(?:javascript|data|vbscript)$/i.test(scheme?.replace(/[\x00-\x20]/g, '') ?? '')) continue;
+
+            const angle = destination.match(/^[ \t]*<[^<>]*>/);
+            const end = destinationEnd(text, start + (angle?.[0].length ?? 0), -1);
+            if (label === undefined || end < 0) {
+                text = text.slice(0, start - 1) + '\\' + text.slice(start - 1);
+                brackets.lastIndex++;
+            } else {
+                const image = text[label - 1] === '!' && text[label - 2] !== '\\';
+                text = text.slice(0, image ? label - 1 : label) + text.slice(label + 1, token.index) + text.slice(end);
+                // Removing markup may expose another link boundary; reconsider the whole bullet.
+                brackets.lastIndex = 0;
+                labels.length = 0;
+            }
+        }
+    }
+    return renderReleaseBulletMarkup(text);
 }
 
 // Only the workflow's explicit, same-line attribution supplies repository context.
 // Never infer it from a version table, neighboring bullet, link label or current tag.
 function releaseBase(text, index) {
-    // Raw HTML code containers are outside this deliberately small Markdown subset.
-    if (/<\/?(?:code|pre|script|style|textarea)\b/i.test(text)) return null;
     const start = text.lastIndexOf('\n', index - 1) + 1;
     const attribution = text.slice(start).match(/^- \*\*([\w.-]+)\*\* \(\[(?:\\.|[^\[\]\\\r\n])+\]\(https:\/\/github\.com\/([\w-]+)\/([\w.-]+)\/releases\/tag\/([^\s?#()[\]\\<>]+)\)\): /);
     if (!attribution || index < start + attribution[0].length || attribution[1].toLowerCase() !== attribution[3].toLowerCase()) return null;
@@ -73,6 +161,8 @@ function rebaseDestination(destination, base) {
 // Existing code, escapes, autolinks, HTML and bare URLs are copied verbatim.
 // Link/reference labels stay intact; ambiguous destinations are never guessed at.
 function quoteAnalyzerFamilies(text, rebaseLinks = true) {
+    // Only the exact escaped inline form is exempt from the HTML container guard.
+    rebaseLinks &&= !/<\/?(?:code|pre|script|style|textarea)\b/i.test(text.replace(releaseCodeSpan, ''));
     let result = '';
     const headingLines = new Set();
     for (let index = 0; index < text.length;) {
@@ -121,7 +211,7 @@ function quoteAnalyzerFamilies(text, rebaseLinks = true) {
         } else if (rest.startsWith('](')) {
             length = destinationEnd(text, index + 2) - index;
         } else {
-            const protectedText = rest.match(/^(?:<[^>]*>|(?:[a-z][a-z\d+.-]*:\/\/|mailto:|www\.)[^\s<>]+)/i);
+            const protectedText = rest.match(leadingReleaseCodeSpan) ?? rest.match(/^(?:<[^>]*>|(?:[a-z][a-z\d+.-]*:\/\/|mailto:|www\.)[^\s<>]+)/i);
             const literal = rest.match(/^ARC(?:CHR)?\*(?![\w*])/);
             if (protectedText) {
                 length = protectedText[0].length;
@@ -148,16 +238,38 @@ function privateUrl(url, privateRepositories) {
     return owner.toLowerCase() === 'cratis' && privateRepositories.has(repository?.toLowerCase());
 }
 
-function removePrivateReferences(line, privateRepositories) {
+function redactPrivateReferences(line, privateRepositories, { rawBullet = false } = {}) {
     const githubUrl = String.raw`(?:https?:)?\/\/github\.com\/[^\s<>()\x60"'\]]+(?:\([^\s<>()\x60]*\)[^\s<>()\x60"'\]]*)*`;
     const markdownLink = new RegExp(String.raw`!?\[([^\]\n]*)\]\(\s*<?(${githubUrl})>?(?:[ \t]+["'][^\n]*?["'])?\s*\)`, 'gi');
     const autolinkOrUrl = new RegExp(String.raw`<(${githubUrl})>|(${githubUrl})`, 'gi');
-    const sanitized = line
-        .replace(markdownLink, (link, text, url) => privateUrl(url, privateRepositories) ? text : link)
-        .replace(autolinkOrUrl, (link, autolink, url) => privateUrl(autolink || url, privateRepositories) ? (url?.match(/[.,;:!?]+$/)?.[0] || '') : link)
+    // Named angle entities already in the source affect lookup only; never decode them into markup.
+    const urlForLookup = url => rawBullet ? url.split(/&(?:lt|gt);/i, 1)[0] : url;
+    return line
+        .replace(markdownLink, (link, text, url) => privateUrl(urlForLookup(url), privateRepositories) ? text : link)
+        .replace(autolinkOrUrl, (link, autolink, bareUrl) => {
+            const url = urlForLookup(autolink || bareUrl);
+            if (!privateUrl(url, privateRepositories)) return link;
+            return bareUrl ? (url.match(/[.,;:!?]+$/)?.[0] || '') + bareUrl.slice(url.length) : '';
+        })
         .replace(/`?Cratis\/([\w.-]+)#\d+\b`?/gi, (reference, repository) => privateRepositories.has(repository.toLowerCase()) ? '' : reference);
-    if (sanitized === line) return line;
+}
+
+function tidyRedactedText(original, sanitized) {
+    if (sanitized === original) return original;
     return sanitized.replace(/[ \t]*\([ \t,;]*\)/g, '').replace(/(\S)[ \t]{2,}(?=\S)/g, '$1 ').replace(/[ \t]+([,.;:!?])/g, '$1').trimEnd();
+}
+
+function removePrivateReferences(line, privateRepositories) {
+    const entities = { amp: '&', lt: '<', gt: '>' };
+    const withRedactedCode = line.replace(releaseCodeSpan, (span, content) => {
+        // Recover original URL boundaries inside generated code, then re-escape before emitting.
+        const decoded = content.replace(/&(?:([a-z]+)|#(\d+));/g, (_, name, decimal) =>
+            name ? entities[name] : String.fromCharCode(Number(decimal)));
+        const redacted = redactPrivateReferences(decoded, privateRepositories);
+        if (redacted === decoded) return span;
+        return redacted.trim() ? `<code>${escapeReleaseCode(redacted)}</code>` : '';
+    });
+    return tidyRedactedText(line, redactPrivateReferences(withRedactedCode, privateRepositories));
 }
 
 function dropEmptyPrivateTables(lines, output) {
@@ -304,5 +416,5 @@ function main(args) {
     console.log(`${files.length} digests checked; ${changed.length} ${mode === '--write' ? 'rendered' : 'need rendering'}.`);
 }
 
-module.exports = { renderReleaseDigest, loadPrivateRepositories };
+module.exports = { renderReleaseDigest, loadPrivateRepositories, sanitizeReleaseBullet };
 if (require.main === module) main(process.argv.slice(2));

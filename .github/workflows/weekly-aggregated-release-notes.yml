@@ -199,11 +199,13 @@ jobs:
               return parsed;
             }
 
+            const { renderReleaseDigest, loadPrivateRepositories, sanitizeReleaseBullet } = require(path.join(process.env.GITHUB_WORKSPACE, '.github/scripts/render-release-digest.cjs'));
+            const privateRepositories = new Set(loadPrivateRepositories(path.join(process.env.GITHUB_WORKSPACE, 'release-digests/private-repositories.txt')));
             for (const release of releases) {
               const parsed = parseReleaseBody(release.body);
               for (const category of categories) {
                 for (const item of parsed[category]) {
-                  grouped[category].push(`- **${release.repository}** ([${release.title}](${release.url})): ${item}`);
+                  grouped[category].push(`- **${release.repository}** ([${release.title}](${release.url})): ${sanitizeReleaseBullet(item, { privateRepositories })}`);
                 }
               }
             }
@@ -239,8 +241,6 @@ jobs:
             }
 
             // Share the final renderer with offline historical digest regeneration.
-            const { renderReleaseDigest, loadPrivateRepositories } = require(path.join(process.env.GITHUB_WORKSPACE, '.github/scripts/render-release-digest.cjs'));
-            const privateRepositories = loadPrivateRepositories(path.join(process.env.GITHUB_WORKSPACE, 'release-digests/private-repositories.txt'));
             const summary = renderReleaseDigest(summaryLines.join('\n'), { privateRepositories });
 
             fs.writeFileSync(path.join(process.env.GITHUB_WORKSPACE, 'weekly-release-summary.md'), summary);

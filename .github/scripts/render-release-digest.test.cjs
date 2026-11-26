@@ -5,7 +5,7 @@ const { test } = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
-const { renderReleaseDigest, loadPrivateRepositories } = require('./render-release-digest.cjs');
+const { renderReleaseDigest, loadPrivateRepositories, sanitizeReleaseBullet } = require('./render-release-digest.cjs');
 
 // All fixtures are in memory: no network, clock-dependent assertions or publication.
 const examples = [
@@ -270,13 +270,106 @@ test('fails clearly rather than rebasing outside the attributed repository root'
     assert.throws(() => renderReleaseDigest(ante + '[a](../x.md)\n'), /Release link escapes repository root/);
 });
 
+for (const [input, expected] of [
+    ['<script></script>', '&lt;script&gt;&lt;/script&gt;'],
+    ['<img onerror="">', '&lt;img onerror=""&gt;'],
+    ['[Script](javascript:example(1))', 'Script'],
+    ['[Data](<DATA:text/plain,example>)', 'Data'],
+    ['[Legacy](vbscript:example)', 'Legacy'],
+    ['**Example:** a < b & [guide](https://example.com/guide)', '**Example:** a &lt; b &amp; [guide](https://example.com/guide)'],
+    ['Use `List<T>` and ``a ` <b>`` but not <i>', 'Use <code>List&lt;T&gt;</code> and <code>a &#96; &lt;b&gt;</code> but not &lt;i&gt;'],
+    ['`a\\` <b> `', '<code>a&#92;</code> &lt;b&gt; `'],
+    ['\\`<b>` and `<i>', '\\`&lt;b&gt;<code>and</code>&lt;i&gt;'],
+    ['\\``a <b>`', '\\`<code>a &lt;b&gt;</code>'],
+    ['<javascript:example(1)>', '&lt;javascript:example(1)&gt;'],
+    ['<http://example.com/x> <https://example.com/x> <mailto:notes@example.com>', '<http://example.com/x> <https://example.com/x> <mailto:notes@example.com>'],
+    ['` &lt; & > `', '<code>&amp;lt; &amp; &gt;</code>']
+]) {
+    test(`sanitizes a release-note bullet: ${input}`, () => {
+        assert.equal(sanitizeReleaseBullet(input), expected);
+    });
+}
+
+test('only generated code tags and allowlisted autolinks retain raw angles in release bullets', () => {
+    const bullets = [
+        '<b>text</b>', '<!-- comment -->', '<code class="sample">text</code>', '<code>text</code>',
+        'a < b > c', '&lt;b&gt;', '`List<T>`', '`a\\` <b> `', '`unfinished <b>', '``odd ` <b>',
+        '\\` <b> `', '\\``a <b>`', '[guide](./x`) <b> `note`', '[guide](./x "title`") <b> `note`',
+        '<javascript:example(1)>', '<https://example.com/a b>', '<https://example.com/\u0001x>',
+        '<https://example.com/<b>>', '<http://example.com/x>', '<https://example.com/x> & <mailto:notes@example.com>'
+    ];
+    for (const bullet of bullets) {
+        const output = sanitizeReleaseBullet(bullet);
+        const prose = output.replace(/<\/?code>|<(?:https?:\/\/|mailto:)[^\s<>\x00-\x1f\x7f]+>/gi, '');
+        assert.doesNotMatch(prose, /[<>]/, `raw angle in sanitized bullet: ${JSON.stringify(bullet)}`);
+    }
+});
+
+test('redacts private repository autolinks in prose and in literal code', () => {
+    const options = { privateRepositories: new Set(['someprivate']) };
+    const autolink = '<https://github.com/Cratis/someprivate>';
+    const input = arc + sanitizeReleaseBullet('See ' + autolink + ' or `repo=' + autolink + '` for details.') + '\n';
+    const output = renderReleaseDigest(input, options);
+    assert.equal(output, arc + 'See or <code>repo=</code> for details.\n');
+    assert.equal(renderReleaseDigest(output, options), output);
+});
+
+const rawBulletPrivacy = { privateRepositories: new Set(['SomePrivate']) };
+const privateBulletUrl = 'https://github.com/Cratis/someprivate';
+for (const [name, reference, expected] of [
+    ['bare URL before an opening angle', '//github.com/Cratis/someprivate<', '&lt;'],
+    ['bare URL before a closing angle', `${privateBulletUrl}>`, '&gt;'],
+    ['bare URL before a literal angle entity', `${privateBulletUrl}&lt;`, '&amp;lt;'],
+    ['autolink', `<${privateBulletUrl}>`, ''],
+    ['bare URL in code', '`repo=' + privateBulletUrl + '>`', '<code>repo=&gt;</code>']
+]) {
+    test(`redacts a private repository ${name} before escaping a bullet`, () => {
+        const bullet = sanitizeReleaseBullet(`See ${reference} for details.`, rawBulletPrivacy);
+        const expectedBullet = expected ? `See ${expected} for details.` : 'See for details.';
+        assert.equal(bullet, expectedBullet);
+        assert.equal(renderReleaseDigest(arc + bullet + '\n', rawBulletPrivacy), arc + expectedBullet + '\n');
+    });
+}
+
+test('preserves public URLs with adjacent angles in prose and code', () => {
+    const url = 'https://github.com/Cratis/somepublic';
+    for (const [reference, expected] of [
+        [url + '<', url + '&lt;'],
+        [url + '>', url + '&gt;'],
+        [url + '&lt;', url + '&amp;lt;'],
+        [`<${url}>`, `<${url}>`],
+        ['`repo=' + url + '>`', `<code>repo=${url}&gt;</code>`]
+    ]) {
+        assert.equal(sanitizeReleaseBullet(reference, rawBulletPrivacy), expected);
+    }
+});
+
+test('drops inline code emptied by final redaction', () => {
+    const bullet = sanitizeReleaseBullet('See `' + privateBulletUrl + '` for details.');
+    assert.equal(renderReleaseDigest(arc + bullet + '\n', rawBulletPrivacy), arc + 'See for details.\n');
+});
+
+test('leaves generated inline code opaque and still rebases nearby links', () => {
+    const input = arc + sanitizeReleaseBullet('`ARC* <T>` [guide](./docs.md) ARC*') + '\n';
+    const output = arc + '<code>ARC&#42; &lt;T&gt;</code> [guide](https://github.com/Cratis/Arc/blob/v22.10.5/docs.md) `ARC*`\n';
+    assert.equal(renderReleaseDigest(input), output);
+    assert.equal(renderReleaseDigest(output), output);
+});
+
+test('code tags with attributes or raw nested markup still disable rebasing', () => {
+    for (const html of ['<code class="sample">List&lt;T&gt;</code>', '<code><b>List</b></code>']) {
+        const input = arc + '[guide](./docs.md) ' + html + '\n';
+        assert.equal(renderReleaseDigest(input), input);
+    }
+});
+
 test('the workflow uses the same deterministic final renderer (offline script harness)', async () => {
     const workflow = fs.readFileSync(path.join(__dirname, '../workflows/weekly-aggregated-release-notes.yml'), 'utf8');
     const summaryStep = workflow.split('      - name: Summarize releases by category\n')[1].split('\n      - name: Commit release digest')[0];
     const script = summaryStep.split('          script: |\n')[1].replace(/^ {12}/gm, '');
     const release = {
         repository: 'Arc', title: 'Release v20.47.0', url: 'https://github.com/Cratis/Arc/releases/tag/v20.47.0',
-        body: '## Added\n- Analyzer families ARC* and ARCCHR* for @contributor (#2286). [Guide](./Documentation/guide.md?q=1#part) and `[code](./untouched.md)`. [Internal guide](https://github.com/Cratis/Infrastructure/blob/main/guide.md) (Cratis/Studio#12).\n## Fixed\n- None'
+        body: `## Added\n- Analyzer families ARC* and ARCCHR* for @contributor (#2286). [Guide](./Documentation/guide.md?q=1#part) and \`[code](./untouched.md)\`. [Internal guide](https://github.com/Cratis/Infrastructure/blob/main/guide.md) (Cratis/Studio#12).\n- a < b\n- See ${privateBulletUrl}> for details.\n## Fixed\n- None`
     };
     const privateRelease = { repository: 'Studio', title: 'Release v1', url: 'https://github.com/Cratis/Studio/releases/tag/v1', body: '## Added\n- Private feature' };
     const movements = [release, privateRelease].map(item => ({
@@ -284,6 +377,7 @@ test('the workflow uses the same deterministic final renderer (offline script ha
         previous: null, current: { tag: 'v1', url: item.url }
     }));
     const writes = [];
+    let privacyListReads = 0;
     const fakeFs = {
         readFileSync: file => JSON.stringify(file.endsWith('weekly-releases.json') ? [release, privateRelease] : file.endsWith('weekly-numbers.json') ? { releases: 1, kinds: { major: 0, minor: 1, patch: 0, prerelease: 0 }, mergedPullRequests: 2, issuesClosed: 1, currentStreak: 3, firstTime: [] } : movements),
         writeFileSync: (file, text) => writes.push({ file, text })
@@ -295,23 +389,28 @@ test('the workflow uses the same deterministic final renderer (offline script ha
         assert.equal(name, '/offline/.github/scripts/render-release-digest.cjs');
         return {
             renderReleaseDigest,
+            sanitizeReleaseBullet,
             loadPrivateRepositories: file => {
                 assert.equal(file, '/offline/release-digests/private-repositories.txt');
-                return loadPrivateRepositories(path.join(__dirname, '../../release-digests/private-repositories.txt'));
+                privacyListReads++;
+                return [...loadPrivateRepositories(path.join(__dirname, '../../release-digests/private-repositories.txt')), 'SomePrivate'];
             }
         };
     };
     const AsyncFunction = Object.getPrototypeOf(async function () {}).constructor;
     await new AsyncFunction('require', 'process', script)(fakeRequire, { env: { GITHUB_WORKSPACE: '/offline', RUNNER_TEMP: '/temp', DAYS: '7' } });
     assert.equal(writes.length, 1);
+    assert.equal(privacyListReads, 1);
     assert.equal(writes[0].file, '/offline/weekly-release-summary.md');
     assert.ok(writes[0].text.indexOf('## Week in numbers') < writes[0].text.indexOf('## Version movement'));
     assert.match(writes[0].text, /1 release\*\*: 1 with new features, no breaking changes\./);
     assert.match(writes[0].text, /## Added\n\n- \*\*Arc\*\*/);
     assert.match(writes[0].text, /Analyzer families `ARC\*` and `ARCCHR\*` for @contributor \(#2286\)\./);
-    assert.ok(writes[0].text.includes('[Guide](https://github.com/Cratis/Arc/blob/v20.47.0/Documentation/guide.md?q=1#part) and `[code](./untouched.md)`.'));
+    assert.ok(writes[0].text.includes('[Guide](https://github.com/Cratis/Arc/blob/v20.47.0/Documentation/guide.md?q=1#part) and <code>&#91;code&#93;(./untouched.md)</code>.'));
     assert.match(writes[0].text, /Internal guide\./);
-    assert.doesNotMatch(writes[0].text, /Cratis\/(?:Studio|Infrastructure)|\*\*Studio\*\*|Private feature/);
+    assert.match(writes[0].text, /: a &lt; b\n/);
+    assert.match(writes[0].text, /: See &gt; for details\.\n/);
+    assert.doesNotMatch(writes[0].text, /Cratis\/(?:Studio|Infrastructure|someprivate)|\*\*Studio\*\*|Private feature/);
     assert.match(writes[0].text, /## Fixed\n\n- No updates/);
     assert.equal(renderReleaseDigest(writes[0].text), writes[0].text);
 });
